@@ -1,0 +1,12 @@
+{
+  "title": "Contentlayer",
+  "_id": "config/global.yaml",
+  "_raw": {
+    "sourceFilePath": "config/global.yaml",
+    "sourceFileName": "global.yaml",
+    "sourceFileDir": "config",
+    "contentType": "data",
+    "flattenedPath": "config/global"
+  },
+  "type": "GlobalConfig"
+}
