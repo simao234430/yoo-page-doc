@@ -151,12 +151,12 @@ export const Playground: FC = () => {
             </h3>
           </div>
           <div className="overflow-hidden">
-            <StackblitzIDE
+            {/* <StackblitzIDE
               setEditorIsReady={setEditorIsReady}
               repoSlug="contentlayerdev/next-contentlayer-example"
               className="h-[700px] w-full"
               {...stackblitzIDEState}
-            />
+            /> */}
           </div>
         </Card>
         <div className="px-8">

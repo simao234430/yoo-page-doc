@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-// import { SearchProvider } from '../SearchContext'
+import { SearchProvider } from '../SearchContext'
 import { MainNavigation } from './MainNavigation'
 import { Footer } from './Footer'
 
@@ -46,7 +46,7 @@ export const Container: FC<any> = ({ children, ...customMeta }) => {
         <meta name="twitter:image" content={meta.image} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </Head>
-      {/* <SearchProvider> */}
+      <SearchProvider>
         <MainNavigation />
         <div className="flex min-h-screen flex-col justify-between">
           <main className="relative pt-16" style={{ scrollPaddingTop: '150px' }}>
@@ -54,7 +54,7 @@ export const Container: FC<any> = ({ children, ...customMeta }) => {
           </main>
           <Footer />
         </div>
-      {/* </SearchProvider> */}
+      </SearchProvider>
     </>
   )
 }
