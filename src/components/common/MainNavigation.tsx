@@ -33,16 +33,16 @@ const NavLink: FC<{ label?: string; hideLabel?: boolean; icon?: IconName; url: s
   const active = router.pathname.split('/')[1] == url.replace('/', '')
 
   return (
-    <Link href={url}
-      
-        className={`group flex h-8 items-center rounded-md bg-transparent px-3 text-sm font-medium leading-none ${
-          active
-            ? 'bg-violet-50 text-violet-900 dark:bg-violet-500/20 dark:text-violet-50'
-            : 'text-slate-600 hover:bg-gray-50 hover:text-slate-700 dark:text-slate-300 dark:hover:bg-gray-900 dark:hover:text-slate-200'
-        }`}
-        target={isExternalUrl(url) ? '_blank' : undefined}
-        rel={isExternalUrl(url) ? 'noreferrer' : undefined}
-    >
+    <Link
+      href={url}
+      className={`group flex h-8 items-center rounded-md bg-transparent px-3 text-sm font-medium leading-none ${
+        active
+          ? 'bg-violet-50 text-violet-900 dark:bg-violet-500/20 dark:text-violet-50'
+          : 'text-slate-600 hover:bg-gray-50 hover:text-slate-700 dark:text-slate-300 dark:hover:bg-gray-900 dark:hover:text-slate-200'
+      }`}
+      target={isExternalUrl(url) ? '_blank' : undefined}
+      rel={isExternalUrl(url) ? 'noreferrer' : undefined}
+       >
         {icon && (
           <span className="block w-5 text-slate-400 group-hover:text-slate-500 dark:text-slate-500 dark:group-hover:text-slate-400">
             <Icon name={icon} />
@@ -51,7 +51,7 @@ const NavLink: FC<{ label?: string; hideLabel?: boolean; icon?: IconName; url: s
         {label && <span className={hideLabel ? 'sr-only' : ''}>{label}</span>}
  
     </Link>
-  )
+  );
 }
 
 // export const SearchButton: FC<{ showShortcut?: boolean }> = ({ showShortcut = true }) => {
@@ -79,8 +79,10 @@ export const MainNavigation = () => {
     <header className="fixed z-50 w-full bg-white border-b border-gray-200 bg-opacity-90 backdrop-blur backdrop-filter dark:border-gray-800 dark:bg-gray-950">
       <div className="flex items-center justify-between w-full h-16 px-4 mx-auto max-w-screen-2xl md:px-8 lg:px-16">
         <div className="flex items-center space-x-2.5">
-          <Link href="/"
-          className="flex items-center space-x-2.5 font-bold text-slate-800 no-underline dark:text-white">
+          <Link 
+            href="/"
+            className="flex items-center space-x-2.5 font-bold text-slate-800 no-underline dark:text-white"
+             >
               <Logo />
               <span className="-mt-0.5">Contentlayer</span>
        
@@ -107,5 +109,5 @@ export const MainNavigation = () => {
         </nav>
       </div>
     </header>
-  )
+  );
 }

@@ -5,17 +5,17 @@ export const Playground: FC<{ githubRepo: string; openFile?: string | '' }> = ({
   const ref = useRef<HTMLDivElement>(null)
   const [vm, setVm] = useState<VM | undefined>(undefined)
 
-  useEffect(() => {
-    if (ref.current && vm === undefined) {
-      stackblitz
-        .embedGithubProject(ref.current, 'contentlayerdev/next-contentlayer-example', {
-          height: 700,
-          showSidebar: true,
-          openFile: openFile,
-        })
-        .then((_) => setVm(_))
-    }
-  }, [ref, openFile, vm])
+  // useEffect(() => {
+  //   if (ref.current && vm === undefined) {
+  //     stackblitz
+  //       .embedGithubProject(ref.current, 'contentlayerdev/next-contentlayer-example', {
+  //         height: 700,
+  //         showSidebar: true,
+  //         openFile: openFile,
+  //       })
+  //       .then((_) => setVm(_))
+  //   }
+  // }, [ref, openFile, vm])
 
   return (
     <div className="mt-8 overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-900">

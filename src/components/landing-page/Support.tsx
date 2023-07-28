@@ -74,8 +74,11 @@ export const Support: FC = () => {
           <h2 className="mt-0 mb-2 text-sm font-normal text-slate-500 md:text-center">{content.frameworks.label}</h2>
           <div className="-mx-3 flex flex-wrap items-center">
             {content.frameworks.items.map(({ logo, label, url, supported }, index) => (
-              <Link key={index} href={url}
-             className="flex h-16 items-center p-3 dark:brightness-200 dark:filter">
+              <Link
+                key={index}
+                href={url}
+                className="flex h-16 items-center p-3 dark:brightness-200 dark:filter"
+                 >
                   <Tooltip.Root delayDuration={100}>
                     <Tooltip.Trigger className="flex h-full items-center">
                       <Image
@@ -105,8 +108,11 @@ export const Support: FC = () => {
           </h2>
           <div className="-mx-3 flex flex-wrap items-center">
             {content.contentSources.items.map(({ logo, label, supported, url }, index) => (
-              <Link key={index} href={url}
-              className="flex h-16 items-center p-3 dark:brightness-200 dark:filter">
+              <Link
+                key={index}
+                href={url}
+                className="flex h-16 items-center p-3 dark:brightness-200 dark:filter"
+                 >
                   <Tooltip.Root delayDuration={100}>
                     <Tooltip.TooltipTrigger>
                       <Image
@@ -138,5 +144,5 @@ export const Support: FC = () => {
         </div>
       </div>
     </div>
-  )
+  );
 }

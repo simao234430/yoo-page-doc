@@ -14,7 +14,7 @@ export const BlogPreview: FC<{ post: Post }> = ({ post }) => {
   return (
     <Card className="grid grid-cols-1 gap-8 p-4 sm:p-8 md:grid-cols-2 lg:gap-16">
       <div>
-        <Link href={`/blog/${post.slug}`}>
+        <Link href={`/blog/${post.slug}`}  >
  
             <Image
               src={post.seo.imagePath}
@@ -29,7 +29,7 @@ export const BlogPreview: FC<{ post: Post }> = ({ post }) => {
       </div>
       <div className="space-y-4">
         <Heading level={3}>
-          <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+          <Link href={`/blog/${post.slug}`}  >{post.title}</Link>
         </Heading>
         <div className="flex space-x-6 text-sm">
           <p className="mb-2 flex">
@@ -56,5 +56,5 @@ export const BlogPreview: FC<{ post: Post }> = ({ post }) => {
         <ChevronLink label="Read more" url={'/blog/' + post.slug} />
       </div>
     </Card>
-  )
+  );
 }

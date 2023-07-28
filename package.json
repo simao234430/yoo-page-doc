@@ -33,6 +33,7 @@
     "date-fns": "^2.30.0",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.12",
+    "contentlayer-source-notion": "^0.0.1-alpha.26",
     "kbar": "^0.1.0-beta.41",
     "markdown-to-jsx": "^7.2.1",
     "next": "13.4.9",

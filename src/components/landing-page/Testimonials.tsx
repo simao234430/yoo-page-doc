@@ -60,8 +60,12 @@ export const Testimonials: FC<{ usedByCount: number }> = ({ usedByCount }) => {
         </div>
       </Card>
       <Card className="h-64 border-violet-100 md:h-auto">
-        <Link href={content.projects.cta.url} 
-        className="relative block h-full w-full" target="_blank" rel="noreferrer">
+        <Link
+          href={content.projects.cta.url}
+          className="relative block h-full w-full"
+          target="_blank"
+          rel="noreferrer"
+           >
             <div className="absolute inset-x-3 -top-8 grid grid-cols-4 gap-x-3 sm:grid-cols-5 md:grid-cols-3 lg:grid-cols-4">
               {content.projects.avatars
                 .map((url) => ({ url, sort: Math.random() }))
@@ -83,7 +87,7 @@ export const Testimonials: FC<{ usedByCount: number }> = ({ usedByCount }) => {
               <p className="mb-2 text-center text-xl font-semibold text-violet-600 dark:text-violet-500">
                 {content.projects.heading.replace('_', usedByCount.toString())}
               </p>
-              <Link href={content.projects.cta.url}>
+              <Link href={content.projects.cta.url}  >
                 <p className="text-center">{content.projects.cta.label}</p>
               </Link>
             </div>
@@ -91,5 +95,5 @@ export const Testimonials: FC<{ usedByCount: number }> = ({ usedByCount }) => {
         </Link>
       </Card>
     </div>
-  )
+  );
 }

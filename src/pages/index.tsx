@@ -9,31 +9,33 @@ import { Features } from "@/components/landing-page/Features"
 // import { Playground } from "@/components/landing-page/Playground"
 import { Tweets } from "@/components/landing-page/Tweets"
 import { FAQ } from "@/components/landing-page/FAQ"
- 
- 
+import { mapObjectValues, promiseAllProperties } from "@/utils/object"
+import { ColorScheme, snippetToHtml } from "@/utils/syntax-highlighting"
+import { codeSnippets, HowItWorks, type CodeSnippets } from '../components/landing-page/HowItWorks'
+import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
 const inter = Inter({ subsets: ['latin'] })
 
-// export const getStaticProps = defineStaticProps(async (_context) => {
-//   const{usedByCount}  = {usedByCount:888}
-//   console.time('getStaticProps /')
+export const getStaticProps = defineStaticProps(async (_context) => {
+  const{usedByCount}  = {usedByCount:888}
+  console.time('getStaticProps /')
 
-//   // const { usedByCount } = await promiseAllProperties({
-//   //   // preprocessedCodeSnippets: promiseAllProperties<PreprocessedCodeSnippets>({
-//   //   //   light: htmlForCodeSnippets('light'),
-//   //   //   dark: htmlForCodeSnippets('dark'),
-//   //   // }),
-//   //   usedByCount: 888,
-//   // })
-//   // const docs = buildDocsTree(allDocs)
-//   // const examples = buildExamplesTree(allExamples)
-//   // const posts = allPosts
+  // const { usedByCount } = await promiseAllProperties({
+  //   // preprocessedCodeSnippets: promiseAllProperties<PreprocessedCodeSnippets>({
+  //   //   light: htmlForCodeSnippets('light'),
+  //   //   dark: htmlForCodeSnippets('dark'),
+  //   // }),
+  //   usedByCount: 888,
+  // })
+  // const docs = buildDocsTree(allDocs)
+  // const examples = buildExamplesTree(allExamples)
+  // const posts = allPosts
  
-//   console.timeEnd('getStaticProps /')
+  console.timeEnd('getStaticProps /')
 
-//   return { props: { usedByCount  } }
-// })
+  return { props: { usedByCount  } }
+})
 
-const Page: React.FC<InferGetStaticPropsType > = ({  }) => {
+const Page: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ usedByCount }) => {
   return (
     <Container>
       <Hero/>
@@ -50,17 +52,17 @@ const Page: React.FC<InferGetStaticPropsType > = ({  }) => {
 export default Page
 
 
-// export type PreprocessedCodeSnippets = Record<ColorScheme, CodeSnippets>
+export type PreprocessedCodeSnippets = Record<ColorScheme, CodeSnippets>
 
-// export const htmlForCodeSnippets = (colorScheme: ColorScheme): Promise<CodeSnippets> =>
-//   promiseAllProperties(
-//     mapObjectValues(
-//       codeSnippets,
-//       (_key, snippets) =>
-//         Promise.all(
-//           snippets.map(({ content, file, lines }) =>
-//             snippetToHtml(content, colorScheme).then((_) => ({ file, lines, content: _ })),
-//           ),
-//         ) as any, // TODO: fix type
-//     ),
-//   )
+export const htmlForCodeSnippets = (colorScheme: ColorScheme): Promise<CodeSnippets> =>
+  promiseAllProperties(
+    mapObjectValues(
+      codeSnippets,
+      (_key, snippets) =>
+        Promise.all(
+          snippets.map(({ content, file, lines }) =>
+            snippetToHtml(content, colorScheme).then((_) => ({ file, lines, content: _ })),
+          ),
+        ) as any, // TODO: fix type
+    ),
+  )

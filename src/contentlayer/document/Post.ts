@@ -121,5 +121,5 @@ const tocPlugin =
 
           return headings.push({ level: heading.depth, title })
         })
-    }
+    };
   }

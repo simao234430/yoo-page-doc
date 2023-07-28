@@ -23,14 +23,14 @@ export const Button: FC<{
 
   if (href) {
     return (
-      <Link href={href}
- 
-          className={classnames(sharedClasses, themeClasses[theme])}
-          onClick={action}
-          aria-label={label}
-          target={isExternalUrl(href) ? '_blank' : undefined}
-          rel={isExternalUrl(href) ? 'noreferrer' : undefined}
-        >
+      <Link
+        href={href}
+        className={classnames(sharedClasses, themeClasses[theme])}
+        onClick={action}
+        aria-label={label}
+        target={isExternalUrl(href) ? '_blank' : undefined}
+        rel={isExternalUrl(href) ? 'noreferrer' : undefined}
+         >
           <span>{label}</span>
           {icon && (
             <span className="w-5">
@@ -39,7 +39,7 @@ export const Button: FC<{
           )}
  
       </Link>
-    )
+    );
   } else {
     return (
       <button className={classnames(sharedClasses, themeClasses[theme])} onClick={action} aria-label={label}>

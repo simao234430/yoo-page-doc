@@ -72,8 +72,12 @@ Took me less than 5 minutes to cleanly separate and connect MDX files to a Next.
 
 const Tweet: FC<TweetData> = ({ text, person, url }) => {
   return (
-    <Link href={url} 
-   className="block h-full" rel="noreferrer" target="_blank" >
+    <Link
+      href={url}
+      className="block h-full"
+      rel="noreferrer"
+      target="_blank"
+       >
         <Card className="h-full space-y-4 p-8">
           <User {...person} />
           <p className="font-light italic text-slate-500 dark:text-slate-400">
@@ -82,7 +86,7 @@ const Tweet: FC<TweetData> = ({ text, person, url }) => {
         </Card>
  
     </Link>
-  )
+  );
 }
 
 export const Tweets: FC = ({}) => {
