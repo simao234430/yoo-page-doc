@@ -24,7 +24,7 @@ import { Video } from '../../components/landing-page/Video'
 import { CodeSnippets, codeSnippets } from '../../utils/blog/beta-post-snippets'
 import { promiseAllProperties } from '../../utils/object'
 import { ColorScheme, snippetToHtml } from '../../utils/syntax-highlighting'
-import { PreprocessedCodeSnippets, htmlForCodeSnippets } from '..'
+// import { PreprocessedCodeSnippets, htmlForCodeSnippets } from '..'
 import { Callout } from '../../components/common/Callout'
 import { ChevronLink } from '../../components/common/ChevronLink'
 import { Container } from '../../components/common/Container'
@@ -33,6 +33,7 @@ import { DocsCard as Card } from '../../components/docs/DocsCard'
 import { localStep2DataTransformation as dataTransformation } from '../../components/landing-page/HowItWorks'
 import { defineStaticProps } from '../../utils/next'
 import { SearchIcon } from '@/components/common/Icon/Search'
+import MarkdownContent from '@/components/MDXComponents'
 
 export const getStaticPaths = async () => {
   const paths = allPosts.map(({ slug }) => {
@@ -53,25 +54,25 @@ export const getStaticProps = defineStaticProps(async (context) => {
   const params = context.params as any
   const post = allPosts.find((_) => _.slug === params.slug)!
 
-  let betaSnippets: BetaSnippets | null = devcache_betaSnippets
-  if (params.slug === 'beta' && !betaSnippets) {
-    betaSnippets = await promiseAllProperties({
-      remark: promiseAllProperties<PreprocessedCodeSnippetsRemark>({
-        light: htmlForCodeSnippetsRemark('light'),
-        dark: htmlForCodeSnippetsRemark('dark'),
-      }),
-      contentlayer: promiseAllProperties<PreprocessedCodeSnippets>({
-        light: htmlForCodeSnippets('light'),
-        dark: htmlForCodeSnippets('dark'),
-      }),
-    })
+  // let betaSnippets: BetaSnippets | null = devcache_betaSnippets
+  // if (params.slug === 'beta' && !betaSnippets) {
+  //   betaSnippets = await promiseAllProperties({
+  //     remark: promiseAllProperties<PreprocessedCodeSnippetsRemark>({
+  //       light: htmlForCodeSnippetsRemark('light'),
+  //       dark: htmlForCodeSnippetsRemark('dark'),
+  //     }),
+  //     contentlayer: promiseAllProperties<PreprocessedCodeSnippets>({
+  //       light: htmlForCodeSnippets('light'),
+  //       dark: htmlForCodeSnippets('dark'),
+  //     }),
+  //   })
 
-    devcache_betaSnippets = betaSnippets
-  }
+  //   devcache_betaSnippets = betaSnippets
+  // }
 
   console.timeEnd(`getStaticProps /blog/${context.params!.slug}`)
 
-  return { props: { post, betaSnippets } }
+  return { props: { post } }
 })
 
 const Image: FC<{ src: string; alt?: string; width?: number; height?: number; className?: string }> = ({
@@ -98,34 +99,34 @@ const Transform: React.FC<{ className?: string }> = ({ className }) => (
   </div>
 )
 
-const mdxComponents = {
-  Callout,
-  Card,
-  Image,
-  Link,
-  ChevronLink,
-  Label,
-  h2: H2,
-  h3: H3,
-  h4: H4,
-  a: Link,
-  p: P,
-  img: Image,
-  Playground,
-  BulletList,
-  BulletListItem,
-  Transform,
-  Video,
-  TLDR,
-  ContentStack,
-  Support,
-  BenchmarkResults,
-  Dashed,
-}
+// const mdxComponents = {
+//   Callout,
+//   Card,
+//   Image,
+//   Link,
+//   ChevronLink,
+//   Label,
+//   h2: H2,
+//   h3: H3,
+//   h4: H4,
+//   a: Link,
+//   p: P,
+//   img: Image,
+//   Playground,
+//   BulletList,
+//   BulletListItem,
+//   Transform,
+//   Video,
+//   TLDR,
+//   ContentStack,
+//   Support,
+//   BenchmarkResults,
+//   Dashed,
+// }
 
-const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post, betaSnippets}) => {
+const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post}) => {
   useLiveReload()
-  const MDXContent = useMDXComponent(post.body.code || '')
+  // const MDXContent = MarkdownContent(post?.body.code || '')
 
   const preferredColorScheme = useColorScheme()
   const [colorScheme, setColorScheme] = useState<'light' | 'dark'>('light')
@@ -138,18 +139,18 @@ const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post, betaSn
     }
   }, [preferredColorScheme])
 
-  const BetaCodeWindow = useMemo(
-    () =>
-      betaSnippets
-        ? {
-            Remark: () => <CodeWindow snippets={betaSnippets.remark[colorScheme]} />,
-            ContentlayerConfig: () => <CodeWindow snippets={betaSnippets.contentlayer[colorScheme].howItWorksStep1} />,
-            ContentlayerNext: () => <CodeWindow snippets={betaSnippets.contentlayer[colorScheme].howItWorksStep3} />,
-          }
-        : ({} as any),
-    [betaSnippets, colorScheme],
-  )
-
+  // const BetaCodeWindow = useMemo(
+  //   () =>
+  //     betaSnippets
+  //       ? {
+  //           Remark: () => <CodeWindow snippets={betaSnippets.remark[colorScheme]} />,
+  //           ContentlayerConfig: () => <CodeWindow snippets={betaSnippets.contentlayer[colorScheme].howItWorksStep1} />,
+  //           ContentlayerNext: () => <CodeWindow snippets={betaSnippets.contentlayer[colorScheme].howItWorksStep3} />,
+  //         }
+  //       : ({} as any),
+  //   [betaSnippets, colorScheme],
+  // )
+ 
   return (
     <Container
       title={post.title + ' – Contentlayer'}
@@ -160,7 +161,7 @@ const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post, betaSn
       <div className="relative mx-auto max-w-screen-2xl px-4 py-8 md:px-8 md:py-16 lg:px-0">
         <BlogHeader post={post} />
         <div className="blog prose prose-lg prose-slate prose-violet relative mx-auto w-full max-w-full dark:prose-invert prose-headings:mt-16 prose-headings:font-semibold prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-hr:border-gray-200 dark:prose-a:text-violet-400 dark:prose-hr:border-gray-800 lg:max-w-[994px] lg:px-16">
-          {MDXContent && <MDXContent components={{ ...(mdxComponents as any), BetaCodeWindow  }} />}
+            <MarkdownContent code={post.body.code} />
           <hr />
           {post.authors.map((author, index) => (
             <Author key={index} {...author} />
@@ -174,9 +175,9 @@ const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post, betaSn
 
 export default Post
 
-const htmlForCodeSnippetsRemark = (colorScheme: ColorScheme): Promise<CodeSnippets> =>
-  Promise.all(
-    codeSnippets.map(({ content, file, lines }) =>
-      snippetToHtml(content, colorScheme).then((_) => ({ file, lines, content: _ })),
-    ),
-  ) as any // TODO: fix type
+// const htmlForCodeSnippetsRemark = (colorScheme: ColorScheme): Promise<CodeSnippets> =>
+//   Promise.all(
+//     codeSnippets.map(({ content, file, lines }) =>
+//       snippetToHtml(content, colorScheme).then((_) => ({ file, lines, content: _ })),
+//     ),
+//   ) as any // TODO: fix type

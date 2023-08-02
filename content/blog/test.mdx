@@ -1,0 +1,51 @@
+---
+title: 'feature'
+excerpt: 'test ata (e.g. Markdown files or CMS) is a surprisingly difficult and laborious task when developing modern sites (e.g. with Next.js). Contentlayer is a content SDK that aims to make content easy for developers.'
+date: 2022-04-21
+cover_image:
+  url: https://i.imgur.com/lRrBFqd.png
+  alt: Contentlayer Makes Working with Content Easy for Developers
+  width: 600
+  height: 162
+authors:
+  - name: Johannes Schickling
+    handle: schickling
+    avatar: https://pbs.twimg.com/profile_images/1624092671739408417/GGvOzADg_400x400.jpg
+related_posts:
+  - slug: working-with-content-is-hard-for-developers
+seo:
+  imagePath: /images/beta-launch-post-meta.png
+---
+
+### Implementation
+
+A factory function can be any function that returns an object.
+
+```js title="arrowFuncAndThis.js" {1-4} 
+function TrendingReposList() {
+  const [repos, setRepos] = React.useState([]);
+  const debounceOnChange = React.useCallback(
+    debounce(fetchTrendingRepos, 400),
+    []
+  );
+
+  function fetchTrendingRepos(value) {
+    fetch(`https://github-trending-api.now.sh/repositories?language=${value}`)
+      .then((res) => res.json())
+      .then((res) => setRepos(res));
+  }
+
+  return (
+    <div className="App">
+      <h1>Search Trending Repos</h1>
+      <input
+        className="filter-input"
+        placeholder="Language: Java, Javascript, Ruby, Python"
+        onChange={(e) => debounceOnChange(e.target.value)}
+      />
+      <List trendingRepos={repos} />
+    </div>
+  );
+}
+
+```

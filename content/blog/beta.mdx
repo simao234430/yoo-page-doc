@@ -69,7 +69,7 @@ This content pre-processing step can be surprisingly difficult as the following 
 Let's look at a concrete example without Contentlayer (see [source on GitHub](https://github.com/contentlayerdev/contentlayer-benchmarks/tree/main/next-remark)). When building a website using Next.js with local Markdown files as your content source, you’d have to develop a mechanism that converted those Markdown files into data that you could use in your Next.js pages.
 
 <div className="my-8">
-  <BetaCodeWindow.Remark />
+  {/* <BetaCodeWindow.Remark /> */}
 </div>
 
 That's already a lot code for a simple use case - and it's just the tip of the iceberg. To achieve a more reliable setup with a decent developer experience, you’d have to also take care of the following:
@@ -122,7 +122,7 @@ After installing Contentlayer via `npm install contentlayer next-contentlayer` y
 
 1. First you need to tell Contentlayer where your content lives and which format and structure it has. There are different kinds of content sources - here we're using local Markdown files.
 
-   <BetaCodeWindow.ContentlayerConfig />
+   {/* <BetaCodeWindow.ContentlayerConfig /> */}
 
 2. Run Contentlayer to transform the content into data. This can be done independently, or by hooking into framework server/build processes.
 
@@ -130,7 +130,7 @@ After installing Contentlayer via `npm install contentlayer next-contentlayer` y
 
 3. Use `import` to work with your content, just as you would with any other data or code in your application.
 
-   <BetaCodeWindow.ContentlayerNext />
+   {/* <BetaCodeWindow.ContentlayerNext /> */}
 
 ### Playground: Try it Yourself
 

@@ -20,6 +20,7 @@ import { H2, H3, H4 } from '../../components/common/Headings'
 import { OptionsTable, OptionTitle, OptionDescription } from '../../components/docs/OptionsTable'
 import { ExamplesFooter } from '../../components/examples/ExamplesFooter'
 import { Button } from '../../components/common/Button'
+import MarkdownContent from '@/components/MDXComponents'
 
 export const getStaticPaths = async () => {
   const paths = allExamples
@@ -70,7 +71,7 @@ const mdxComponents = {
 
 const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ example, tree, breadcrumbs }) => {
   useLiveReload()
-  const MDXContent = useMDXComponent(example.body.code || '')
+  // const MDXContent = useMDXComponent(example.body.code || '')
   const ref = useRef<HTMLDivElement>(null)
   const [vm, setVm] = useState<VM | undefined>(undefined)
   const [fullScreen, setFullScreen] = useState<boolean>(false)
@@ -108,7 +109,9 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ example, tre
         <div className="relative w-full grow">
           <DocsHeader tree={tree} breadcrumbs={breadcrumbs} title={example.title} />
           <div className="docs prose prose-slate prose-violet mx-auto mb-4 w-full max-w-3xl shrink p-4 pb-8 prose-headings:font-semibold prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-hr:border-gray-200 dark:prose-invert dark:prose-a:text-violet-400 dark:prose-hr:border-gray-800 md:mb-8 md:px-8 lg:mx-0 lg:max-w-full lg:px-16">
-            {MDXContent && <MDXContent components={mdxComponents as any} />}
+            {/* {MDXContent && <MDXContent components={mdxComponents as any} />} */}
+
+            <MarkdownContent code={example.body.code} />
             {example.github_repo && (
               <div
                 className={

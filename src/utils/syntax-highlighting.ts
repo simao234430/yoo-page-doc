@@ -7,7 +7,8 @@ const highlighterMap = new Map<ColorScheme, Highlighter>()
 export type ColorScheme = 'light' | 'dark'
 
 export const snippetToHtml = async (snippet: string, colorScheme: ColorScheme) => {
-  const themeName = `github-${colorScheme}`
+  const themeName = `monokai`
+  // const themeName = `github-${colorScheme}`
 
   if (!highlighterMap.has(colorScheme)) {
     highlighterMap.set(colorScheme, await getHighlighter({ theme: themeName }))

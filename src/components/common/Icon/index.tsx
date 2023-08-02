@@ -44,7 +44,8 @@ import { SunIcon } from './Sun'
 import { TemplateIcon } from './Template'
 import { UsersIcon } from './Users'
 import { WordPressIcon } from './WordPress'
-
+import { CopiedIcon } from './Copied'
+import { CopyIcon } from './Copy'
 export type IconName =
   | 'api'
   | 'bars'
@@ -90,6 +91,9 @@ export type IconName =
   | 'template'
   | 'users'
   | 'wordpress'
+  | 'copied'
+  | 'copy'
+ 
 
 const iconMap = {
   'broken-link': BrokenLinkIcon,
@@ -136,6 +140,8 @@ const iconMap = {
   template: TemplateIcon,
   users: UsersIcon,
   wordpress: WordPressIcon,
+  copied: CopiedIcon,
+  copy: CopyIcon,
 }
 
 export const Icon: FC<{ name: IconName }> = ({ name }) => {

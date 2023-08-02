@@ -21,23 +21,23 @@ export const getStaticProps = defineStaticProps(async (_context) => {
   const{usedByCount}  = {usedByCount:888}
   console.time('getStaticProps /')
 
-  const { preprocessedCodeSnippets } = await promiseAllProperties({
-    preprocessedCodeSnippets: promiseAllProperties<PreprocessedCodeSnippets>({
-      light: htmlForCodeSnippets('light'),
-      dark: htmlForCodeSnippets('dark'),
-    }),
+  // const { preprocessedCodeSnippets } = await promiseAllProperties({
+  //   preprocessedCodeSnippets: promiseAllProperties<PreprocessedCodeSnippets>({
+  //     light: htmlForCodeSnippets('light'),
+  //     dark: htmlForCodeSnippets('dark'),
+  //   }),
  
-  })
+  // })
   // const docs = buildDocsTree(allDocs)
   // const examples = buildExamplesTree(allExamples)
   // const posts = allPosts
  
   console.timeEnd('getStaticProps /')
 
-  return { props: { usedByCount,preprocessedCodeSnippets  } }
+  return { props: { usedByCount  } }
 })
 
-const Page: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ usedByCount,preprocessedCodeSnippets }) => {
+const Page: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ usedByCount }) => {
   const preferredColorScheme = useColorScheme()
   const [colorScheme, setColorScheme] = useState<'light' | 'dark'>('light')
 
@@ -55,7 +55,7 @@ const Page: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ usedBy
       <Support/>
       <Testimonials usedByCount={999} />
       <Features />
-      <HowItWorks codeSnippets={preprocessedCodeSnippets[colorScheme]} />
+      {/* <HowItWorks codeSnippets={preprocessedCodeSnippets[colorScheme]} /> */}
       <Playground />
       <FAQ />
       <Tweets />
@@ -65,17 +65,17 @@ const Page: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ usedBy
 export default Page
 
 
-export type PreprocessedCodeSnippets = Record<ColorScheme, CodeSnippets>
+// export type PreprocessedCodeSnippets = Record<ColorScheme, CodeSnippets>
 
-export const htmlForCodeSnippets = (colorScheme: ColorScheme): Promise<CodeSnippets> =>
-  promiseAllProperties(
-    mapObjectValues(
-      codeSnippets,
-      (_key, snippets) =>
-        Promise.all(
-          snippets.map(({ content, file, lines }) =>
-            snippetToHtml(content, colorScheme).then((_) => ({ file, lines, content: _ })),
-          ),
-        ) as any, // TODO: fix type
-    ),
-  )
+// export const htmlForCodeSnippets = (colorScheme: ColorScheme): Promise<CodeSnippets> =>
+//   promiseAllProperties(
+//     mapObjectValues(
+//       codeSnippets,
+//       (_key, snippets) =>
+//         Promise.all(
+//           snippets.map(({ content, file, lines }) =>
+//             snippetToHtml(content, colorScheme).then((_) => ({ file, lines, content: _ })),
+//           ),
+//         ) as any, // TODO: fix type
+//     ),
+//   )
