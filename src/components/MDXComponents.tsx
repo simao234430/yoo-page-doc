@@ -2,7 +2,6 @@
 'use client'
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { Callout } from './common/Callout';
-import { Card } from './common/Card';
 import { ChevronLink } from './common/ChevronLink';
 import { Link } from './common/Link';
 import { Label } from './common/Label';
@@ -16,9 +15,10 @@ import { ContentStack } from './blog/ContentStack';
 import { TLDR } from './blog/TLDR';
 import { Video } from './landing-page/Video';
 import NextImage from 'next/image'
-import { Code } from './common/Code';
+import { Code } from './common/code';
 import Pre from './common/Pre';
-
+import { DocsCard as Card } from './docs/DocsCard'
+import { Card as ChildCard } from './common/Card'
 const Image: FC<{ src: string; alt?: string; width?: number; height?: number; className?: string }> = ({
   src,
   alt,
