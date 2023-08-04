@@ -20,7 +20,7 @@ import { H2, H3, H4 } from '../../components/common/Headings'
 import { OptionsTable, OptionTitle, OptionDescription } from '../../components/docs/OptionsTable'
 import { ExamplesFooter } from '../../components/examples/ExamplesFooter'
 import { Button } from '../../components/common/Button'
-import MarkdownContent from '@/components/MDXComponents'
+import MarkdownContent from '@/src/components/MDXComponents'
 
 export const getStaticPaths = async () => {
   const paths = allExamples

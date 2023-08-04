@@ -20,9 +20,9 @@
     "incremental": true,
     "paths": {
       "contentlayer/generated": ["./.contentlayer/generated"],
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": ["./*"],
+      "tailwind-variants": ["./node_modules/tailwind-variants"],
+ 
     }
   },
   "include": [

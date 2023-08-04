@@ -15,7 +15,8 @@ import { ContentStack } from './blog/ContentStack';
 import { TLDR } from './blog/TLDR';
 import { Video } from './landing-page/Video';
 import NextImage from 'next/image'
-import { Code } from './common/code';
+ 
+// import { Code } from './common/code';
 import Pre from './common/Pre';
 import { DocsCard as Card } from './docs/DocsCard'
 import { Card as ChildCard } from './common/Card'
@@ -67,7 +68,8 @@ const components = {
   Support,
   BenchmarkResults,
   Dashed,
-  code: Code,
+
+  // code: Code,
   pre: Pre,
 };
 

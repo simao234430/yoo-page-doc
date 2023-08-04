@@ -1,19 +1,19 @@
 import Image from "next/legacy/image"
 import { Inter } from 'next/font/google'
-import { Container } from '@/components/common/Container'
-import { Hero } from '@/components/landing-page/Hero'
-import { Support } from '@/components/landing-page/Support'
+import { Container } from '@/src/components/common/Container'
+import { Hero } from '@/src/components/landing-page/Hero'
+import { Support } from '@/src/components/landing-page/Support'
 import { Testimonials  } from '../components/landing-page/Testimonials'
 import { defineStaticProps } from '../utils/next'
-import { Features } from "@/components/landing-page/Features"
-import { Playground } from "@/components/landing-page/Playground"
-import { Tweets } from "@/components/landing-page/Tweets"
-import { FAQ } from "@/components/landing-page/FAQ"
+import { Features } from "@/src/components/landing-page/Features"
+import { Playground } from "@/src/components/landing-page/Playground"
+import { Tweets } from "@/src/components/landing-page/Tweets"
+import { FAQ } from "@/src/components/landing-page/FAQ"
 import { mapObjectValues, promiseAllProperties } from "@/utils/object"
 import { ColorScheme, snippetToHtml } from "@/utils/syntax-highlighting"
 import { codeSnippets, HowItWorks, type CodeSnippets } from '../components/landing-page/HowItWorks'
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
-import { useColorScheme } from "@/components/ColorSchemeContext"
+import { useColorScheme } from "@/src/components/ColorSchemeContext"
 import React, { useEffect, useState } from 'react'
 const inter = Inter({ subsets: ['latin'] })
 

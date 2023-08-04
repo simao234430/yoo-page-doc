@@ -32,8 +32,8 @@ import { Label } from '../../components/common/Label'
 import { DocsCard as Card } from '../../components/docs/DocsCard'
 import { localStep2DataTransformation as dataTransformation } from '../../components/landing-page/HowItWorks'
 import { defineStaticProps } from '../../utils/next'
-import { SearchIcon } from '@/components/common/Icon/Search'
-import MarkdownContent from '@/components/MDXComponents'
+import { SearchIcon } from '@/src/components/common/Icon/Search'
+import MarkdownContent from '@/src/components/MDXComponents'
 
 export const getStaticPaths = async () => {
   const paths = allPosts.map(({ slug }) => {

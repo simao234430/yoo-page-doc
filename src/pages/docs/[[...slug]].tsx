@@ -21,7 +21,7 @@ import { buildDocsTree } from '../../utils/build-docs-tree'
 import { H2, H3, H4 } from '../../components/common/Headings'
 import { OptionsTable, OptionTitle, OptionDescription } from '../../components/docs/OptionsTable'
 import { useRouter } from 'next/router'
-import MarkdownContent from '@/components/MDXComponents'
+import MarkdownContent from '@/src/components/MDXComponents'
 
 function getSupportingProps(doc: Doc, params: any) {
   let slugs = params.slug ? ['docs', ...params.slug] : []
@@ -109,19 +109,19 @@ const Page: FC<InferGetServerSidePropsType<typeof getServerSideProps>> = ({ doc,
 
   return (
     <Container title={doc.title + ' – Contentlayer'} description={doc.excerpt}>
-      <div className="relative w-full mx-auto max-w-screen-2xl lg:flex lg:items-start">
+      <div className="relative w-full mx-8  max-w-screen-2xl  lg:flex   lg:items-start">
         <div
           style={{ height: 'calc(100vh - 64px)' }}
           className="sticky hidden border-r border-gray-200 top-16 shrink-0 dark:border-gray-800 lg:block"
         >
-          <div className="h-full p-8 pl-16 -ml-3 overflow-y-scroll">
+          <div className="h-full p-4 pl-8 -ml-3 overflow-y-scroll">
             <DocsNavigation tree={tree} />
           </div>
           <div className="absolute inset-x-0 top-0 h-8 bg-gradient-to-t from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
           <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
         </div>
 
-        <div className="relative w-full grow">
+        <div className="relative w-full   grow">
           <DocsHeader tree={tree} breadcrumbs={breadcrumbs} title={doc.title} />
           <div className="w-full max-w-3xl p-4 pb-8 mx-auto mb-4 prose docs prose-slate prose-violet shrink prose-headings:font-semibold prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-hr:border-gray-200 dark:prose-invert dark:prose-a:text-violet-400 dark:prose-hr:border-gray-800 md:mb-8 md:px-8 lg:mx-0 lg:max-w-full lg:px-16">
             {/* {MDXContent && <MDXContent components={mdxComponents as any} />} */}
@@ -150,7 +150,7 @@ const Page: FC<InferGetServerSidePropsType<typeof getServerSideProps>> = ({ doc,
         </div>
         <div
           style={{ maxHeight: 'calc(100vh - 128px)' }}
-          className="sticky top-32 hidden w-80 shrink-0 overflow-y-scroll p-8 pr-16 1.5xl:block"
+          className="sticky top-32 hidden w-80 shrink-0 overflow-y-scroll p-8  1.5xl:block"
         >
           <PageNavigation headings={doc.headings} />
           <div className="absolute inset-x-0 top-0 h-8 bg-gradient-to-t from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />

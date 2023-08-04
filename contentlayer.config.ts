@@ -16,7 +16,7 @@ import rehypeSlug from 'rehype-slug';
 import { type Options } from 'rehype-pretty-code';
  
 export const rehypePrettyCodeOptions: Partial<Options> = {
-  theme: 'one-dark-pro',
+  theme: 'monokai',
  
   onVisitHighlightedLine(node: any) {
     node.properties.className?.push('highlighted');

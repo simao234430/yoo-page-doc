@@ -47,7 +47,7 @@ npm install contentlayer next-contentlayer date-fns
 
 To hook Contentlayer into the `next dev` and `next build` processes, you'll want to wrap the Next.js configuration using the `withContentlayer` method.
 
-```js title="test.js"
+```js title="test.js" /nextConfig/ {4-7}
 // next.config.js
 const { withContentlayer } = require('next-contentlayer')
 
