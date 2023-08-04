@@ -21,7 +21,7 @@ import { buildDocsTree } from '../../utils/build-docs-tree'
 import { H2, H3, H4 } from '../../components/common/Headings'
 import { OptionsTable, OptionTitle, OptionDescription } from '../../components/docs/OptionsTable'
 import { useRouter } from 'next/router'
-import MarkdownContent from '@/src/components/MDXComponents'
+import MarkdownContent from '@/src/components/MarkdownContent'
 
 function getSupportingProps(doc: Doc, params: any) {
   let slugs = params.slug ? ['docs', ...params.slug] : []

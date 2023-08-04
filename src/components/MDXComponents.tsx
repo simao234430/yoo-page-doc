@@ -1,5 +1,4 @@
  
-'use client'
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import { Callout } from './common/Callout';
 import { ChevronLink } from './common/ChevronLink';
@@ -46,7 +45,7 @@ const P: React.FC<React.PropsWithChildren<{}>> = ({ children }) => <div classNam
 
 
 // import { Link } from '@/src/app/components/common/Link'
-const components = {
+export const MDXComponents  = {
   Callout,
   Card,
   Image,
@@ -72,12 +71,3 @@ const components = {
   // code: Code,
   pre: Pre,
 };
-
- 
-export default function MarkdownContent({ code }: { code: string }) {
-const MDXContent = useMDXComponent(code);
-
-// @ts-ignore
-return  <MDXContent components={components} />;
-}
-  

@@ -20,7 +20,7 @@ import { H2, H3, H4 } from '../../components/common/Headings'
 import { OptionsTable, OptionTitle, OptionDescription } from '../../components/docs/OptionsTable'
 import { ExamplesFooter } from '../../components/examples/ExamplesFooter'
 import { Button } from '../../components/common/Button'
-import MarkdownContent from '@/src/components/MDXComponents'
+import MarkdownContent from '@/src/components/MarkdownContent'
 
 export const getStaticPaths = async () => {
   const paths = allExamples
@@ -53,22 +53,7 @@ export const getStaticProps = defineStaticProps(async (context) => {
   return { props: { example, tree, breadcrumbs } }
 })
 
-const mdxComponents = {
-  Callout,
-  Card,
-  Image,
-  Link,
-  ChevronLink,
-  Label,
-  h2: H2,
-  h3: H3,
-  h4: H4,
-  a: Link,
-  OptionsTable,
-  OptionTitle,
-  OptionDescription,
-}
-
+ 
 const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ example, tree, breadcrumbs }) => {
   useLiveReload()
   // const MDXContent = useMDXComponent(example.body.code || '')
