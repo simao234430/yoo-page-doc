@@ -1,4 +1,7 @@
 import '@/src/styles/globals.css'
+// import 'antd/dist/antd.css'
+
+import '@arco-design/web-react/dist/css/arco.css'
 import type { AppProps } from 'next/app'
 import { ColorSchemeProvider } from '../components/ColorSchemeContext'
 

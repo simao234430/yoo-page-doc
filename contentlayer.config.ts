@@ -14,7 +14,9 @@ import rehypeSlug from 'rehype-slug';
 //   theme: 'one-dark-pro'
 // };
 import { type Options } from 'rehype-pretty-code';
- 
+import { remarkPlugins } from './src/contentlayer/mdx/remark'
+  
+import remarkMdxCodeMeta from 'remark-mdx-code-meta';
 export const rehypePrettyCodeOptions: Partial<Options> = {
   theme: 'monokai',
  
@@ -65,6 +67,8 @@ export default makeSource({
   contentDirPath,
   documentTypes,
   mdx: {
+ 
+    // remarkPlugins:[remarkMdxCodeMeta],
     rehypePlugins: [
       () => (tree) => {
         visit(tree, (node) => {
@@ -101,6 +105,7 @@ export default makeSource({
       //   },
       // ],
     ],
+
   },
 })
  

@@ -7,12 +7,22 @@ type PreProps = {
 
 
 export default function Pre({ children, raw, ...props }: PreProps) {
-  
+  if (props?.example) {
+    return (
+      <div className="relative"  >
+      <pre      {...props}>{children}</pre>
+      <CopyToClipboard text={raw} />
+    </div>
+    );
+  } else {
   return (
+ 
     <div className="relative"  >
       <pre      {...props}>{children}</pre>
       <CopyToClipboard text={raw} />
     </div>
   );
+  }
+
 }
 

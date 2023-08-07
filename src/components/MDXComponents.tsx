@@ -4,6 +4,10 @@ import { Callout } from './common/Callout';
 import { ChevronLink } from './common/ChevronLink';
 import { Link } from './common/Link';
 import { Label } from './common/Label';
+// import { Button  } from 'antd';
+import { View } from './common/View';
+
+import { CodeDemo } from './common/CodeDemo/CodeDemo';
 import { H2,H3,H4 } from './common/Headings';
 import { Playground } from './blog/Playground';
 import { BulletList, BulletListItem } from './blog/BulletList';
@@ -14,11 +18,11 @@ import { ContentStack } from './blog/ContentStack';
 import { TLDR } from './blog/TLDR';
 import { Video } from './landing-page/Video';
 import NextImage from 'next/image'
- 
 // import { Code } from './common/code';
 import Pre from './common/Pre';
 import { DocsCard as Card } from './docs/DocsCard'
 import { Card as ChildCard } from './common/Card'
+import { Button, Space , Tabs, Typography } from '@arco-design/web-react' 
 const Image: FC<{ src: string; alt?: string; width?: number; height?: number; className?: string }> = ({
   src,
   alt,
@@ -63,11 +67,16 @@ export const MDXComponents  = {
   BulletListItem,
   Video,
   TLDR,
+  View,
+  CodeDemo,
+  Button,
   ContentStack,
   Support,
+  Space,
   BenchmarkResults,
   Dashed,
-
+  Tabs,
+  TabPane:Tabs.TabPane,
   // code: Code,
   pre: Pre,
 };
