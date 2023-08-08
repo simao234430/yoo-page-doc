@@ -7,6 +7,8 @@ import { contentDirPath } from './src/contentlayer/utils'
 import { validateDuplicateIds } from './src/utils/validate-duplicate-ids'
 import rehypePrettyCode from 'rehype-pretty-code';
 import { visit } from 'unist-util-visit';
+import { includeMarkdown } from '@hashicorp/remark-plugins'
+// import { partialimport } from 'remark-import-partial';
 import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
 // /** @type {import('rehype-pretty-code').Options} */
@@ -64,11 +66,12 @@ export const rehypePrettyCodeOptions: Partial<Options> = {
 //   //   meta.replace(CODE_BLOCK_FILENAME_REGEX, '')
 // }
 export default makeSource({
+  disableImportAliasWarning: true,
   contentDirPath,
   documentTypes,
   mdx: {
  
-    // remarkPlugins:[remarkMdxCodeMeta],
+    remarkPlugins: [[includeMarkdown, { resolveMdx: true }]],
     rehypePlugins: [
       () => (tree) => {
         visit(tree, (node) => {
