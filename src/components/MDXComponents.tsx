@@ -7,7 +7,7 @@ import { Label } from './common/Label';
 // import { Button  } from 'antd';
 import { View } from './common/View';
 
-import { CodeDemo } from './common/CodeDemo/CodeDemo';
+import { CodeDemo } from './common/CodeDemo/code-demo';
 import { H2,H3,H4 } from './common/Headings';
 import { Playground } from './blog/Playground';
 import { BulletList, BulletListItem } from './blog/BulletList';
@@ -20,9 +20,14 @@ import { Video } from './landing-page/Video';
 import NextImage from 'next/image'
 // import { Code } from './common/code';
 import Pre from './common/Pre';
+ 
 import { DocsCard as Card } from './docs/DocsCard'
 import { Card as ChildCard } from './common/Card'
 import { Button, Space , Tabs, Typography } from '@arco-design/web-react' 
+// import CodeBlock from './common/codeblock/codeblock';
+import { JSX } from 'react';
+import { InlineCode } from './common/inline-code';
+import { Code } from './common/code';
 const Image: FC<{ src: string; alt?: string; width?: number; height?: number; className?: string }> = ({
   src,
   alt,
@@ -77,6 +82,8 @@ export const MDXComponents  = {
   Dashed,
   Tabs,
   TabPane:Tabs.TabPane,
-  // code: Code,
+  code:Code,
   pre: Pre,
+ 
 };
+ 

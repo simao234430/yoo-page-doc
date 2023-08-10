@@ -10,14 +10,14 @@ export interface Props {
   }
 }
 
-// const DynamicReactLiveDemo = dynamic(
-//   () => import("./react-live-demo").then((m) => m.ReactLiveDemo),
-//   {
-//     ssr: false,
-//     // eslint-disable-next-line react/display-name
-//     loading: () => <Skeleton className="w-full h-24 rounded-xl" />,
-//   },
-// );
+const DynamicReactLiveDemo = dynamic(
+  () => import("./react-live-demo").then((m) => m.ReactLiveDemo),
+  {
+    ssr: false,
+    // eslint-disable-next-line react/display-name
+    loading: () => <Skeleton className="w-full h-24 rounded-xl" />,
+  },
+);
 export const  CodeDemo: React.FC<Props> = ({ code, scope }) => {
  
 
