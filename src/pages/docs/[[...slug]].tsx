@@ -86,21 +86,21 @@ export const getServerSideProps = defineServerSideProps(async (context) => {
   return { props: { doc, ...getSupportingProps(doc, params) } }
 })
 
-const mdxComponents = {
-  Callout,
-  Card,
-  Image,
-  Link,
-  ChevronLink,
-  Label,
-  h2: H2,
-  h3: H3,
-  h4: H4,
-  a: Link,
-  OptionsTable,
-  OptionTitle,
-  OptionDescription,
-}
+// const mdxComponents = {
+//   Callout,
+//   Card,
+//   Image,
+//   Link,
+//   ChevronLink,
+//   Label,
+//   h2: H2,
+//   h3: H3,
+//   h4: H4,
+//   a: Link,
+//   OptionsTable,
+//   OptionTitle,
+//   OptionDescription,
+// }
 
 const Page: FC<InferGetServerSidePropsType<typeof getServerSideProps>> = ({ doc, tree, breadcrumbs, childrenTree }) => {
   const router = useRouter()

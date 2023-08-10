@@ -12,7 +12,7 @@ module.exports = withContentlayer({
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['pbs.twimg.com', 'avatars.githubusercontent.com', 'i.imgur.com'],
+    domains: ['pbs.twimg.com','octodex.github.com', 'avatars.githubusercontent.com', 'i.imgur.com'],
   },
   headers: async () => [
     {

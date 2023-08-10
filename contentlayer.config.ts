@@ -2,6 +2,7 @@
 // eslint-disable-next-line import/no-unresolved
 import { makeSource } from '@contentlayer/source-files'
 import highlight from 'rehype-highlight'
+import remarkSlug from 'remark-slug'
 import * as documentTypes from './src/contentlayer'
 import { contentDirPath } from './src/contentlayer/utils'
 import { validateDuplicateIds } from './src/utils/validate-duplicate-ids'
@@ -71,7 +72,7 @@ export default makeSource({
   documentTypes,
   mdx: {
  
-    remarkPlugins: [[includeMarkdown, { resolveMdx: true }]],
+    remarkPlugins: [remarkSlug,[includeMarkdown, { resolveMdx: true }]],
     rehypePlugins: [
       () => (tree) => {
         visit(tree, (node) => {
