@@ -1,5 +1,5 @@
 import React from 'react'
-import { VirtualAnchor } from '../pures'
+// import { VirtualAnchor } from '../pures'
 
 export type TitleProps = {
   title: React.ReactNode | string
@@ -25,9 +25,9 @@ const Title: React.FC<TitleProps> = React.memo(
     const isStringDesc = typeof desc === 'string'
     return (
       <>
-        <h3>
+        {/* <h3>
           <VirtualAnchor>{title}</VirtualAnchor>
-        </h3>
+        </h3> */}
         {desc && isStringDesc && (
           <p dangerouslySetInnerHTML={{ __html: replaceCode(desc) }} />
         )}

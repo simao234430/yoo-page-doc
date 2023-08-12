@@ -9,7 +9,7 @@ import { View } from './common/View';
 
 import { CodeDemo } from './common/CodeDemo/code-demo';
 import { H2,H3,H4 } from './common/Headings';
-import { Playground } from './blog/Playground';
+import  Playground  from './common/playground';
 import { BulletList, BulletListItem } from './blog/BulletList';
 import { Dashed } from './landing-page/Dashed';
 import { Support } from './landing-page/Support';
@@ -20,7 +20,7 @@ import { Video } from './landing-page/Video';
 import NextImage from 'next/image'
 // import { Code } from './common/code';
 import Pre from './common/Pre';
- 
+
 import { DocsCard as Card } from './docs/DocsCard'
 import { Card as ChildCard } from './common/Card'
 import { Button, Space , Tabs, Typography } from '@arco-design/web-react' 
@@ -67,7 +67,6 @@ export const MDXComponents  = {
   a: Link,
   p: P,
   img: Image,
-  Playground,
   BulletList,
   BulletListItem,
   Video,
@@ -81,6 +80,7 @@ export const MDXComponents  = {
   BenchmarkResults,
   Dashed,
   Tabs,
+  Playground:Playground,
   TabPane:Tabs.TabPane,
   code:Code,
   pre: Pre,

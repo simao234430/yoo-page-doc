@@ -105,7 +105,13 @@ export const CodeDemo: React.FC<CodeDemoProps> = ({
 
     return       <DynamicReactLiveDemo
     className={className}
-    code={`<Button style={{backgroundColor: 'red'}} type='primary'>Primary</Button>`}
+    code={`    <Space size='large'>
+    <Button style={{backgroundColor: 'red'}} type='primary'>Primary</Button>
+    <Button type='secondary'>Secondary</Button>
+    <Button type='dashed'>Dashed</Button>
+    <Button type='outline'>Outline</Button>
+    <Button type='text'>Text</Button>
+  </Space>`}
     gradientColor={gradientColor}
     height={previewHeight}
     isCentered={isPreviewCentered}

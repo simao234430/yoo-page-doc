@@ -114,7 +114,13 @@ export const SandpackCodeViewer = React.forwardRef<any, CodeViewerProps>(
        
         <CodeEditor
  
-                code="<Button style={{backgroundColor: 'red'}} type='primary'>Primary</Button>"  initMode={"immediate"}  
+                code="    <Space size='large'>
+                <Button style={{backgroundColor: 'red'}} type='primary'>Primary</Button>
+                <Button type='secondary'>Secondary</Button>
+                <Button type='dashed'>Dashed</Button>
+                <Button type='outline'>Outline</Button>
+                <Button type='text'>Text</Button>
+              </Space>"  initMode={"immediate"}  
               /> 
             </div>
           </SandpackStack>

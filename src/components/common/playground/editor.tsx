@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import { LiveEditor } from 'react-live'
-import { useConfigs } from 'lib/config-context'
-import { useTheme, useToasts, useClipboard } from 'components'
-import CopyIcon from '@geist-ui/icons/copy'
+import CodeContainer from './code-container'
+import Highlight from './highlight'
+// import {   useClipboard } from 'components'
+
+import { IconCopy } from '@arco-design/web-react/icon';
+import Copy from '@geist-ui/icons/copy'
 import RightIcon from '@geist-ui/icons/chevronRight'
 
 interface Props {
@@ -10,11 +13,10 @@ interface Props {
 }
 
 const Editor: React.FC<Props> = ({ code }) => {
-  const theme = useTheme()
-  const { copy } = useClipboard()
-  const { isChinese } = useConfigs()
+  // const { copy } = useClipboard()
+  // const { isChinese } = useConfigs()
   const [visible, setVisible] = useState(false)
-  const { setToast } = useToasts()
+
   const clickHandler = (event: React.MouseEvent) => {
     event.stopPropagation()
     event.preventDefault()
@@ -24,11 +26,15 @@ const Editor: React.FC<Props> = ({ code }) => {
   const copyHandler = (event: React.MouseEvent) => {
     event.stopPropagation()
     event.preventDefault()
-    copy(code)
-    setToast({ text: isChinese ? '代码已拷贝至剪切板。' : 'code copied.' })
+    // copy(code)
+    // setToast({ text:   'code copied.' })
   }
 
   return (
+    //   <div className="relative"  >
+    //   <pre      {...props}>{code}</pre>
+    //   {/* <CopyToClipboard text={raw} /> */}
+    // </div>
     <div className="editor">
       <details open={visible}>
         <summary onClick={clickHandler}>
@@ -37,36 +43,60 @@ const Editor: React.FC<Props> = ({ code }) => {
               <span className="arrow">
                 <RightIcon size={16} />
               </span>
-              <span>{isChinese ? '编辑代码' : 'Code Editor'}</span>
+              <span>{'Show Code'}</span>
             </div>
             <div className="action">
               {visible && (
                 <span
+                color='rgb(29, 33, 41)'
                   className="copy"
                   onClick={copyHandler}
-                  title={isChinese ? '拷贝代码' : 'Copy Code'}>
-                  <CopyIcon size={18} />
+                  title={'Copy Code'}
+                >
+                  <IconCopy style={{ fontSize: 18}}  />
+                
                 </span>
+
+                // <span color="#FFFFFF"  title="Copy Code"
+                //  >
+                //   <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                //   stroke-linejoin="round" stroke-width="1.5"
+                //   shape-rendering="geometricPrecision" viewBox="0 0 24 24"
+                //    height="18" width="18" style="color: currentcolor;"
+                //    ><path d="M8 17.929H6c-1.105 0-2-.912-2-2.036V5.036C4 3.91 4.895 3 6 3h8c1.105 0 2 .911 2 2.036v1.866m-6 .17h8c1.105 0 2 .91 2 2.035v10.857C20 21.09 19.105 22 18 22h-8c-1.105 0-2-.911-2-2.036V9.107c0-1.124.895-2.036 2-2.036z">
+                //     </path></svg></span>
               )}
             </div>
           </div>
         </summary>
         <div className="area">
+          {/* <CodeContainer px='0' overflow='hidden'>
+      <Highlight
+          codeString={code}
+          language={"tsx"}
+          theme={github}
+    
+ 
+        />
+      </CodeContainer> */}
           <LiveEditor />
         </div>
       </details>
 
       <style jsx>{`
+        #test {
+          color: #fff;
+        }
         .editor {
-          border-bottom-left-radius: ${theme.layout.radius};
-          border-bottom-right-radius: ${theme.layout.radius};
+          border-bottom-left-radius: 6px;
+          border-bottom-right-radius: 6px;
         }
 
         details {
           transition: all 0.2s ease;
           overflow: hidden;
-          border-bottom-left-radius: ${theme.layout.radius};
-          border-bottom-right-radius: ${theme.layout.radius};
+          border-bottom-left-radius: 6px;
+          border-bottom-right-radius: 6px;
         }
 
         details summary::-webkit-details-marker {
@@ -74,9 +104,10 @@ const Editor: React.FC<Props> = ({ code }) => {
         }
 
         summary {
+          background-color: #f2f3f5;
           box-sizing: border-box;
-          border-top: 1px solid ${theme.palette.accents_2};
-          color: ${theme.palette.accents_5};
+          border-top: 1px solid #eaeaea;
+          color: #666;
           width: 100%;
           list-style: none;
           user-select: none;
@@ -84,13 +115,14 @@ const Editor: React.FC<Props> = ({ code }) => {
         }
 
         .summary-safari {
+          background-color: #f2f3f5;
           box-sizing: border-box;
           display: flex;
           justify-content: space-between;
           align-items: center;
           width: 100%;
           height: 2.875rem;
-          padding: 0 ${theme.layout.gap};
+          padding: 0 16pt;
         }
 
         summary :global(svg) {
@@ -108,13 +140,13 @@ const Editor: React.FC<Props> = ({ code }) => {
           position: relative;
           box-sizing: border-box;
           white-space: pre;
-          font-family: ${theme.font.mono};
-          color: ${theme.palette.foreground};
-          background-color: ${theme.palette.background};
+          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
+            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+          color: #000;
+          background-color: #fff;
           font-size: 1em;
           overflow: hidden;
-          border-top: 1px solid ${theme.palette.accents_2};
-          padding: ${theme.layout.gapHalf};
+          border-top: 1px solid #eaeaea;
         }
 
         .arrow {
@@ -130,12 +162,12 @@ const Editor: React.FC<Props> = ({ code }) => {
         .copy {
           display: inline-flex;
           align-items: center;
-          color: ${theme.palette.accents_4};
+          color: #888;
           transition: color 0.2s ease;
         }
 
         .copy:hover {
-          color: ${theme.palette.accents_6};
+          color: #444;
         }
       `}</style>
     </div>

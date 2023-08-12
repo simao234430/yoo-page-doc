@@ -1,14 +1,14 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
-import { useTheme, Loading } from 'components'
-import { useConfigs } from 'lib/config-context'
+// import { useTheme, Loading } from 'components'
+ 
 import Title from './title'
 
 const DynamicLive = dynamic(() => import('./dynamic-live'), {
   ssr: false,
   loading: () => (
     <div style={{ padding: '20pt 0' }}>
-      <Loading />
+      {/* <Loading /> */}
     </div>
   ),
 })
@@ -35,8 +35,9 @@ const Playground: React.FC<PlaygroundProps> = React.memo(
     desc,
     scope,
   }: PlaygroundProps & typeof defaultProps) => {
-    const theme = useTheme()
-    const { isChinese } = useConfigs()
+    // const theme = useTheme()
+    // const { isChinese } = useConfigs()
+    const isChinese: boolean = false
     const code = inputCode.trim()
     const title = inputTitle || (isChinese ? '基础的' : 'General')
 
@@ -48,9 +49,7 @@ const Playground: React.FC<PlaygroundProps> = React.memo(
           <style jsx>{`
             .playground {
               width: 100%;
-              border-radius: ${theme.layout.radius};
-              border: 1px solid ${theme.palette.accents_2};
-            }
+
           `}</style>
         </div>
       </>
