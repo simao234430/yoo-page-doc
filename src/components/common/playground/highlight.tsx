@@ -6,7 +6,7 @@ import BaseHighlight, {
 } from 'prism-react-renderer'
 import React from 'react'
 import { liveEditorStyle } from './styles'
-import github from "prism-react-renderer/themes/github";
+
 const RE = /{([\d,-]+)}/
 
 const calculateLinesToHighlight = (meta: string) => {

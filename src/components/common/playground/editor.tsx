@@ -3,17 +3,22 @@ import { LiveEditor } from 'react-live'
 import CodeContainer from './code-container'
 import Highlight from './highlight'
 // import {   useClipboard } from 'components'
-
-import { IconCopy } from '@arco-design/web-react/icon';
-import Copy from '@geist-ui/icons/copy'
+import { Notification , Icon  } from '@arco-design/web-react';
+ 
+// const IconFont = Icon.addFromIconFontCn({
+//   src: '//at.alicdn.com/t/font_180975_26f1p759rvn.js',
+// });
+import { IconCopy,IconSuccess  } from '@arco-design/web-react/icon';
+ 
 import RightIcon from '@geist-ui/icons/chevronRight'
+import { useClipboard } from '@chakra-ui/react';
 
 interface Props {
   code: string
 }
 
 const Editor: React.FC<Props> = ({ code }) => {
-  // const { copy } = useClipboard()
+  const { hasCopied, onCopy } = useClipboard(code)
   // const { isChinese } = useConfigs()
   const [visible, setVisible] = useState(false)
 
@@ -26,7 +31,13 @@ const Editor: React.FC<Props> = ({ code }) => {
   const copyHandler = (event: React.MouseEvent) => {
     event.stopPropagation()
     event.preventDefault()
-    // copy(code)
+    onCopy()
+    Notification.success({
+      // eslint-disable-next-line react/jsx-no-undef
+      icon: IconSuccess,
+      title: 'copy Success',
+      content: '',
+    })
     // setToast({ text:   'code copied.' })
   }
 
@@ -37,7 +48,7 @@ const Editor: React.FC<Props> = ({ code }) => {
     // </div>
     <div className="editor">
       <details open={visible}>
-        <summary onClick={clickHandler}>
+        <summary onClick={clickHandler} >
           <div className="summary-safari">
             <div className="action">
               <span className="arrow">
@@ -47,24 +58,16 @@ const Editor: React.FC<Props> = ({ code }) => {
             </div>
             <div className="action">
               {visible && (
-                <span
+                <span  
                 color='rgb(29, 33, 41)'
                   className="copy"
                   onClick={copyHandler}
                   title={'Copy Code'}
                 >
-                  <IconCopy style={{ fontSize: 18}}  />
+                  <IconCopy  style={{ fontSize: 18,fill:'none'}}  />
                 
                 </span>
-
-                // <span color="#FFFFFF"  title="Copy Code"
-                //  >
-                //   <svg fill="none" stroke="currentColor" stroke-linecap="round"
-                //   stroke-linejoin="round" stroke-width="1.5"
-                //   shape-rendering="geometricPrecision" viewBox="0 0 24 24"
-                //    height="18" width="18" style="color: currentcolor;"
-                //    ><path d="M8 17.929H6c-1.105 0-2-.912-2-2.036V5.036C4 3.91 4.895 3 6 3h8c1.105 0 2 .911 2 2.036v1.866m-6 .17h8c1.105 0 2 .91 2 2.035v10.857C20 21.09 19.105 22 18 22h-8c-1.105 0-2-.911-2-2.036V9.107c0-1.124.895-2.036 2-2.036z">
-                //     </path></svg></span>
+ 
               )}
             </div>
           </div>

@@ -4,7 +4,8 @@ package-lock.jsons
 /node_modules
 /.pnp
 .pnp.js
-
+# components submoudle
+/components
 # testing
 /coverage
 
