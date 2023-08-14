@@ -1,6 +1,33 @@
 import { children } from 'cheerio/lib/api/traversing'
-import { Example,Compo } from 'contentlayer/generated'
+import { Example,Compo,Tutorial } from 'contentlayer/generated'
 import { TreeNode } from 'types/TreeNode'
+
+export const buildTutorialTree = (tutorials: Tutorial[], parentPathNames: string[] = []): TreeNode[] => {
+  const level = parentPathNames.length
+
+  return tutorials
+    .filter(
+      (_) =>
+        _.pathSegments.length === level + 1 &&
+        _.pathSegments
+          .map((_: PathSegment) => _.pathName)
+          .join('/')
+          .startsWith(parentPathNames.join('/')),
+    )
+    .sort((a, b) => a.pathSegments[level].order - b.pathSegments[level].order)
+    .map<TreeNode>((tutorial) => ({
+ 
+      title: tutorial.title,
+ 
+      excerpt: tutorial.excerpt ?? null,
+ 
+      urlPath: '/' + tutorial.pathSegments.map((_: PathSegment) => _.pathName).join('/'),
+      children: buildExamplesTree(
+        tutorials,
+        tutorial.pathSegments.map((_: PathSegment) => _.pathName),
+      ),
+    }))
+}
 
 export const buildExamplesTree = (examples: Example[], parentPathNames: string[] = []): TreeNode[] => {
   const level = parentPathNames.length

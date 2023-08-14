@@ -23,13 +23,13 @@ export const PageNavigation: FC<{ headings: DocHeading[] }> = ({ headings }) => 
     }
   }, [headings])
 
-  const headingsToRender = headings.filter((_) => _.level > 1)
+  const headingsToRender = headings.filter((_) => _.level >= 1)
 
   if ((headingsToRender ?? []).length === 0) return null
 
   return (
     <div className="text-sm">
-      <h4 className="mb-4 font-medium text-slate-600 dark:text-slate-300">On this page</h4>
+      <h4 className="mb-4 font-medium text-slate-600 dark:text-slate-300">目录</h4>
       <ul className="space-y-2">
         {headingsToRender.map(({ title, level }, index) => (
           <li key={index}>

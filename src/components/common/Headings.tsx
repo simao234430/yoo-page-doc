@@ -1,4 +1,13 @@
 import { sluggifyTitle, getNodeText } from '../../utils/sluggify'
+export const H1: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
+  const slug = sluggifyTitle(getNodeText(children))
+  return (
+    <h1 id={slug} onClick={() => (window.location.hash = `#${slug}`)} className="group cursor-pointer">
+      <span className="absolute left-8 hidden text-slate-400 dark:text-slate-600 lg:group-hover:inline">#</span>
+      {children}
+    </h1>
+  )
+}
 
 export const H2: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
   const slug = sluggifyTitle(getNodeText(children))

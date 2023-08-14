@@ -103,7 +103,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   for (const slug of slugs) {
  
     path += `/${slug}`
-    const breadcrumbDoc  = allCompos.find((_) => _.slug === path )
+    const breadcrumbDoc  = allCompos.find((post) => post._raw.flattenedPath === params?.slug )
     breadcrumbs.push({ path: breadcrumbDoc?.slug, title:breadcrumbDoc?.title })
  
   }

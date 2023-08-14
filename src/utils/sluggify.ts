@@ -2,8 +2,8 @@ import React from 'react'
 
 export const sluggifyTitle = (title: string) => {
   const re = /[^\w\s]/g
-
-  return title.trim().toLowerCase().replace(re, '').replace(/\s+/g, '-');
+  return title
+  // return title.trim().toLowerCase().replace(re, '').replace(/\s+/g, '-');
 }
 
 export const getNodeText = (node: React.ReactNode): string => {
