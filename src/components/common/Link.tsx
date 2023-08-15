@@ -6,10 +6,11 @@ export const Link: FC<{ href: string; children: ReactNode }> = ({ href, children
   const isExternalUrl = !(href.startsWith('/') || href.startsWith('#'))
 
   return (
-    <NextLink
+    <NextLink 
       href={href}
       className="inline-flex items-center m-0 space-x-1"
-      target={isExternalUrl ? '_blank' : undefined}
+      target={isExternalUrl ? undefined : undefined}
+      // target={isExternalUrl ? '_blank' : undefined}
       rel={isExternalUrl ? 'noreferrer' : undefined}
        >
 

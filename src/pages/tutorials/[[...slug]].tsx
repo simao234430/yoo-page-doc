@@ -21,12 +21,12 @@ import { PageNavigation } from '@/src/components/common/PageNavigation'
 import { useRouter } from 'next/router'
 
 export const getStaticPaths = async () => {
- 
+  // const paths = allTutorials.map((post) => ({
+  //   params: { slug: post.slug },
+  // }))
   const paths = allTutorials.map((post) => {
     return post.slug
-})
- 
- 
+  })
   return { paths, fallback: false }
 }
 
@@ -44,23 +44,23 @@ export const getStaticProps = defineStaticProps(async ({ params }: DocPageProps)
   // .map((_: PathSegment) => _.pathName).join('/') === params?.slug)!
   // const tutorial = allTutorials.find((tutorial) => tutorial.slug === params?.slug)
  
-  //   let slugs = params?.slug ? ['', ...params?.slug] : []
-  //   let path = 'tutorials'
-  //   let breadcrumbs: any = []
-  //   for (const slug of slugs) {
-  //     path += slug ? '/' + slug : ''
-  //   //   const navTitle = allTutorials.find(
-  //   //     (_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/') === path,
-  //   //   )?.nav_title
-  //     const title = allTutorials.find((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/') === path)?.title
-  //     breadcrumbs.push({ path: '/' + path, slug, title:  title })
-  //   }
+    let slugs = params?.slug ? ['', ...params?.slug] : []
+    let path = 'tutorials'
+    let breadcrumbs: any = []
+    for (const slug of slugs) {
+      path += slug ? '/' + slug : ''
+    //   const navTitle = allTutorials.find(
+    //     (_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/') === path,
+    //   )?.nav_title
+      const title = allTutorials.find((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/') === path)?.title
+      breadcrumbs.push({ path: '/' + path, slug, title:  title })
+    }
     const tree = buildTutorialTree(allTutorials)
-    return { props: {   tree ,tutorial} }
+    return { props: {breadcrumbs,   tree ,tutorial} }
   })
   
    
-  const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({tutorial,   tree }) => {
+  const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({breadcrumbs,tutorial,   tree }) => {
     useLiveReload()
     // const MDXContent = useMDXComponent(example.body.code || '')
     const ref = useRef<HTMLDivElement>(null)
@@ -106,8 +106,8 @@ export const getStaticProps = defineStaticProps(async ({ params }: DocPageProps)
           <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
         </div>
 
-        <div className="relative w-full   grow">
-          <DocsHeader tree={tree} breadcrumbs={[]} title={tutorial.title} />
+        <div className="relative w-full max-w-800  grow">
+          <DocsHeader tree={tree} breadcrumbs={breadcrumbs} title={tutorial.title} />
           <div className="w-full max-w-3xl p-4 pb-8 mx-auto mb-4 prose docs prose-slate prose-violet shrink prose-headings:font-semibold prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-hr:border-gray-200 dark:prose-invert dark:prose-a:text-violet-400 dark:prose-hr:border-gray-800 md:mb-8 md:px-8 lg:mx-0 lg:max-w-full lg:px-16">
             {/* {MDXContent && <MDXContent components={mdxComponents as any} />} */}
 

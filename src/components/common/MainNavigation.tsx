@@ -9,6 +9,7 @@ import { Label } from './Label'
 import { Logo } from './Logo'
 
 const navLinks: Array<{ label: string; url: string }> = [
+  { label: 'tutorials', url: '/tutorials' },
   { label: 'components', url: '/components' },
   { label: 'Documentation', url: '/docs' },
   //

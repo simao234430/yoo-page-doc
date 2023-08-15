@@ -8,7 +8,7 @@ import { Label } from './common/Label';
 import { View } from './common/View';
 
 import { CodeDemo } from './common/CodeDemo/code-demo';
-import { H2,H3,H4 } from './common/Headings';
+import { H1,H2,H3,H4 } from './common/Headings';
 import  Playground  from './common/playground';
 import { BulletList, BulletListItem } from './blog/BulletList';
 import { Dashed } from './landing-page/Dashed';
@@ -61,6 +61,7 @@ export const MDXComponents  = {
   Link,
   ChevronLink,
   Label,
+  h1: H1,
   h2: H2,
   h3: H3,
   h4: H4,

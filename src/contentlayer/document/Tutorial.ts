@@ -8,7 +8,7 @@ import { mdxToMarkdown } from 'mdast-util-mdx'
 export type DocHeading = { level: 1 | 2 | 3; title: string }
 export const Tutorial = defineDocumentType(() => ({
     name: 'Tutorial',
-    filePathPattern: `tutorials/**/*.mdx`,
+    filePathPattern: `tutorials/**/*.md*`,
     contentType: 'mdx',
     fields: {
         
@@ -58,7 +58,8 @@ export const Tutorial = defineDocumentType(() => ({
                 },
               })
       
-              return [{ level: 1, title: doc.title }, ...headings]
+              return [ ...headings]
+              // return [{ level: 1, title: doc.title }, ...headings]
             },
           },
     }
