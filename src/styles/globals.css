@@ -292,3 +292,4 @@ pre > code {
   @apply !text-purple-200 bg-purple-800/50 border-b-purple-600 font-bold;
 }
 
+.s-tag{display:inline;padding:2px 10px}.s-tag-red{background-color:red;color:#fff}.s-tag-orange{background-color:orange;color:#fff}.s-tag-green{background-color:green;color:#fff}.s-tag-blue{background-color:#00f;color:#fff}

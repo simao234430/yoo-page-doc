@@ -1,9 +1,12 @@
+import Tag from '@/yoo-components/packages/Tag';
 import { IconCopy,IconLarkColor,IconDownCircle } from '@arco-design/web-react/icon';
  
 export default function Test( ) {
     return (
         <div >
-        <IconCopy className='test'   ></IconCopy>
+ 
+ <Tag color='red'>我是标签</Tag>
+        {/* <IconCopy className='test'   ></IconCopy>
         <IconDownCircle  fill='white'  stroke='black' />
         <IconLarkColor />
         <style jsx>{`
@@ -14,7 +17,7 @@ export default function Test( ) {
     
         
   
-              `}</style>
+              `}</style> */}
         </div>
 
 
