@@ -93,15 +93,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const doc = getDocDoc(['components', context.params?.slug])
 
   const params = context.params as any
-<<<<<<< HEAD
-
-  let breadcrumbs: any = []
-  let slugs = params.slug ? [...params.slug] : []
-=======
  
-  const breadcrumbs: any = []
-  const slugs = params.slug ? [  ...params.slug] : []
->>>>>>> adcc866 (eslint lint 1st and works)
+  let breadcrumbs: any = []
+  let slugs = params.slug ? [  ...params.slug] : []
   breadcrumbs.push({ path: '/components', title: 'Components' })
   let path = '/components'
   for (const slug of slugs) {

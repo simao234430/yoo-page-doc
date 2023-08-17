@@ -51,8 +51,7 @@ export function getHeadings (markdownText: string | undefined): Heading[] {
   let headings: Heading[] = []
 =======
 export function getHeadings(markdownText: string | undefined): Heading[] {
-  const headings: Heading[] = [];
->>>>>>> adcc866 (eslint lint 1st and works)
+  let headings: Heading[] = [];
 
   if (!markdownText) {
     return headings
