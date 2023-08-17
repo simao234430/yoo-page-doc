@@ -5,8 +5,15 @@ module.exports = {
         "es2021": true
     },
     "extends": [
+<<<<<<< HEAD
         "standard-with-typescript",
         "plugin:react/recommended"
+=======
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "prettier" // Add this line!
+>>>>>>> adcc866 (eslint lint 1st and works)
     ],
     "overrides": [
         {
@@ -21,15 +28,20 @@ module.exports = {
             }
         }
     ],
+<<<<<<< HEAD
  
     "parserOptions": {
         "project": ["tsconfig.json"],
+=======
+    "parserOptions": {
+>>>>>>> adcc866 (eslint lint 1st and works)
         "ecmaVersion": "latest"
     },
     "plugins": [
         "react"
     ],
     "rules": {
+<<<<<<< HEAD
         "no-cond-assign": 2,
         "no-console": [
             "error", {
@@ -355,5 +367,7 @@ module.exports = {
         }],
         // 禁止未使用的变量
         "no-unused-vars": 0,
+=======
+>>>>>>> adcc866 (eslint lint 1st and works)
     }
 }

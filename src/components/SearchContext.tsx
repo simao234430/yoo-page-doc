@@ -24,7 +24,7 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const docsTree = buildDocsTree(allDocs)
   const examplesTree = buildExamplesTree(allExamples)
   const actions = useMemo(() => {
-    let actions: Action[] = [
+    const actions: Action[] = [
       {
         id: '0-homepage',
         name: 'Homepage',

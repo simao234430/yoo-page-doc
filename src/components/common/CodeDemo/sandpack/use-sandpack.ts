@@ -63,10 +63,17 @@ export const useSandpack = ({
     return acc
   }, {})
 
+<<<<<<< HEAD
   let dependencies = {
     'framer-motion': '10.12.16',
     '@nextui-org/react': 'latest'
   }
+=======
+  const dependencies = {
+    "framer-motion": "10.12.16",
+    "@nextui-org/react": "latest",
+  };
+>>>>>>> adcc866 (eslint lint 1st and works)
 
   // sort files by dependency
   const sortedFiles = Object.keys(filteredFiles)

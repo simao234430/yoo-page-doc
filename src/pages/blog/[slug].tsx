@@ -40,7 +40,7 @@ export const getStaticPaths = async () => {
   return { paths, fallback: false }
 }
 
-let devcache_betaSnippets: BetaSnippets | null = null
+const devcache_betaSnippets: BetaSnippets | null = null
 
 export type PreprocessedCodeSnippetsRemark = Record<ColorScheme, CodeSnippets>
 

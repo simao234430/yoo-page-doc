@@ -23,10 +23,15 @@ import { OptionsTable, OptionTitle, OptionDescription } from '../../components/d
 import { useRouter } from 'next/router'
 import MarkdownContent from '@/src/components/MarkdownContent'
 
+<<<<<<< HEAD
 function getSupportingProps (doc: Doc, params: any) {
   let slugs = params.slug ? ['docs', ...params.slug] : []
+=======
+function getSupportingProps(doc: Doc, params: any) {
+  const slugs = params.slug ? ['docs', ...params.slug] : []
+>>>>>>> adcc866 (eslint lint 1st and works)
   let path = ''
-  let breadcrumbs: any = []
+  const breadcrumbs: any = []
   for (const slug of slugs) {
     path += `/${slug}`
     const breadcrumbDoc = allDocs.find((_) => _.url_path === path || _.url_path_without_id === path)

@@ -6,8 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+<<<<<<< HEAD
     "prettier": "prettier --write .",
     "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix"
+=======
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx,json}\"",
+    "lint:fix": "eslint --fix \"src/**/*.{js,jsx,ts,tsx,json}\"",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,md,json,scss}\" --config ./.prettierrc",
+    "next-lint": "next lint"
+>>>>>>> adcc866 (eslint lint 1st and works)
   },
   "overrides": {
     "@opentelemetry/api": "1.4.1",

@@ -38,9 +38,9 @@ export const getStaticProps = defineStaticProps(async (context) => {
   const params = context.params as any
   const pagePath = params.slug ? ['examples', params.slug].join('/') : 'examples'
   const example = allExamples.find((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/') === pagePath)!
-  let slugs = params.slug ? ['', ...params.slug] : []
+  const slugs = params.slug ? ['', ...params.slug] : []
   let path = 'examples'
-  let breadcrumbs: any = []
+  const breadcrumbs: any = []
   for (const slug of slugs) {
     path += slug ? '/' + slug : ''
     const navTitle = allExamples.find(

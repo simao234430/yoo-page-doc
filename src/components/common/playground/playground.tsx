@@ -35,7 +35,7 @@ const Playground: React.FC<PlaygroundProps> = React.memo(
   }: PlaygroundProps & typeof defaultProps) => {
     // const theme = useTheme()
     // const { isChinese } = useConfigs()
-    const isChinese: boolean = false
+    const isChinese = false
     const code = inputCode.trim()
     const title = inputTitle || (isChinese ? '基础的' : 'General')
 

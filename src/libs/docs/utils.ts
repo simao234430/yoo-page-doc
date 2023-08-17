@@ -46,8 +46,13 @@ export function getAppSlug (params: { slug: string[] }) {
   return { slug: `/docs/${slug.join('/')}` }
 }
 
+<<<<<<< HEAD
 export function getHeadings (markdownText: string | undefined): Heading[] {
   let headings: Heading[] = []
+=======
+export function getHeadings(markdownText: string | undefined): Heading[] {
+  const headings: Heading[] = [];
+>>>>>>> adcc866 (eslint lint 1st and works)
 
   if (!markdownText) {
     return headings

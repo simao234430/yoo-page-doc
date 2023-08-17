@@ -41,12 +41,21 @@ export const getStaticProps = defineStaticProps(async ({ params }: DocPageProps)
   // const tutorial = allTutorials.find((_) => _.pathSegments.filter(  )
   // .map((_: PathSegment) => _.pathName).join('/') === params?.slug)!
   // const tutorial = allTutorials.find((tutorial) => tutorial.slug === params?.slug)
+<<<<<<< HEAD
 
   let slugs = params?.slug ? ['', ...params?.slug] : []
   let path = 'tutorials'
   let breadcrumbs: any = []
   for (const slug of slugs) {
     path += slug ? '/' + slug : ''
+=======
+ 
+    const slugs = params?.slug ? ['', ...params?.slug] : []
+    let path = 'tutorials'
+    const breadcrumbs: any = []
+    for (const slug of slugs) {
+      path += slug ? '/' + slug : ''
+>>>>>>> adcc866 (eslint lint 1st and works)
     //   const navTitle = allTutorials.find(
     //     (_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/') === path,
     //   )?.nav_title
