@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { type FC } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { SearchProvider } from '../SearchContext'
@@ -8,7 +8,7 @@ import { Footer } from './Footer'
 export const Container: FC<any> = ({ children, ...customMeta }) => {
   const router = useRouter()
 
-  const baseUrl = `https://www.contentlayer.dev`
+  const baseUrl = 'https://www.contentlayer.dev'
 
   const meta = {
     title: 'Contentlayer makes content easy for developers',
@@ -18,13 +18,13 @@ export const Container: FC<any> = ({ children, ...customMeta }) => {
     name: 'Contentlayer',
     image: customMeta.imagePath ? `${baseUrl}${customMeta.imagePath}` : `${baseUrl}/images/beta-launch-post-meta.png`,
     type: 'website',
-    ...customMeta,
+    ...customMeta
   }
   const jsonLd = {
     '@context': 'http://www.schema.org',
     '@type': 'WebSite',
     name: meta.name,
-    url: meta.url,
+    url: meta.url
   }
 
   return (

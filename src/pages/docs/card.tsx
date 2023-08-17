@@ -1,32 +1,32 @@
-import React from 'react';
-import Color from 'color';
-function getColorString(color:string, format:string) {
-  const colorObj = color[format]();
-  let colorString;
+import React from 'react'
+import Color from 'color'
+function getColorString (color: string, format: string) {
+  const colorObj = color[format]()
+  let colorString
   if (format === 'hex') {
-    colorString = colorObj;
+    colorString = colorObj
   } else {
-    colorString = colorObj.round().string();
+    colorString = colorObj.round().string()
   }
 
-  return colorString;
+  return colorString
 }
 
-// @ts-ignore
-function ColorCard({ colors, name, format, theme, title }) {
+// @ts-expect-error
+function ColorCard ({ colors, name, format, theme, title }) {
   return (
     <div>
       <h3 style={{ textAlign: 'center', color: theme === 'light' ? '#333' : '#fff' }}>{title}</h3>
       <div className="color-palette-wrapper">
- 
+
         {colors.map((c, index) => {
-          const color = Color(c);
-          const whiteContrast = color.contrast(Color('#fff'));
-          const blackContrast = color.contrast(Color('#000'));
-          const fontColor = whiteContrast >= blackContrast ? '#fff' : '#000';
+          const color = Color(c)
+          const whiteContrast = color.contrast(Color('#fff'))
+          const blackContrast = color.contrast(Color('#000'))
+          const fontColor = whiteContrast >= blackContrast ? '#fff' : '#000'
           // const contrast =
           //   whiteContrast >= blackContrast ? whiteContrast.toFixed(2) : blackContrast.toFixed(2);
-          const colorString = getColorString(color, format);
+          const colorString = getColorString(color, format)
           // const contrastLevel = color.level(Color(fontColor));
           return (
             <div
@@ -35,7 +35,7 @@ function ColorCard({ colors, name, format, theme, title }) {
               style={{
                 backgroundColor: color.hex(),
                 color: fontColor,
-                fontWeight: index === 5 ? 'bold' : 400,
+                fontWeight: index === 5 ? 'bold' : 400
               }}
               aria-label={colorString}
             >
@@ -47,11 +47,11 @@ function ColorCard({ colors, name, format, theme, title }) {
               </div>
               <span className="color-palette-value">{colorString}</span>
             </div>
-          );
+          )
         })}
       </div>
     </div>
-  );
+  )
 }
 
-export default ColorCard;
+export default ColorCard

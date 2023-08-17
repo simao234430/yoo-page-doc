@@ -4,7 +4,7 @@ import { bundleMDX } from 'mdx-bundler'
 import type * as unified from 'unified'
 import { toMarkdown } from 'mdast-util-to-markdown'
 import { mdxToMarkdown } from 'mdast-util-mdx'
-export type DocHeading = { level: 1 | 2 | 3; title: string }
+export interface DocHeading { level: 1 | 2 | 3, title: string }
 // const computedFields: ComputedFields = {
 //   slug: {
 //     type: 'string',
@@ -21,7 +21,7 @@ export const Compo = defineDocumentType(() => ({
     scope: {
       type: 'enum',
       options: ['usage', 'theming', 'props'],
-      default: 'usage',
+      default: 'usage'
     },
     category: { type: 'string' },
     package: { type: 'string' },
@@ -29,29 +29,29 @@ export const Compo = defineDocumentType(() => ({
     title: {
       type: 'string',
       description: 'The title of the page',
-      required: true,
+      required: true
     },
     nav_title: {
       type: 'string',
-      description: 'Override the title for display in nav',
+      description: 'Override the title for display in nav'
     },
     label: {
-      type: 'string',
+      type: 'string'
     },
     excerpt: {
       type: 'string',
-      required: true,
+      required: true
     },
     github_repo: {
       type: 'string',
       description: 'The string to use in stackblitz.embedGithubProject.',
-      required: false,
+      required: false
     },
     open_file: {
       type: 'string',
       description: 'The file to open in the stackblitz playground.',
-      required: false,
-    },
+      required: false
+    }
   },
   computedFields: {
     frontMatter: {
@@ -67,22 +67,22 @@ export const Compo = defineDocumentType(() => ({
           type: 'json',
           resolve: async (doc) => {
             const headings: DocHeading[] = []
-    
+
             await bundleMDX({
               source: doc.body.raw,
               mdxOptions: (opts) => {
                 opts.remarkPlugins = [
                   ...(opts.remarkPlugins ?? []),
-                  tocPlugin(headings),
+                  tocPlugin(headings)
                 ]
                 return opts
-              },
+              }
             })
-    
+
             return [{ level: 1, title: doc.title }, ...headings]
-          },
-        },
-      }),
+          }
+        }
+      })
     },
     headings: {
       type: 'json',
@@ -94,14 +94,14 @@ export const Compo = defineDocumentType(() => ({
           mdxOptions: (opts) => {
             opts.remarkPlugins = [
               ...(opts.remarkPlugins ?? []),
-              tocPlugin(headings),
+              tocPlugin(headings)
             ]
             return opts
-          },
+          }
         })
 
         return [{ level: 1, title: doc.title }, ...headings]
-      },
+      }
     },
 
     slug: {
@@ -112,29 +112,29 @@ export const Compo = defineDocumentType(() => ({
       type: 'string',
       description:
         'The URL path of this page relative to site root. For example, the site root page would be "/", and doc page would be "docs/getting-started/"',
-      resolve:   urlFromFilePath
+      resolve: urlFromFilePath
     },
     pathSegments: {
       type: 'json',
       resolve: (doc) =>
-        doc._raw.flattenedPath.substring(0, doc._raw.flattenedPath.lastIndexOf('/')).split('/').map((dirName) => {
-          const re = /^((\d+)-)?(.*)$/
-          const [, , orderStr, pathName] = dirName.match(re) ?? []
-          const order = orderStr ? parseInt(orderStr) : 0
-          return { order, pathName }
-        }),
+        doc._raw.flattenedPath.substring(0, doc._raw.flattenedPath.lastIndexOf('/')).split('/')
+          .map((dirName) => {
+            const re = /^((\d+)-)?(.*)$/
+            const [, , orderStr, pathName] = dirName.match(re) ?? []
+            const order = orderStr ? parseInt(orderStr) : 0
+            return { order, pathName }
+          })
     },
 
-    last_edited: { type: 'date', resolve: getLastEditedDate },
+    last_edited: { type: 'date', resolve: getLastEditedDate }
   },
 
-  extensions: {},
+  extensions: {}
 }))
 
 const tocPlugin =
   (headings: DocHeading[]): unified.Plugin =>
-  () => {
-    return (node: any) => {
+    () => (node: any) => {
       for (const element of node.children.filter(
         (_: any) => _.type === 'heading' || _.name === 'OptionsTable'
       )) {
@@ -169,4 +169,3 @@ const tocPlugin =
         }
       }
     }
-  }

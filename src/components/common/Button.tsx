@@ -1,6 +1,6 @@
-import { FC } from 'react'
+import { type FC } from 'react'
 import classnames from 'classnames'
-import { Icon, IconName } from './Icon'
+import { Icon, type IconName } from './Icon'
 import Link from 'next/link'
 import { isExternalUrl } from '../../utils/helpers'
 
@@ -8,7 +8,7 @@ const themeClasses = {
   primary:
     'bg-violet-600 text-violet-50 border-violet-800 hover:bg-violet-500 dark:bg-violet-600 dark:border-violet-700 dark:hover:bg-violet-500 dark:hover:border-violet-600',
   secondary:
-    'bg-violet-100 text-violet-800 border-violet-200 hover:bg-violet-50 dark:text-violet-300 dark:border-violet-500/30 dark:hover:bg-violet-500/30 dark:bg-violet-500/20',
+    'bg-violet-100 text-violet-800 border-violet-200 hover:bg-violet-50 dark:text-violet-300 dark:border-violet-500/30 dark:hover:bg-violet-500/30 dark:bg-violet-500/20'
 }
 
 export const Button: FC<{
@@ -30,16 +30,16 @@ export const Button: FC<{
         aria-label={label}
         target={isExternalUrl(href) ? '_blank' : undefined}
         rel={isExternalUrl(href) ? 'noreferrer' : undefined}
-         >
-          <span>{label}</span>
-          {icon && (
-            <span className="w-5">
-              <Icon name={icon} />
-            </span>
-          )}
- 
+      >
+        <span>{label}</span>
+        {icon && (
+          <span className="w-5">
+            <Icon name={icon} />
+          </span>
+        )}
+
       </Link>
-    );
+    )
   } else {
     return (
       <button className={classnames(sharedClasses, themeClasses[theme])} onClick={action} aria-label={label}>

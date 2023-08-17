@@ -1,17 +1,17 @@
 import React from 'react'
 // import { VirtualAnchor } from '../pures'
 
-export type TitleProps = {
+export interface TitleProps {
   title: React.ReactNode | string
   desc?: React.ReactNode | string
 }
 
 const defaultProps = {
-  desc: '',
+  desc: ''
 }
 
 const replaceCode = (desc: string): string => {
-  if (!desc.includes('`')) return desc
+  if (!desc.includes('`')) { return desc }
   let count = 0
   return desc.replace(/`/g, () => {
     const val = count % 2 === 0 ? '<code>' : '</code>'
@@ -53,7 +53,7 @@ const Title: React.FC<TitleProps> = React.memo(
         `}</style>
       </>
     )
-  },
+  }
 )
 
 Title.defaultProps = defaultProps

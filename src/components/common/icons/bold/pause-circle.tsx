@@ -1,6 +1,6 @@
-import {IconSvgProps} from "@/types";
+import { type IconSvgProps } from '@/types'
 
-export const PauseCircleBoldIcon = ({size = 24, width, height, ...props}: IconSvgProps) => (
+export const PauseCircleBoldIcon = ({ size = 24, width, height, ...props }: IconSvgProps) => (
   <svg
     aria-hidden="true"
     fill="none"
@@ -16,4 +16,4 @@ export const PauseCircleBoldIcon = ({size = 24, width, height, ...props}: IconSv
       fill="currentColor"
     />
   </svg>
-);
+)

@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from 'react'
+import { type FC, useEffect, useRef, useState } from 'react'
 import stackblitz from '@stackblitz/sdk'
 import type * as Stackblitz from '@stackblitz/sdk'
 import { Arrow } from '../common/Arrow'
@@ -7,13 +7,13 @@ import { Heading } from './Heading'
 import { arraysAreEqual } from '../../utils/helpers'
 import classNames from 'classnames'
 
-type Content = {
+interface Content {
   heading: string
-  steps: {
+  steps: Array<{
     label: string
     ideState: StackblitzIDEState
-    hints: { editor: string; preview?: string; console: string }
-  }[]
+    hints: { editor: string, preview?: string, console: string }
+  }>
 }
 
 const content: Content = {
@@ -24,13 +24,13 @@ const content: Content = {
       ideState: {
         openFiles: ['posts/change-me.md'],
         url: '/',
-        view: 'default',
+        view: 'default'
       },
       hints: {
         editor: 'Try to edit some of the content below...',
         preview: '... the changes will update in real-time',
-        console: 'Contentlayer runs as part of the Next.js dev server',
-      },
+        console: 'Contentlayer runs as part of the Next.js dev server'
+      }
     },
     {
       label: 'How content is transformed into data',
@@ -38,41 +38,41 @@ const content: Content = {
         openFiles: ['posts/change-me.md', '.contentlayer/generated/Post/change-me.md.json'],
         focusIndex: 1,
         url: '/',
-        view: 'editor',
+        view: 'editor'
       },
       hints: {
         editor: 'Each content file (e.g. MDX) is transformed into a JSON document ...',
         preview: '... which are stored in the .contentlayer/generated folder',
-        console: 'Contentlayer runs as part of the Next.js dev server',
-      },
+        console: 'Contentlayer runs as part of the Next.js dev server'
+      }
     },
     {
       label: 'How data is used from your app',
       ideState: {
         openFiles: ['pages/posts/[slug].tsx'],
         url: '/posts/change-me',
-        view: 'default',
+        view: 'default'
       },
       hints: {
         editor: 'Content is simply imported as data and used in your components',
         preview: '... and even supports live-reloading/HMR and tree-shaking',
-        console: 'Contentlayer runs as part of the Next.js dev server',
-      },
+        console: 'Contentlayer runs as part of the Next.js dev server'
+      }
     },
     {
       label: 'Project setup',
       ideState: {
         openFiles: ['contentlayer.config.ts', 'next.config.js'],
         url: '/',
-        view: 'editor',
+        view: 'editor'
       },
       hints: {
         editor: 'The Contentlayer config contains your document type definitions',
         preview: 'Seamless integration with Next.js',
-        console: 'Contentlayer runs as part of the Next.js dev server',
-      },
-    },
-  ],
+        console: 'Contentlayer runs as part of the Next.js dev server'
+      }
+    }
+  ]
 }
 
 export const Playground: FC = () => {
@@ -81,7 +81,7 @@ export const Playground: FC = () => {
   const [stackblitzIDEState, setStackblitzIDEState] = useState<StackblitzIDEState>({
     openFiles: ['posts/change-me.md'],
     url: '',
-    view: 'default',
+    view: 'default'
   })
 
   const [editorIsReady, setEditorIsReady] = useState(false)
@@ -111,7 +111,7 @@ export const Playground: FC = () => {
                 editorIsReady ? 'cursor-pointer' : 'cursor-wait',
                 index == selectedStep
                   ? 'border-violet-900 bg-violet-600/20 text-violet-500'
-                  : 'border-gray-800 bg-gray-900 text-slate-300 hover:bg-gray-800',
+                  : 'border-gray-800 bg-gray-900 text-slate-300 hover:bg-gray-800'
               )}
             >
               {`${index + 1}. `}
@@ -176,7 +176,7 @@ export const Playground: FC = () => {
 
 type NonNil<T> = T extends null | undefined ? never : T
 
-type StackblitzIDEState = {
+interface StackblitzIDEState {
   openFiles: string[]
   focusIndex?: number
   url: string
@@ -184,11 +184,11 @@ type StackblitzIDEState = {
 }
 
 const StackblitzIDE: React.FC<
-  {
-    className?: string
-    repoSlug: string
-    setEditorIsReady: (_: boolean) => void
-  } & StackblitzIDEState
+{
+  className?: string
+  repoSlug: string
+  setEditorIsReady: (_: boolean) => void
+} & StackblitzIDEState
 > = ({ className, repoSlug, setEditorIsReady, openFiles, focusIndex, url, view }) => {
   const ref = useRef<HTMLDivElement>(null)
   const [vm, setVm] = useState<Stackblitz.VM | undefined>(undefined)
@@ -197,9 +197,9 @@ const StackblitzIDE: React.FC<
   const [currentView, setCurrentView] = useState<Stackblitz.OpenOptions['view']>(view)
 
   useEffect(() => {
-    if (vm === undefined) return
+    if (vm === undefined) { return }
 
-    let timeout: number | undefined = undefined
+    let timeout: number | undefined
 
     // TODO also poll for the website to be loaded
     // TODO use `getUrl` for that
@@ -215,11 +215,11 @@ const StackblitzIDE: React.FC<
 
     check()
 
-    return () => clearInterval(timeout)
+    return () => {clearInterval(timeout) }
   }, [vm, setEditorIsReady])
 
   useEffect(() => {
-    if (vm && view !== 'editor') {
+    if ((vm != null) && view !== 'editor') {
       // TODO fix in Stackblitz SDK
       vm.preview.getUrl().then(({ url: currentUrl }: any) => {
         if (currentUrl && !currentUrl.endsWith(url)) {
@@ -230,30 +230,30 @@ const StackblitzIDE: React.FC<
   }, [vm, view, url])
 
   useEffect(() => {
-    if (vm && currentView !== view) {
-      vm.editor.setView(view).then(() => setCurrentView(view))
+    if ((vm != null) && currentView !== view) {
+      vm.editor.setView(view).then(() => {setCurrentView(view) })
     }
   }, [vm, currentView, view])
 
   useEffect(() => {
-    if (vm && !arraysAreEqual(currentFiles, openFiles)) {
+    if ((vm != null) && !arraysAreEqual(currentFiles, openFiles)) {
       vm.editor
         .openFile(openFiles)
-        .then(() => vm.editor.setCurrentFile(openFiles[focusIndex ?? 0]))
-        .then(() => setCurrentFiles(openFiles))
+        .then(async () => await vm.editor.setCurrentFile(openFiles[focusIndex ?? 0]))
+        .then(() => {setCurrentFiles(openFiles) })
     }
   }, [vm, currentFiles, openFiles, focusIndex])
 
   useEffect(() => {
-    if (ref.current && vm === undefined) {
+    if ((ref.current != null) && vm === undefined) {
       stackblitz.embedGithubProject(ref.current, repoSlug, {
-          height: 700,
-          openFile: openFiles,
-          showSidebar: true,
-          view,
-          forceEmbedLayout: true,
-        })
-        .then((_) => setVm(_))
+        height: 700,
+        openFile: openFiles,
+        showSidebar: true,
+        view,
+        forceEmbedLayout: true
+      })
+        .then((_) => {setVm(_) })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ref, vm, repoSlug])

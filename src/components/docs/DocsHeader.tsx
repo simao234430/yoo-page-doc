@@ -1,21 +1,21 @@
-import { FC, Fragment, useState, useEffect } from 'react'
-import { TreeNode } from 'types/TreeNode'
+import { type FC, Fragment, useState, useEffect } from 'react'
+import { type TreeNode } from 'types/TreeNode'
 import Link from 'next/link'
 import { DocsNavigation } from './DocsNavigation'
 import { Icon } from '../common/Icon'
 import { useRouter } from 'next/router'
 
-export const DocsHeader: FC<{ tree: TreeNode[]; breadcrumbs: any[]; title: string }> = ({
+export const DocsHeader: FC<{ tree: TreeNode[], breadcrumbs: any[], title: string }> = ({
   tree,
   breadcrumbs,
-  title,
+  title
 }) => {
   const { asPath } = useRouter()
   const [open, setOpen] = useState<boolean>(false)
   const [top, setTop] = useState<boolean>(true)
 
   useEffect(() => {
-    const handleScroll = () => setTop(window.scrollY <= 30)
+    const handleScroll = () => {setTop(window.scrollY <= 30) }
     handleScroll()
     window.addEventListener('scroll', handleScroll)
     return () => {
@@ -37,7 +37,7 @@ export const DocsHeader: FC<{ tree: TreeNode[]; breadcrumbs: any[]; title: strin
                 {index < breadcrumbs.length - 1 && (
                   <li className="mx-1 flex items-center space-x-2">
                     <Link href={path}
-                   className="inline whitespace-nowrap hover:text-slate-600 dark:hover:text-slate-300">{title} 
+                      className="inline whitespace-nowrap hover:text-slate-600 dark:hover:text-slate-300">{title}
                     </Link>
                     <span className="inline-block w-1.5 text-slate-400 dark:text-slate-500">
                       <Icon name="chevron-right" />
@@ -53,7 +53,7 @@ export const DocsHeader: FC<{ tree: TreeNode[]; breadcrumbs: any[]; title: strin
           <div className="lg:hidden">
             <button
               aria-label="Show docs navigation"
-              onClick={() => setOpen(true)}
+              onClick={() => {setOpen(true) }}
               className="flex space-x-2 text-left text-2xl font-semibold text-slate-800 dark:text-slate-200 md:space-x-3 md:text-3xl lg:text-4xl"
             >
               <span className="mt-1.5 inline-block w-4 flex-shrink-0 md:w-5">
@@ -72,7 +72,7 @@ export const DocsHeader: FC<{ tree: TreeNode[]; breadcrumbs: any[]; title: strin
               <button
                 type="button"
                 aria-label="Close docs navigation"
-                onClick={() => setOpen(!open)}
+                onClick={() => {setOpen(!open) }}
                 className="flex h-8 w-8 items-center justify-end text-slate-600 dark:text-slate-300"
               >
                 <span className="inline-block w-4">
@@ -97,7 +97,7 @@ export const DocsHeader: FC<{ tree: TreeNode[]; breadcrumbs: any[]; title: strin
               {index < breadcrumbs.length - 1 && (
                 <li className="flex items-center space-x-2">
                   <Link href={path}
-                     className="inline whitespace-nowrap hover:text-slate-600 dark:hover:text-slate-300">{title} 
+                    className="inline whitespace-nowrap hover:text-slate-600 dark:hover:text-slate-300">{title}
                   </Link>
                   <span className="inline-block w-1.5 text-slate-400 dark:text-slate-500">
                     <Icon name="chevron-right" />

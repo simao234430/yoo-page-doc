@@ -1,104 +1,104 @@
-import type {SandpackInitMode} from "@codesandbox/sandpack-react";
+import type { SandpackInitMode } from '@codesandbox/sandpack-react'
 
-import * as React from "react";
-import {FileTabs, useSandpack, useActiveCode, SandpackStack, CodeEditor} from "@codesandbox/sandpack-react";
-import {Button} from "@nextui-org/react";
-import scrollIntoView from "scroll-into-view-if-needed";
-import {clsx} from "@nextui-org/shared-utils";
-import {Language} from "prism-react-renderer";
+import * as React from 'react'
+import { FileTabs, useSandpack, useActiveCode, SandpackStack, CodeEditor } from '@codesandbox/sandpack-react'
+import { Button } from '@nextui-org/react'
+import scrollIntoView from 'scroll-into-view-if-needed'
+import { clsx } from '@nextui-org/shared-utils'
+import { type Language } from 'prism-react-renderer'
 
-import {HighlightedLines} from "./types";
-import {Decorators} from "./types";
+import { type HighlightedLines, type Decorators } from './types'
 
- 
 
 export interface CodeViewerProps {
-  showTabs?: boolean;
-  showLineNumbers?: boolean;
+  showTabs?: boolean
+  showLineNumbers?: boolean
+
   /**
    * Provides a way to draw or style a piece of the content.
    */
-  decorators?: Decorators;
-  code?: string;
-  highlightedLines?: HighlightedLines;
-  wrapContent?: boolean;
-  defaultExpanded?: boolean;
+  decorators?: Decorators
+  code?: string
+  highlightedLines?: HighlightedLines
+  wrapContent?: boolean
+  defaultExpanded?: boolean
+
   /**
    * This provides a way to control how some components are going to
    * be initialized on the page. The CodeEditor and the Preview components
    * are quite expensive and might overload the memory usage, so this gives
    * a certain control of when to initialize them.
    */
-  initMode?: SandpackInitMode;
-  containerRef?: React.RefObject<HTMLDivElement>;
+  initMode?: SandpackInitMode
+  containerRef?: React.RefObject<HTMLDivElement>
 }
 
-const INITIAL_HEIGHT = "200px";
+const INITIAL_HEIGHT = '200px'
 
 export const SandpackCodeViewer = React.forwardRef<any, CodeViewerProps>(
-  ({showTabs, code: propCode, defaultExpanded = false, highlightedLines, containerRef}, ref) => {
-    const {sandpack} = useSandpack();
-    const {code} = useActiveCode();
+  ({ showTabs, code: propCode, defaultExpanded = false, highlightedLines, containerRef }, ref) => {
+    const { sandpack } = useSandpack()
+    const { code } = useActiveCode()
 
-    const {activeFile} = sandpack;
+    const { activeFile } = sandpack
 
-    const [isExpanded, setIsExpanded] = React.useState(defaultExpanded);
+    const [isExpanded, setIsExpanded] = React.useState(defaultExpanded)
 
     // const id = React.useId();
     // hack to make sure we re-render the code editor and change current file
     // TODO: open an issue on sandpack-react
     // const [internalKey, setInternalKey] = React.useState(() => id);
-    const lineCountRef = React.useRef<{[key: string]: number}>({});
+    const lineCountRef = React.useRef<Record<string, number>>({})
 
     if (!lineCountRef.current[activeFile]) {
-      lineCountRef.current[activeFile] = code.split("\n").length;
+      lineCountRef.current[activeFile] = code.split('\n').length
     }
 
-    const shouldShowTabs = showTabs ?? sandpack.visibleFilesFromProps.length > 1;
+    const shouldShowTabs = showTabs ?? sandpack.visibleFilesFromProps.length > 1
 
-    const lineCount = lineCountRef.current[activeFile];
-    const isExpandable = lineCount > 7 || isExpanded;
-    const fileExt = activeFile.split(".").pop() as Language;
+    const lineCount = lineCountRef.current[activeFile]
+    const isExpandable = lineCount > 7 || isExpanded
+    const fileExt = activeFile.split('.').pop() as Language
 
     // const isAppFile = activeFile.includes("App");
 
     React.useEffect(() => {
-      if (containerRef && containerRef?.current !== null && isExpandable) {
-        containerRef.current.style.height = INITIAL_HEIGHT;
+      if ((containerRef != null) && containerRef?.current !== null && isExpandable) {
+        containerRef.current.style.height = INITIAL_HEIGHT
       }
-    }, [containerRef]);
+    }, [containerRef])
 
     // React.useEffect(() => {
     //   setInternalKey(getId());
     // }, [propCode, code]);
 
     React.useEffect(() => {
-      if (defaultExpanded && containerRef && containerRef?.current !== null) {
-        const container = containerRef?.current;
+      if (defaultExpanded && (containerRef != null) && containerRef?.current !== null) {
+        const container = containerRef?.current
 
-        container.style.height = "auto";
+        container.style.height = 'auto'
       }
-    }, [defaultExpanded]);
+    }, [defaultExpanded])
 
     const handleExpand = () => {
-      const nextIsExpanded = !isExpanded;
+      const nextIsExpanded = !isExpanded
 
-      setIsExpanded(nextIsExpanded);
-      if (containerRef && containerRef?.current !== null) {
-        const container = containerRef?.current;
+      setIsExpanded(nextIsExpanded)
+      if ((containerRef != null) && containerRef?.current !== null) {
+        const container = containerRef?.current
 
         if (nextIsExpanded) {
-          container.style.height = "auto";
+          container.style.height = 'auto'
         } else {
-          container.style.height = INITIAL_HEIGHT;
+          container.style.height = INITIAL_HEIGHT
           scrollIntoView(container, {
-            behavior: "smooth",
-            scrollMode: "if-needed",
-            block: "center",
-          });
+            behavior: 'smooth',
+            scrollMode: 'if-needed',
+            block: 'center'
+          })
         }
       }
-    };
+    }
 
     return (
       <>
@@ -106,31 +106,31 @@ export const SandpackCodeViewer = React.forwardRef<any, CodeViewerProps>(
           <SandpackStack>
             {shouldShowTabs ? <FileTabs /> : null}
             <div
-              className={clsx("sp-code-viewer max-h-[600px] overflow-y-scroll", {
-                "is-expanded": isExpanded,
+              className={clsx('sp-code-viewer max-h-[600px] overflow-y-scroll', {
+                'is-expanded': isExpanded
               })}
             >
-        
-       
-        <CodeEditor
- 
+
+
+              <CodeEditor
+
                 code="    <Space size='large'>
                 <Button style={{backgroundColor: 'red'}} type='primary'>Primary</Button>
                 <Button type='secondary'>Secondary</Button>
                 <Button type='dashed'>Dashed</Button>
                 <Button type='outline'>Outline</Button>
                 <Button type='text'>Text</Button>
-              </Space>"  initMode={"immediate"}  
-              /> 
+              </Space>" initMode={'immediate'}
+              />
             </div>
           </SandpackStack>
         </div>
         {isExpandable && (
           <div
             className={clsx(
-              "w-full absolute z-10 py-1 px-4 flex items-center justify-center bg-gradient-to-t from-code-background to-code-background/10 dark:to-code-background/50",
-              {"h-10 bottom-0 pb-2": isExpanded},
-              {"h-full inset-0": !isExpanded},
+              'w-full absolute z-10 py-1 px-4 flex items-center justify-center bg-gradient-to-t from-code-background to-code-background/10 dark:to-code-background/50',
+              { 'h-10 bottom-0 pb-2': isExpanded },
+              { 'h-full inset-0': !isExpanded }
             )}
           >
             <Button
@@ -140,15 +140,15 @@ export const SandpackCodeViewer = React.forwardRef<any, CodeViewerProps>(
               variant="flat"
               onClick={handleExpand}
             >
-              {isExpanded ? "Show less" : "Show more"}
+              {isExpanded ? 'Show less' : 'Show more'}
             </Button>
           </div>
         )}
       </>
-    );
-  },
-);
+    )
+  }
+)
 
-SandpackCodeViewer.displayName = "SandpackCodeViewer";
+SandpackCodeViewer.displayName = 'SandpackCodeViewer'
 
-export default SandpackCodeViewer;
+export default SandpackCodeViewer

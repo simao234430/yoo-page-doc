@@ -1,16 +1,14 @@
- 
-import {SandpackProvider, SandpackLayout, SandpackPreview} from "@codesandbox/sandpack-react";
 
-import React, {useCallback, useMemo, useRef} from "react";
-import dynamic from "next/dynamic";
- 
-import {useInView} from "framer-motion";
-import { Button, Skeleton, Tabs  } from "@arco-design/web-react";
-import { LivePreview } from "react-live";
-import { SandpackCodeViewer } from "./sandpack/code-viewer";
- 
- 
- 
+import { SandpackProvider, SandpackLayout, SandpackPreview } from '@codesandbox/sandpack-react'
+
+import React, { useCallback, useMemo, useRef } from 'react'
+import dynamic from 'next/dynamic'
+
+import { useInView } from 'framer-motion'
+import { Button, Skeleton, Tabs } from '@arco-design/web-react'
+import { LivePreview } from 'react-live'
+import { SandpackCodeViewer } from './sandpack/code-viewer'
+
 
 // import {useCodeDemo, UseCodeDemoProps} from "./use-code-demo";
 // import WindowResizer, {WindowResizerProps} from "./window-resizer";
@@ -18,13 +16,13 @@ import { SandpackCodeViewer } from "./sandpack/code-viewer";
 // import {GradientBoxProps} from "@/components/gradient-box";
 
 const DynamicReactLiveDemo = dynamic(
-  () => import("./react-live-demo").then((m) => m.ReactLiveDemo),
+  async () => await import('./react-live-demo').then((m) => m.ReactLiveDemo),
   {
     ssr: false,
     // eslint-disable-next-line react/display-name
-    loading: () => <Skeleton className="w-full h-24 rounded-xl" />,
-  },
-);
+    loading: () => <Skeleton className="w-full h-24 rounded-xl" />
+  }
+)
 
 // const DynamicSandpack = dynamic(() => import("./sandpack").then((m) => m.Sandpack), {
 //   ssr: false,
@@ -33,23 +31,23 @@ const DynamicReactLiveDemo = dynamic(
 // });
 
 interface CodeDemoProps extends UseCodeDemoProps, WindowResizerProps {
-  title?: string;
-  asIframe?: boolean;
-  showSandpackPreview?: boolean;
-  initialEditorOpen?: boolean;
-  enableResize?: boolean;
-  showTabs?: boolean;
-  showPreview?: boolean;
-  showOpenInCodeSandbox?: boolean;
-  isPreviewCentered?: boolean;
-  resizeEnabled?: boolean;
-  displayMode?: "always" | "visible";
-  isGradientBox?: boolean;
-  gradientColor?: GradientBoxProps["color"];
-  defaultExpanded?: boolean;
-  previewHeight?: string | number;
-  overflow?: "auto" | "visible" | "hidden";
-  className?: string;
+  title?: string
+  asIframe?: boolean
+  showSandpackPreview?: boolean
+  initialEditorOpen?: boolean
+  enableResize?: boolean
+  showTabs?: boolean
+  showPreview?: boolean
+  showOpenInCodeSandbox?: boolean
+  isPreviewCentered?: boolean
+  resizeEnabled?: boolean
+  displayMode?: 'always' | 'visible'
+  isGradientBox?: boolean
+  gradientColor?: GradientBoxProps['color']
+  defaultExpanded?: boolean
+  previewHeight?: string | number
+  overflow?: 'auto' | 'visible' | 'hidden'
+  className?: string
 }
 
 export const CodeDemo: React.FC<CodeDemoProps> = ({
@@ -64,61 +62,60 @@ export const CodeDemo: React.FC<CodeDemoProps> = ({
   showOpenInCodeSandbox,
   isGradientBox = false,
   defaultExpanded = false,
-  previewHeight = "auto",
-  overflow = "visible",
-  displayMode = "always",
+  previewHeight = 'auto',
+  overflow = 'visible',
+  displayMode = 'always',
   showTabs = true,
   gradientColor,
   highlightedLines,
   iframeInitialWidth,
   iframeSrc,
-  className,
+  className
 }) => {
-  const ref = useRef(null);
+  const ref = useRef(null)
   const isInView = useInView(ref, {
     once: true,
-    margin: "600px",
-  });
+    margin: '600px'
+  })
 
-//   const {noInline, code} = useCodeDemo({
-//     files,
-//   });
+  //   const {noInline, code} = useCodeDemo({
+  //     files,
+  //   });
 
   const renderContent = useCallback(
     (content: React.ReactNode) => {
-      if (displayMode === "always") return content;
-      if (displayMode === "visible") {
+      if (displayMode === 'always') { return content}
+      if (displayMode === 'visible') {
         if (!isInView) {
-          return <div style={{height: previewHeight}} />;
+          return <div style={{ height: previewHeight }} />
         }
 
-        return content;
+        return content
       }
     },
-    [displayMode, previewHeight, isInView],
-  );
+    [displayMode, previewHeight, isInView]
+  )
 
   const previewContent = useMemo(() => {
-    if (!showPreview) return null;
+    if (!showPreview) { return null}
 
- 
 
-    return       <DynamicReactLiveDemo
-    className={className}
-    code={`    <Space size='large'>
+    return <DynamicReactLiveDemo
+      className={className}
+      code={`    <Space size='large'>
     <Button style={{backgroundColor: 'red'}} type='primary'>Primary</Button>
     <Button type='secondary'>Secondary</Button>
     <Button type='dashed'>Dashed</Button>
     <Button type='outline'>Outline</Button>
     <Button type='text'>Text</Button>
   </Space>`}
-    gradientColor={gradientColor}
-    height={previewHeight}
-    isCentered={isPreviewCentered}
-    isGradientBox={isGradientBox}
- 
-    overflow={overflow}
-  />;
+      gradientColor={gradientColor}
+      height={previewHeight}
+      isCentered={isPreviewCentered}
+      isGradientBox={isGradientBox}
+
+      overflow={overflow}
+    />
   }, [
     displayMode,
     isGradientBox,
@@ -127,18 +124,18 @@ export const CodeDemo: React.FC<CodeDemoProps> = ({
     asIframe,
     showPreview,
     isInView,
-    className,
-  ]);
+    className
+  ])
 
   const editorContent = useMemo(() => {
-    if (!showEditor) return null;
+    if (!showEditor) { return null}
 
     const content = (
       <SandpackProvider>     <SandpackCodeViewer></SandpackCodeViewer></SandpackProvider>
-  
-    );
 
-    return renderContent(content);
+    )
+
+    return renderContent(content)
   }, [
     displayMode,
     showEditor,
@@ -148,8 +145,8 @@ export const CodeDemo: React.FC<CodeDemoProps> = ({
     defaultExpanded,
     showPreview,
     showSandpackPreview,
-    showOpenInCodeSandbox,
-  ]);
+    showOpenInCodeSandbox
+  ])
 
   // const shouldRenderTabs = useMemo(() => {
   //   if (!showTabs) return false;
@@ -161,26 +158,28 @@ export const CodeDemo: React.FC<CodeDemoProps> = ({
 
   return (
     <div ref={ref} className="flex flex-col gap-2">
-      {true ? (
-        <Tabs
- 
-          aria-label="Code demo tabs"
-  
-        >
-          <Tabs.TabPane key="preview" title="Preview">
-        {previewContent}
-          </Tabs.TabPane>
-          <Tabs.TabPane key="code" title="Code">
-         
-      {editorContent}
-       
-          </Tabs.TabPane>
-        </Tabs>
-      ) : (
-        <>
-       
-        </>
-      )}
+      {true
+        ? (
+          <Tabs
+
+            aria-label="Code demo tabs"
+
+          >
+            <Tabs.TabPane key="preview" title="Preview">
+              {previewContent}
+            </Tabs.TabPane>
+            <Tabs.TabPane key="code" title="Code">
+
+              {editorContent}
+
+            </Tabs.TabPane>
+          </Tabs>
+        )
+        : (
+          <>
+
+          </>
+        )}
     </div>
-  );
-};
+  )
+}

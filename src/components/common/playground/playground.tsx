@@ -1,31 +1,29 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 // import { useTheme, Loading } from 'components'
- 
+
 import Title from './title'
 
-const DynamicLive = dynamic(() => import('./dynamic-live'), {
+const DynamicLive = dynamic(async () => await import('./dynamic-live'), {
   ssr: false,
   loading: () => (
     <div style={{ padding: '20pt 0' }}>
       {/* <Loading /> */}
     </div>
-  ),
+  )
 })
 
-export type PlaygroundProps = {
+export interface PlaygroundProps {
   title?: React.ReactNode | string
   desc?: React.ReactNode | string
   code: string
-  scope: {
-    [key: string]: any
-  }
+  scope: Record<string, any>
 }
 
 const defaultProps = {
   desc: '',
   code: '',
-  bindings: {},
+  bindings: {}
 }
 
 const Playground: React.FC<PlaygroundProps> = React.memo(
@@ -33,7 +31,7 @@ const Playground: React.FC<PlaygroundProps> = React.memo(
     title: inputTitle,
     code: inputCode,
     desc,
-    scope,
+    scope
   }: PlaygroundProps & typeof defaultProps) => {
     // const theme = useTheme()
     // const { isChinese } = useConfigs()
@@ -54,7 +52,7 @@ const Playground: React.FC<PlaygroundProps> = React.memo(
         </div>
       </>
     )
-  },
+  }
 )
 
 Playground.defaultProps = defaultProps

@@ -1,11 +1,11 @@
 import slugger from 'github-slugger'
 
-export function getTableOfContents(mdxContent: string) {
+export function getTableOfContents (mdxContent: string) {
   const regexp = new RegExp(/^(### |## )(.*)\n/, 'gm')
   const headings = [...mdxContent.matchAll(regexp)]
   let tableOfContents = []
 
-  if (headings.length) {
+  if (headings.length > 0) {
     tableOfContents = headings.map((heading) => {
       const headingText = heading[2].trim()
       const headingType = heading[1].trim() === '##' ? 'h2' : 'h3'
@@ -14,7 +14,7 @@ export function getTableOfContents(mdxContent: string) {
       return {
         text: headingText,
         id: headingLink,
-        level: headingType,
+        level: headingType
       }
     })
   }

@@ -110,7 +110,7 @@ export async function pageByUrlPath(urlPath: string): Promise<Page> {
 	const page = await processPage(pagePathMap[urlPath]);
 	return page;
 }
-`,
+`
   },
   {
     file: 'pages/index.tsx',
@@ -139,7 +139,7 @@ const Page: FC<{ pages: Page[] }> = ({ pages }) => (
 );
 
 export default Page;\
-`,
+`
   },
   {
     file: 'pages/[slug].tsx',
@@ -173,8 +173,8 @@ const Page: FC<{ page: Page }> = ({ page }) => (
 );
 
 export default Page;
-`,
-  },
+`
+  }
 ] as const
 
 export type CodeSnippets = typeof codeSnippets

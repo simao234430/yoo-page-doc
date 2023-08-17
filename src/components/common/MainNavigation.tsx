@@ -1,14 +1,14 @@
 import { useKBar } from 'kbar'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { FC, useState } from 'react'
+import { type FC, useState } from 'react'
 import { isExternalUrl } from '../../utils/helpers'
 import { ColorSchemeSwitcher } from './ColorSchemeSwitcher'
-import { Icon, IconName } from './Icon'
+import { Icon, type IconName } from './Icon'
 import { Label } from './Label'
 import { Logo } from './Logo'
 
-const navLinks: Array<{ label: string; url: string }> = [
+const navLinks: Array<{ label: string, url: string }> = [
   { label: 'tutorials', url: '/tutorials' },
   { label: 'components', url: '/components' },
   { label: 'Documentation', url: '/docs' },
@@ -17,19 +17,19 @@ const navLinks: Array<{ label: string; url: string }> = [
   { label: 'Blog', url: '/blog' },
   //
   // NOTE until we have a proper example overview page and multiple examples, link directly to Next.js example
-  { label: 'Examples', url: '/examples/nextjs' },
+  { label: 'Examples', url: '/examples/nextjs' }
 ]
 
-const iconLinks: Array<{ label: string; icon: IconName; url: string }> = [
+const iconLinks: Array<{ label: string, icon: IconName, url: string }> = [
   { label: 'Github', icon: 'github', url: 'https://github.com/contentlayerdev/contentlayer' },
-  { label: 'Discord', icon: 'discord', url: 'https://discord.gg/rytFErsARm' },
+  { label: 'Discord', icon: 'discord', url: 'https://discord.gg/rytFErsARm' }
 ]
 
-const NavLink: FC<{ label?: string; hideLabel?: boolean; icon?: IconName; url: string }> = ({
+const NavLink: FC<{ label?: string, hideLabel?: boolean, icon?: IconName, url: string }> = ({
   label,
   hideLabel = false,
   icon,
-  url,
+  url
 }) => {
   const router = useRouter()
   const active = router.pathname.split('/')[1] == url.replace('/', '')
@@ -44,16 +44,16 @@ const NavLink: FC<{ label?: string; hideLabel?: boolean; icon?: IconName; url: s
       }`}
       target={isExternalUrl(url) ? '_blank' : undefined}
       rel={isExternalUrl(url) ? 'noreferrer' : undefined}
-       >
-        {icon && (
-          <span className="block w-5 text-slate-400 group-hover:text-slate-500 dark:text-slate-500 dark:group-hover:text-slate-400">
-            <Icon name={icon} />
-          </span>
-        )}
-        {label && <span className={hideLabel ? 'sr-only' : ''}>{label}</span>}
- 
+    >
+      {icon && (
+        <span className="block w-5 text-slate-400 group-hover:text-slate-500 dark:text-slate-500 dark:group-hover:text-slate-400">
+          <Icon name={icon} />
+        </span>
+      )}
+      {label && <span className={hideLabel ? 'sr-only' : ''}>{label}</span>}
+
     </Link>
-  );
+  )
 }
 
 export const SearchButton: FC<{ showShortcut?: boolean }> = ({ showShortcut = true }) => {
@@ -81,13 +81,13 @@ export const MainNavigation = () => {
     <header className="fixed z-50 w-full bg-white border-b border-gray-200 bg-opacity-90 backdrop-blur backdrop-filter dark:border-gray-800 dark:bg-gray-950">
       <div className="flex items-center justify-between w-full h-16 px-4 mx-auto max-w-screen-2xl md:px-8 lg:px-16">
         <div className="flex items-center space-x-2.5">
-          <Link 
+          <Link
             href="/"
             className="flex items-center space-x-2.5 font-bold text-slate-800 no-underline dark:text-white"
-             >
-              <Logo />
-              <span className="-mt-0.5">Contentlayer</span>
-       
+          >
+            <Logo />
+            <span className="-mt-0.5">Contentlayer</span>
+
           </Link>
           <Label text="Beta" />
         </div>
@@ -95,7 +95,7 @@ export const MainNavigation = () => {
           <button
             type="button"
             aria-label="Toggle menu"
-            onClick={() => setOpen(!open)}
+            onClick={() => {setOpen(!open) }}
             className="flex items-center justify-end w-8 h-8 text-slate-600 dark:text-slate-300"
           >
             <span className="inline-block w-4">
@@ -138,12 +138,12 @@ export const MainNavigation = () => {
           </div>
           <div className="flex items-center pl-2 lg:space-x-2 lg:pl-8">
             <ColorSchemeSwitcher />
-              {iconLinks.map(({ label, icon, url }, index) => (
-            <NavLink key={index} label={label} hideLabel url={url} icon={icon} />
-             ))}
+            {iconLinks.map(({ label, icon, url }, index) => (
+              <NavLink key={index} label={label} hideLabel url={url} icon={icon} />
+            ))}
           </div>
         </nav>
       </div>
     </header>
-  );
+  )
 }

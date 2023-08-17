@@ -1,7 +1,7 @@
-import { FC, useState, useEffect, useRef } from 'react'
+import { type FC, useState, useEffect, useRef } from 'react'
 import stackblitz, { type VM } from '@stackblitz/sdk'
 
-export const Playground: FC<{ githubRepo: string; openFile?: string | '' }> = ({ githubRepo, openFile }) => {
+export const Playground: FC<{ githubRepo: string, openFile?: string | '' }> = ({ githubRepo, openFile }) => {
   const ref = useRef<HTMLDivElement>(null)
   const [vm, setVm] = useState<VM | undefined>(undefined)
 

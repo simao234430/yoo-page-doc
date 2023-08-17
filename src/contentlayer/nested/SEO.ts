@@ -4,15 +4,15 @@ export const SEO = defineNestedType(() => ({
   name: 'SEO',
   fields: {
     title: {
-      type: 'string',
+      type: 'string'
     },
     description: {
-      type: 'string',
+      type: 'string'
     },
     imagePath: {
       type: 'string',
-      required: true,
-    },
+      required: true
+    }
   },
-  extensions: {},
+  extensions: {}
 }))

@@ -1,5 +1,5 @@
-import { Post } from 'contentlayer/generated'
-import { FC, useEffect, useState } from 'react'
+import { type Post } from 'contentlayer/generated'
+import { type FC, useEffect, useState } from 'react'
 import { BlogDetails } from '../../components/blog/BlogDetails'
 import Link from 'next/link'
 import { Icon } from '../../components/common/Icon'
@@ -10,7 +10,7 @@ export const BlogHeader: FC<{ post: Post }> = ({ post }) => {
   const [top, setTop] = useState<boolean>(true)
 
   useEffect(() => {
-    const handleScroll = () => setTop(window.scrollY <= 50)
+    const handleScroll = () => {setTop(window.scrollY <= 50) }
     handleScroll()
     window.addEventListener('scroll', handleScroll)
     return () => {
@@ -41,7 +41,7 @@ export const BlogHeader: FC<{ post: Post }> = ({ post }) => {
         <div className="mx-auto h-full lg:max-w-[994px] lg:px-16">
           <div className="flex h-full items-center space-x-2 text-sm">
             <Link href="/blog"
-               className="inline whitespace-nowrap hover:text-slate-600 dark:hover:text-slate-300">Blog 
+              className="inline whitespace-nowrap hover:text-slate-600 dark:hover:text-slate-300">Blog
             </Link>
             <span className="inline-block w-1.5 text-slate-400 dark:text-slate-500">
               <Icon name="chevron-right" />

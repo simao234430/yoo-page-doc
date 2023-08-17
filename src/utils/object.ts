@@ -10,32 +10,28 @@ export type PromisesMap<T extends PlainObj> = {
  * @param  {PromisesMap<T>} promisesMap  the input object with a promise in each property
  * @return {Promise<T>}  a promise that resolved to an object with the same properties containing the resolved values
  */
-export const promiseAllProperties = <T extends PlainObj>(promisesMap: PromisesMap<T>): Promise<T> => {
+export const promiseAllProperties = async <T extends PlainObj>(promisesMap: PromisesMap<T>): Promise<T> => {
   if (
     !(typeof process !== undefined && process.env.NODE_ENV === 'production') &&
     (promisesMap === null || typeof promisesMap !== 'object' || Array.isArray(promisesMap))
   ) {
-    return Promise.reject(new TypeError('The input argument must be a plain object'))
+    return await Promise.reject(new TypeError('The input argument must be a plain object'))
   }
 
   const keys = Object.keys(promisesMap)
-  const promises = keys.map((key) => {
-    return (promisesMap as any)[key]
-  })
+  const promises = keys.map((key) => (promisesMap as any)[key])
 
-  return Promise.all(promises).then((results) => {
-    return results.reduce((resolved, result, index) => {
-      resolved[keys[index]] = result
-      return resolved
-    }, {})
-  })
+  return await Promise.all(promises).then((results) => results.reduce((resolved, result, index) => {
+    resolved[keys[index]] = result
+    return resolved
+  }, {}))
 }
 
 type ValueOfRecord<R extends Record<any, any>> = R extends Record<any, infer V> ? V : never
 
 export const mapObjectValues = <O_In extends Record<any, any>, V_Out>(
   obj: O_In,
-  mapValue: (key: keyof O_In, val: ValueOfRecord<O_In>) => V_Out,
+  mapValue: (key: keyof O_In, val: ValueOfRecord<O_In>) => V_Out
 ): { [K in keyof O_In]: V_Out } => {
   const mappedEntries = Object.entries(obj).map(([key, val]) => [key, mapValue(key as keyof O_In, val)] as const)
   return Object.fromEntries(mappedEntries) as any

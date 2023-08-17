@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { LiveEditor } from 'react-live'
- 
+
 import { Twitter } from '@geist-ui/icons'
 import RightIcon from '@geist-ui/icons/chevronRight'
 // import { CopyLinearIcon } from '@/src/components/common/icons/'
@@ -33,18 +33,18 @@ const Editor: React.FC<Props> = ({ code }) => {
               <span className="arrow">
                 <RightIcon size={16} />
               </span>
-              <span>{ 'Code Editor'}</span>
+              <span>{'Code Editor'}</span>
             </div>
             <div className="action">
               {visible && (
                 <span
-      
+
                   className="copy"
                   onClick={copyHandler}
                   title={'Copy Code'}>
-                  <Twitter fill='white'  stroke='black'   />
+                  <Twitter fill='white' stroke='black' />
                 </span>
-        
+
               )}
             </div>
           </div>

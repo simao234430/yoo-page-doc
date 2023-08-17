@@ -1,6 +1,6 @@
-import {IconSvgProps} from "@/types";
+import { type IconSvgProps } from '@/types'
 
-export const KeyboardTwoToneIcon = ({size = 24, width, height, ...props}: IconSvgProps) => (
+export const KeyboardTwoToneIcon = ({ size = 24, width, height, ...props }: IconSvgProps) => (
   <svg
     aria-hidden="true"
     fill="none"
@@ -51,4 +51,4 @@ export const KeyboardTwoToneIcon = ({size = 24, width, height, ...props}: IconSv
       strokeWidth="2"
     />
   </svg>
-);
+)

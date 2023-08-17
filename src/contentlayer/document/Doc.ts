@@ -8,48 +8,48 @@ import { bundleMDX } from 'mdx-bundler'
 // import { SEO } from '../nested/SEO'
 import { getLastEditedDate, urlFromFilePath } from '../utils'
 
-export type DocHeading = { level: 1 | 2 | 3; title: string }
+export interface DocHeading { level: 1 | 2 | 3, title: string }
 
 export const Doc = defineDocumentType(() => ({
   name: 'Doc',
-  filePathPattern: `docs/**/*.mdx`,
+  filePathPattern: 'docs/**/*.mdx',
   contentType: 'mdx',
   fields: {
     global_id: {
       type: 'string',
       description: 'Random ID to uniquely identify this doc, even after it moves',
-      required: true,
+      required: true
     },
     title: {
       type: 'string',
       description: 'The title of the page',
-      required: true,
+      required: true
     },
     nav_title: {
       type: 'string',
-      description: 'Override the title for display in nav',
+      description: 'Override the title for display in nav'
     },
     label: {
-      type: 'string',
+      type: 'string'
     },
     excerpt: {
       type: 'string',
-      required: true,
+      required: true
     },
     show_child_cards: {
       type: 'boolean',
-      default: false,
+      default: false
     },
     collapsible: {
       type: 'boolean',
       required: false,
-      default: false,
+      default: false
     },
     collapsed: {
       type: 'boolean',
       required: false,
-      default: false,
-    },
+      default: false
+    }
     // seo: { type: 'nested', of: SEO },
   },
   computedFields: {
@@ -58,15 +58,15 @@ export const Doc = defineDocumentType(() => ({
       description:
         'The URL path of this page relative to site root. For example, the site root page would be "/", and doc page would be "docs/getting-started/"',
       resolve: (doc) => {
-        if (doc._id.startsWith('docs/index.md')) return '/docs'
+        if (doc._id.startsWith('docs/index.md')) { return '/docs' }
         return urlFromFilePath(doc)
-      },
+      }
     },
     url_path_without_id: {
       type: 'string',
       description:
         'The URL path of this page relative to site root. For example, the site root page would be "/", and doc page would be "docs/getting-started/"',
-      resolve: (doc) => urlFromFilePath(doc).replace(new RegExp(`-${doc.global_id}$`), ''),
+      resolve: (doc) => urlFromFilePath(doc).replace(new RegExp(`-${doc.global_id}$`), '')
     },
     pathSegments: {
       type: 'json',
@@ -80,7 +80,7 @@ export const Doc = defineDocumentType(() => ({
             const [, , orderStr, pathName] = dirName.match(re) ?? []
             const order = orderStr ? parseInt(orderStr) : 0
             return { order, pathName }
-          }),
+          })
     },
     headings: {
       type: 'json',
@@ -92,21 +92,20 @@ export const Doc = defineDocumentType(() => ({
           mdxOptions: (opts) => {
             opts.remarkPlugins = [...(opts.remarkPlugins ?? []), tocPlugin(headings)]
             return opts
-          },
+          }
         })
 
         return [{ level: 1, title: doc.title }, ...headings]
-      },
+      }
     },
-    last_edited: { type: 'date', resolve: getLastEditedDate },
+    last_edited: { type: 'date', resolve: getLastEditedDate }
   },
-  extensions: {},
+  extensions: {}
 }))
 
 const tocPlugin =
   (headings: DocHeading[]): unified.Plugin =>
-  () => {
-    return (node: any) => {
+    () => (node: any) => {
       for (const element of node.children.filter((_: any) => _.type === 'heading' || _.name === 'OptionsTable')) {
         if (element.type === 'heading') {
           const title = toMarkdown({ type: 'paragraph', children: element.children }, { extensions: [mdxToMarkdown()] })
@@ -124,7 +123,7 @@ const tocPlugin =
                 .forEach((heading: any) => {
                   const title = toMarkdown(
                     { type: 'paragraph', children: heading.children },
-                    { extensions: [mdxToMarkdown()] },
+                    { extensions: [mdxToMarkdown()] }
                   )
                     .trim()
                     .replace(/<.*$/g, '')
@@ -135,5 +134,4 @@ const tocPlugin =
             })
         }
       }
-    };
-  }
+    }

@@ -1,34 +1,31 @@
 import React from 'react'
 import { LivePreview, LiveProvider, LiveError } from 'react-live'
 // import { useTheme } from 'components'
- 
+
 import Editor from './editor'
 // import Highlight, { defaultProps } from "prism-react-renderer";
-import github from "prism-react-renderer/themes/github";
-
+import github from 'prism-react-renderer/themes/github'
 
 
 export interface Props {
   code: string
-  scope: {
-    [key: string]: any
-  }
+  scope: Record<string, any>
 }
 
-const DynamicLive: React.FC<Props> = ({ code, scope }) => {
-  // const theme = useTheme()
- 
-  return (
-    <LiveProvider code={code} scope={scope} theme={github}  >
+const DynamicLive: React.FC<Props> = ({ code, scope }) =>
+// const theme = useTheme()
+
+  (
+    <LiveProvider code={code} scope={scope} theme={github} >
       {/* <div className="wrapper">
         <LivePreview />
         <LiveError className="live-error" />
       </div> */}
       <div className="bg-grid bg-neutral-50 rounded flex flex-wrap justify-center items-center gap-x-2 gap-y-6 p-5 overflow-auto">
-     <LivePreview />
+        <LivePreview />
         <LiveError className="live-error" />
       </div>
- 
+
       <Editor code={code} />
 
       <style jsx>{`
@@ -56,6 +53,6 @@ const DynamicLive: React.FC<Props> = ({ code, scope }) => {
       `}</style>
     </LiveProvider>
   )
-}
+
 
 export default DynamicLive

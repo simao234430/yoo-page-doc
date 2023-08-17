@@ -1,6 +1,6 @@
-import {IconSvgProps} from "@/types";
+import { type IconSvgProps } from '@/types'
 
-export const HeartBoldIcon = ({size = 24, width, height, ...props}: IconSvgProps) => (
+export const HeartBoldIcon = ({ size = 24, width, height, ...props }: IconSvgProps) => (
   <svg
     aria-hidden="true"
     fill="none"
@@ -16,4 +16,4 @@ export const HeartBoldIcon = ({size = 24, width, height, ...props}: IconSvgProps
       fill="currentColor"
     />
   </svg>
-);
+)

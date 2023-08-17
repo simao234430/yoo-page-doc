@@ -1,10 +1,10 @@
-import { FC } from 'react'
+import { type FC } from 'react'
 import * as Tabs from '@radix-ui/react-tabs'
 import * as ScrollArea from '@radix-ui/react-scroll-area'
 import { Card } from '../common/Card'
 import { useRouter } from 'next/router'
 
-export type CodeSnippet = { file: string; content: string; lines: number }
+export interface CodeSnippet { file: string, content: string, lines: number }
 
 export const CodeWindow: FC<{
   snippets: readonly CodeSnippet[]

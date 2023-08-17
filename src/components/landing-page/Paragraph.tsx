@@ -1,6 +1,4 @@
 import classNames from 'classnames'
-import { FC, ReactNode } from 'react'
+import { type FC, type ReactNode } from 'react'
 
-export const Paragraph: FC<{ children: ReactNode; className?: string }> = ({ children, className }) => {
-  return <p className={classNames('leading-relaxed', className)}>{children}</p>
-}
+export const Paragraph: FC<{ children: ReactNode, className?: string }> = ({ children, className }) => <p className={classNames('leading-relaxed', className)}>{children}</p>

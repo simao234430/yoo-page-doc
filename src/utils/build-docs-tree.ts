@@ -1,11 +1,14 @@
-import { Doc } from 'contentlayer/generated'
-import { TreeNode } from 'types/TreeNode'
+import { type Doc } from 'contentlayer/generated'
+import { type TreeNode } from 'types/TreeNode'
 
 export const buildDocsTree = (docs: Doc[], parentPathNames: string[] = []): TreeNode[] => {
   const level = parentPathNames.length
 
   // Remove ID from parent path
-  parentPathNames = parentPathNames.join('/').split('-').slice(0, -1).join('-').split('/')
+  parentPathNames = parentPathNames.join('/').split('-')
+    .slice(0, -1)
+    .join('-')
+    .split('/')
 
   return docs
     .filter(
@@ -14,7 +17,7 @@ export const buildDocsTree = (docs: Doc[], parentPathNames: string[] = []): Tree
         _.pathSegments
           .map((_: PathSegment) => _.pathName)
           .join('/')
-          .startsWith(parentPathNames.join('/')),
+          .startsWith(parentPathNames.join('/'))
     )
     .sort((a, b) => a.pathSegments[level].order - b.pathSegments[level].order)
     .map<TreeNode>((doc) => ({
@@ -27,7 +30,7 @@ export const buildDocsTree = (docs: Doc[], parentPathNames: string[] = []): Tree
       collapsed: doc.collapsed ?? null,
       children: buildDocsTree(
         docs,
-        doc.pathSegments.map((_: PathSegment) => _.pathName),
-      ),
+        doc.pathSegments.map((_: PathSegment) => _.pathName)
+    ),
     }))
 }

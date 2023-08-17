@@ -1,6 +1,6 @@
-import {IconSvgProps} from "@/types";
+import { type IconSvgProps } from '@/types'
 
-export const PaperclipLinearIcon = ({size = 24, width, height, ...props}: IconSvgProps) => (
+export const PaperclipLinearIcon = ({ size = 24, width, height, ...props }: IconSvgProps) => (
   <svg
     aria-hidden="true"
     fill="none"
@@ -19,4 +19,4 @@ export const PaperclipLinearIcon = ({size = 24, width, height, ...props}: IconSv
       strokeWidth="1.5"
     />
   </svg>
-);
+)

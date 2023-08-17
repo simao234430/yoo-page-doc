@@ -1,6 +1,6 @@
- 
-import remarkMdxCodeMeta from 'remark-mdx-code-meta';
- 
+
+import remarkMdxCodeMeta from 'remark-mdx-code-meta'
+
 import remarkMdx from 'remark-mdx'
 // import { toMarkdown } from 'mdast-util-to-markdown'
 // import { frontmatterToMarkdown } from 'mdast-util-frontmatter'
@@ -99,7 +99,7 @@ import remarkMdx from 'remark-mdx'
 
 export const remarkPlugins = [
   remarkMdx,
-  remarkMdxCodeMeta,
- 
+  remarkMdxCodeMeta
+
   // remarkLayout,
 ]

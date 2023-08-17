@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { type FC, useEffect, useState } from 'react'
 import { type DocHeading } from '../../contentlayer/document/Doc'
 import { getNodeText, sluggifyTitle } from '../../utils/sluggify'
 import { Icon } from './Icon'
@@ -12,7 +12,7 @@ export const PageNavigation: FC<{ headings: DocHeading[] }> = ({ headings }) => 
       for (const heading of headings) {
         const slug = sluggifyTitle(getNodeText(heading.title))
         const element = document.getElementById(slug)
-        if (element && element.getBoundingClientRect().top < 240) current = slug
+        if ((element != null) && element.getBoundingClientRect().top < 240) { current = slug }
       }
       setActiveHeading(current)
     }
@@ -25,7 +25,7 @@ export const PageNavigation: FC<{ headings: DocHeading[] }> = ({ headings }) => 
 
   const headingsToRender = headings.filter((_) => _.level >= 1)
 
-  if ((headingsToRender ?? []).length === 0) return null
+  if ((headingsToRender ?? []).length === 0) { return null }
 
   return (
     <div className="text-sm">
@@ -47,7 +47,7 @@ export const PageNavigation: FC<{ headings: DocHeading[] }> = ({ headings }) => 
               </span>
               <span
                 dangerouslySetInnerHTML={{
-                  __html: title.replace('`', '<code style="font-size: 0.75rem;">').replace('`', '</code>'),
+                  __html: title.replace('`', '<code style="font-size: 0.75rem;">').replace('`', '</code>')
                 }}
               />
             </a>

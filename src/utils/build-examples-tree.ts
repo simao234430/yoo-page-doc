@@ -1,6 +1,6 @@
 import { children } from 'cheerio/lib/api/traversing'
-import { Example,Compo,Tutorial } from 'contentlayer/generated'
-import { TreeNode } from 'types/TreeNode'
+import { type Example, type Compo, type Tutorial } from 'contentlayer/generated'
+import { type TreeNode } from 'types/TreeNode'
 
 export const buildTutorialTree = (tutorials: Tutorial[], parentPathNames: string[] = []): TreeNode[] => {
   const level = parentPathNames.length
@@ -12,20 +12,20 @@ export const buildTutorialTree = (tutorials: Tutorial[], parentPathNames: string
         _.pathSegments
           .map((_: PathSegment) => _.pathName)
           .join('/')
-          .startsWith(parentPathNames.join('/')),
+          .startsWith(parentPathNames.join('/'))
     )
     .sort((a, b) => a.pathSegments[level].order - b.pathSegments[level].order)
     .map<TreeNode>((tutorial) => ({
- 
+
       title: tutorial.title,
- 
+
       excerpt: tutorial.excerpt ?? null,
- 
+
       urlPath: '/' + tutorial.pathSegments.map((_: PathSegment) => _.pathName).join('/'),
       children: buildExamplesTree(
         tutorials,
-        tutorial.pathSegments.map((_: PathSegment) => _.pathName),
-      ),
+        tutorial.pathSegments.map((_: PathSegment) => _.pathName)
+    ),
     }))
 }
 
@@ -39,7 +39,7 @@ export const buildExamplesTree = (examples: Example[], parentPathNames: string[]
         _.pathSegments
           .map((_: PathSegment) => _.pathName)
           .join('/')
-          .startsWith(parentPathNames.join('/')),
+          .startsWith(parentPathNames.join('/'))
     )
     .sort((a, b) => a.pathSegments[level].order - b.pathSegments[level].order)
     .map<TreeNode>((example) => ({
@@ -52,8 +52,8 @@ export const buildExamplesTree = (examples: Example[], parentPathNames: string[]
       urlPath: '/' + example.pathSegments.map((_: PathSegment) => _.pathName).join('/'),
       children: buildExamplesTree(
         examples,
-        example.pathSegments.map((_: PathSegment) => _.pathName),
-      ),
+        example.pathSegments.map((_: PathSegment) => _.pathName)
+    ),
     }))
 }
 
@@ -68,7 +68,7 @@ export const buildComposTree = (compos: Compo[], parentPathNames: string[] = [])
         _.pathSegments
           .map((_: PathSegment) => _.pathName)
           .join('/')
-          .startsWith(parentPathNames.join('/')),
+          .startsWith(parentPathNames.join('/'))
     )
     .sort((a, b) => a.pathSegments[level].order - b.pathSegments[level].order)
     .map<TreeNode>((compo) => ({
@@ -81,7 +81,7 @@ export const buildComposTree = (compos: Compo[], parentPathNames: string[] = [])
       urlPath: '/' + compo.pathSegments.map((_: PathSegment) => _.pathName).join('/'),
       children: buildComposTree(
         compos,
-        compo.pathSegments.map((_: PathSegment) => _.pathName),
-      ),
+        compo.pathSegments.map((_: PathSegment) => _.pathName)
+    ),
     }))
 }

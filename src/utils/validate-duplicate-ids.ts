@@ -1,10 +1,10 @@
-import { Doc } from 'contentlayer/generated'
+import { type Doc } from 'contentlayer/generated'
 
-export async function validateDuplicateIds(allDocs: Doc[]) {
+export async function validateDuplicateIds (allDocs: Doc[]) {
   const ids = allDocs.map((doc) => doc.global_id)
 
   const duplicates = ids.filter((id, index) => ids.indexOf(id) !== index)
-  if (duplicates.length) {
+  if (duplicates.length > 0) {
     throw new Error(`[Error] Duplicate ids found: ${duplicates.join(', ')}`)
   }
 

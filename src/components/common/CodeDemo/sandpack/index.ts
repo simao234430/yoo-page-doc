@@ -1,1 +1,1 @@
-export * from "./sandpack";
+export * from './sandpack'

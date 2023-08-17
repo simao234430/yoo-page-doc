@@ -1,15 +1,15 @@
-import React from "react";
-import {usePathname} from "next/navigation";
-import {Tooltip, Link, Button} from "@nextui-org/react";
-import {capitalize, last} from "lodash";
+import React from 'react'
+import { usePathname } from 'next/navigation'
+import { Tooltip, Link, Button } from '@nextui-org/react'
+import { capitalize, last } from 'lodash'
 
 // import {BugIcon} from "@/components/icons";
 // import {ISSUE_REPORT_URL} from "@/libs/github/constants";
 
 export const BugReportButton = () => {
-  const pathname = usePathname();
+  const pathname = usePathname()
 
-  const componentTitle = capitalize(last(pathname?.split("/")));
+  const componentTitle = capitalize(last(pathname?.split('/')))
 
   return (
     <Tooltip
@@ -23,7 +23,7 @@ export const BugReportButton = () => {
         isExternal
         isIconOnly
         as={Link}
-  
+
         size="sm"
         title="Report a bug"
         variant="light"
@@ -31,5 +31,5 @@ export const BugReportButton = () => {
         {/* <BugIcon className="text-white dark:text-zinc-500" height={16} width={16} /> */}
       </Button>
     </Tooltip>
-  );
-};
+  )
+}

@@ -1,4 +1,4 @@
-export type TreeNode = {
+export interface TreeNode {
   title: string
   nav_title: string | null
   label: string | null

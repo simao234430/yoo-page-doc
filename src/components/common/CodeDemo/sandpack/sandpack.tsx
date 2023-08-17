@@ -1,25 +1,25 @@
-"use client";
+'use client'
 
-import {FC, useRef} from "react";
-import {SandpackProvider, SandpackLayout, SandpackPreview} from "@codesandbox/sandpack-react";
+import { type FC, useRef } from 'react'
+import { SandpackProvider, SandpackLayout, SandpackPreview } from '@codesandbox/sandpack-react'
 
-import {SandpackCodeViewer} from "./code-viewer";
-import {nextuiTheme} from "./theme";
-import {UseSandpackProps, useSandpack} from "./use-sandpack";
-import {BugReportButton} from "./bugreport-button";
-import {CopyButton} from "./copy-button";
-import {CodeSandboxButton} from "./codesandbox-button";
-import {LanguageSelector} from "./language-selector";
+import { SandpackCodeViewer } from './code-viewer'
+import { nextuiTheme } from './theme'
+import { type UseSandpackProps, useSandpack } from './use-sandpack'
+import { BugReportButton } from './bugreport-button'
+import { CopyButton } from './copy-button'
+import { CodeSandboxButton } from './codesandbox-button'
+import { LanguageSelector } from './language-selector'
 
 export interface SandpackProps extends UseSandpackProps {
-  showTabs?: boolean;
-  showPreview?: boolean;
-  showEditor?: boolean;
-  showCopyCode?: boolean;
-  showReportBug?: boolean;
-  defaultExpanded?: boolean;
-  showOpenInCodeSandbox?: boolean;
-  children?: React.ReactNode;
+  showTabs?: boolean
+  showPreview?: boolean
+  showEditor?: boolean
+  showCopyCode?: boolean
+  showReportBug?: boolean
+  defaultExpanded?: boolean
+  showOpenInCodeSandbox?: boolean
+  children?: React.ReactNode
 }
 
 export const Sandpack: FC<SandpackProps> = ({
@@ -33,16 +33,16 @@ export const Sandpack: FC<SandpackProps> = ({
   showReportBug = true,
   showCopyCode = true,
   showTabs,
-  children,
+  children
 }) => {
-  const editorContainerRef = useRef(null);
+  const editorContainerRef = useRef(null)
 
-  const {files, decorators, customSetup, sandpackTemplate, hasTypescript, setCurrentTemplate} =
+  const { files, decorators, customSetup, sandpackTemplate, hasTypescript, setCurrentTemplate } =
     useSandpack({
       files: filesProp,
       template,
-      highlightedLines,
-    });
+      highlightedLines
+    })
 
   return (
     <SandpackProvider
@@ -53,8 +53,8 @@ export const Sandpack: FC<SandpackProps> = ({
     >
       <SandpackLayout
         style={{
-          // @ts-ignore
-          "--sp-border-radius": "0.5rem",
+          // @ts-expect-error
+          '--sp-border-radius': '0.5rem'
         }}
       >
         <div className="flex w-full flex-col">
@@ -81,5 +81,5 @@ export const Sandpack: FC<SandpackProps> = ({
         </div>
       </SandpackLayout>
     </SandpackProvider>
-  );
-};
+  )
+}

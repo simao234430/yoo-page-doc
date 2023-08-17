@@ -1,4 +1,4 @@
-import { renderCodeToHTML, runTwoSlash, createShikiHighlighter, type UserConfigSettings } from 'shiki-twoslash'
+import { renderCodeToHTML, runTwoSlash, type createShikiHighlighter, type UserConfigSettings } from 'shiki-twoslash'
 import { getHighlighter } from 'shiki'
 type Highlighter = Awaited<ReturnType<typeof createShikiHighlighter>>
 
@@ -7,7 +7,7 @@ const highlighterMap = new Map<ColorScheme, Highlighter>()
 export type ColorScheme = 'light' | 'dark'
 
 export const snippetToHtml = async (snippet: string, colorScheme: ColorScheme) => {
-  const themeName = `monokai`
+  const themeName = 'monokai'
   // const themeName = `github-${colorScheme}`
 
   if (!highlighterMap.has(colorScheme)) {
@@ -18,8 +18,8 @@ export const snippetToHtml = async (snippet: string, colorScheme: ColorScheme) =
     includeJSDocInHover: true,
     defaultCompilerOptions: {
       strict: false,
-      noImplicitAny: false,
-    },
+      noImplicitAny: false
+    }
   }
 
   const twoslash = runTwoSlash(snippet, 'tsx', settings)
@@ -28,8 +28,8 @@ export const snippetToHtml = async (snippet: string, colorScheme: ColorScheme) =
     'tsx',
     { twoslash: true },
     { ...settings, themeName },
-    highlighterMap.get(colorScheme)!,
-    twoslash,
+    highlighterMap.get(colorScheme),
+    twoslash
   )
 
   return html.replace('./assets/contentlayer-generated', 'contentlayer/generated')

@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       </div>  
     </NextUIProvider>
   </React.StrictMode>
-);`;
+);`
 
 export const tailwindConfig = `const { nextui } = require("@nextui-org/react");
 
@@ -29,15 +29,15 @@ module.exports = {
   },
   darkMode: "class",
   plugins: [nextui()],
-};`;
+};`
 
 export const postcssConfig = `module.exports = {
   plugins: {
     tailwindcss: {},
     autoprefixer: {},
   },
-}`;
+}`
 
 export const stylesConfig = `@tailwind base;
 @tailwind components;
-@tailwind utilities;`;
+@tailwind utilities;`

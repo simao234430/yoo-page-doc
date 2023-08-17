@@ -9,8 +9,8 @@ export const Code = ({
   const hasLineNumbers = 'data-line-numbers' in props
   return (
     <code
- 
- 
+
+
       {...props}
     >
       {children}

@@ -1,4 +1,4 @@
-import {IconSvgProps} from "@/types";
+import { type IconSvgProps } from '@/types'
 
 export const SearchLinearIcon = ({
   size = 24,
@@ -32,4 +32,4 @@ export const SearchLinearIcon = ({
       strokeWidth={strokeWidth}
     />
   </svg>
-);
+)

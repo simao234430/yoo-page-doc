@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { type FC } from 'react'
 
 import { ApiIcon } from './API'
 import { BarsIcon } from './Bars'
@@ -93,7 +93,7 @@ export type IconName =
   | 'wordpress'
   | 'copied'
   | 'copy'
- 
+
 
 const iconMap = {
   'broken-link': BrokenLinkIcon,
@@ -141,7 +141,7 @@ const iconMap = {
   users: UsersIcon,
   wordpress: WordPressIcon,
   copied: CopiedIcon,
-  copy: CopyIcon,
+  copy: CopyIcon
 }
 
 export const Icon: FC<{ name: IconName }> = ({ name }) => {

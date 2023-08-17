@@ -51,25 +51,25 @@ const getUsedByCount = async () => {
   // return usedByCount
 }
 
-export const getUsedByCountWithFallback = async () => {
-  return 300
+export const getUsedByCountWithFallback = async () =>
+  300
   // if (cachedUsedByCount) {
   //   return cachedUsedByCount
   // }
 
-  // try {
-  //   // const usedByCount = await retry(getUsedByCount, 5)
+// try {
+//   // const usedByCount = await retry(getUsedByCount, 5)
 
-  //   // cachedUsedByCount = usedByCount
+//   // cachedUsedByCount = usedByCount
 
-  //   return 888
-  // } catch (e) {
-  //   console.log(`Error occurred while fetching used by count: ${e}`)
+//   return 888
+// } catch (e) {
+//   console.log(`Error occurred while fetching used by count: ${e}`)
 
-  //   // Hardcode last known number as fallback
-  //   return 300
-  // }
-}
+//   // Hardcode last known number as fallback
+//   return 300
+// }
+
 
 const retry = async <T>(fn: () => Promise<T>, maxRetryCount: number): Promise<T> => {
   let retryCount = 0

@@ -6,28 +6,28 @@ import remarkSlug from 'remark-slug'
 import * as documentTypes from './src/contentlayer'
 import { contentDirPath } from './src/contentlayer/utils'
 import { validateDuplicateIds } from './src/utils/validate-duplicate-ids'
-import rehypePrettyCode from 'rehype-pretty-code';
-import { visit } from 'unist-util-visit';
+import rehypePrettyCode from 'rehype-pretty-code'
+import { visit } from 'unist-util-visit'
 import { includeMarkdown } from '@hashicorp/remark-plugins'
 // import { partialimport } from 'remark-import-partial';
-import remarkGfm from 'remark-gfm';
-import rehypeSlug from 'rehype-slug';
+import remarkGfm from 'remark-gfm'
+import rehypeSlug from 'rehype-slug'
 // /** @type {import('rehype-pretty-code').Options} */
 // const options = {
 //   theme: 'one-dark-pro'
 // };
-import { type Options } from 'rehype-pretty-code';
+import { type Options } from 'rehype-pretty-code'
 import { remarkPlugins } from './src/contentlayer/mdx/remark'
-  
-import remarkMdxCodeMeta from 'remark-mdx-code-meta';
+
+import remarkMdxCodeMeta from 'remark-mdx-code-meta'
 export const rehypePrettyCodeOptions: Partial<Options> = {
   theme: 'monokai',
- 
-  onVisitHighlightedLine(node: any) {
-    node.properties.className?.push('highlighted');
-  },
- 
-};
+
+  onVisitHighlightedLine (node: any) {
+    node.properties.className?.push('highlighted')
+  }
+
+}
 // export const parseMeta =
 //   ({ defaultShowCopyCode }) =>
 //     (  tree: any) => {
@@ -45,10 +45,9 @@ export const rehypePrettyCodeOptions: Partial<Options> = {
 //     })
 //   }
 
- 
 
 // const DEFAULT_REHYPE_PRETTY_CODE_OPTIONS: Options = {
- 
+
 //   theme: 'one-dark-pro',
 //   onVisitLine(node: any) {
 //     // Prevent lines from collapsing in `display: grid` mode, and
@@ -71,36 +70,36 @@ export default makeSource({
   contentDirPath,
   documentTypes,
   mdx: {
- 
-    remarkPlugins: [remarkSlug,[includeMarkdown, { resolveMdx: true }]],
+
+    remarkPlugins: [remarkSlug, [includeMarkdown, { resolveMdx: true }]],
     rehypePlugins: [
       () => (tree) => {
         visit(tree, (node) => {
           if (node?.type === 'element' && node?.tagName === 'pre') {
-            const [codeEl] = node.children;
+            const [codeEl] = node.children
 
-            if (codeEl.tagName !== 'code') return;
+            if (codeEl.tagName !== 'code') { return; }
 
-            node.raw = codeEl.children?.[0].value;
+            node.raw = codeEl.children?.[0].value
           }
-        });
+        })
       },
       [rehypePrettyCode, rehypePrettyCodeOptions],
       () => (tree) => {
         visit(tree, (node) => {
           if (node?.type === 'element' && node?.tagName === 'div') {
             if (!('data-rehype-pretty-code-fragment' in node.properties)) {
-              return;
+              return
             }
 
             for (const child of node.children) {
               if (child.tagName === 'pre') {
-                child.properties['raw'] = node.raw;
+                child.properties.raw = node.raw
               }
             }
           }
-        });
-      },
+        })
+      }
       // [
       //   rehypeExternalLinks,
       //   {
@@ -108,9 +107,9 @@ export default makeSource({
       //     rel: ['noopener', 'noreferrer', 'nofollow'],
       //   },
       // ],
-    ],
+    ]
 
-  },
+  }
 })
- 
+
 

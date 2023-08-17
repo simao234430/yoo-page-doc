@@ -1,8 +1,8 @@
 import * as Tabs from '@radix-ui/react-tabs'
 import * as Tooltip from '@radix-ui/react-tooltip'
-import { FC } from 'react'
+import { type FC } from 'react'
 import { Button } from '../common/Button'
-import { IconName } from '../common/Icon'
+import { type IconName } from '../common/Icon'
 import { CodeWindow } from './CodeWindow'
 import { DataTransformation } from './DataTransformation'
 import { Heading } from './Heading'
@@ -32,8 +32,8 @@ export default makeSource({
   /*              ^^^^^^^ Directory with the Markdown files. */
   documentTypes: [Post]
 })\
-`,
-    },
+`
+    }
   ],
   howItWorksStep3: [
     {
@@ -56,7 +56,7 @@ export default function Home() {
     </div>
   )
 }\
-`,
+`
     },
     {
       file: 'app/posts/[slug]/page.tsx',
@@ -77,8 +77,8 @@ export default function Post({ params }: { params: { slug: string } }) {
     </div>
   )
 }\
-`,
-    },
+`
+    }
   ],
   howNotionWorksStep1: [
     {
@@ -108,9 +108,9 @@ export const Post = defineDatabase(() => ({
 }))
 
 export default makeSource({ client, databaseTypes: [Post] })
-`,
-    },
-  ],
+`
+    }
+  ]
 } as const
 
 export type CodeSnippets = typeof codeSnippets
@@ -128,23 +128,24 @@ export const localStep2DataTransformation = {
           type: 'file',
           name: 'change-me.md',
           comment: '',
-          tooltip: 'Source file with post content and frontmatter fields.',
+          tooltip: 'Source file with post content and frontmatter fields.'
         },
         {
           type: 'file',
           name: 'click-me.md',
           comment: '',
-          tooltip: 'Source file with post content and frontmatter fields.',
+          tooltip: 'Source file with post content and frontmatter fields.'
         },
         {
           type: 'file',
           name: 'what-is-contentlayer.md',
           comment: '',
-          tooltip: 'Source file with post content and frontmatter fields.',
-        },
-      ],
-    },
+          tooltip: 'Source file with post content and frontmatter fields.'
+        }
+      ]
+    }
   },
+
   /* You can also use an image on either side:
 
   from: {
@@ -174,34 +175,34 @@ export const localStep2DataTransformation = {
               type: 'file',
               name: 'change-me.md.json',
               comment: '',
-              tooltip: 'Transformed data object representing the post content.',
+              tooltip: 'Transformed data object representing the post content.'
             },
             {
               type: 'file',
               name: 'click-me.md.json',
               comment: '',
-              tooltip: 'Transformed data object representing the post content.',
+              tooltip: 'Transformed data object representing the post content.'
             },
             {
               type: 'file',
               name: 'what-is-contentlayer.md.json',
               comment: '',
-              tooltip: 'Transformed data object representing the post content.',
-            },
-          ],
+              tooltip: 'Transformed data object representing the post content.'
+            }
+          ]
         },
         {
           type: 'file',
           name: 'index.d.ts',
           // comment: 'Type definitions',
-          tooltip: 'Type definitions for Post are exported from this file.',
+          tooltip: 'Type definitions for Post are exported from this file.'
         },
         {
           type: 'file',
           name: 'index.mjs',
           // comment: 'Exports all data',
-          tooltip: 'The primary manifest file that exports all transformed data objects.',
-        },
+          tooltip: 'The primary manifest file that exports all transformed data objects.'
+        }
         // NOTE Commented out to simplify of the narrative
         // {
         //   type: 'file',
@@ -209,9 +210,9 @@ export const localStep2DataTransformation = {
         //   comment: 'Type definitions',
         //   tooltip: 'Tooltip content',
         // },
-      ],
-    },
-  },
+      ]
+    }
+  }
 }
 
 export const notionStep2DataTransformation = {
@@ -221,8 +222,8 @@ export const notionStep2DataTransformation = {
       url: '/images/notion-contentlayer-source.png',
       alt: 'Notion Contentlayer source',
       width: 1628,
-      height: 1035,
-    },
+      height: 1035
+    }
   },
   to: {
     type: 'fileTree',
@@ -238,35 +239,35 @@ export const notionStep2DataTransformation = {
               type: 'file',
               name: 'content-is-king.json',
               comment: '',
-              tooltip: 'Transformed data object representing the post content.',
+              tooltip: 'Transformed data object representing the post content.'
             },
             {
               type: 'file',
               name: 'content-is-hard.json',
               comment: '',
-              tooltip: 'Transformed data object representing the post content.',
+              tooltip: 'Transformed data object representing the post content.'
             },
             {
               type: 'file',
               name: 'what-is-contentlayer.md.json',
               comment: '',
-              tooltip: 'Transformed data object representing the post content.',
-            },
-          ],
+              tooltip: 'Transformed data object representing the post content.'
+            }
+          ]
         },
         {
           type: 'file',
           name: 'index.d.ts',
-          tooltip: 'Type definitions for Post are exported from this file.',
+          tooltip: 'Type definitions for Post are exported from this file.'
         },
         {
           type: 'file',
           name: 'index.mjs',
-          tooltip: 'The primary manifest file that exports all transformed data objects.',
-        },
-      ],
-    },
-  },
+          tooltip: 'The primary manifest file that exports all transformed data objects.'
+        }
+      ]
+    }
+  }
 }
 
 const content = {
@@ -288,9 +289,9 @@ const content = {
             label: 'Explore Example',
             theme: 'primary',
             icon: 'github' as IconName,
-            url: 'https://github.com/contentlayerdev/next-contentlayer-example',
+            url: 'https://github.com/contentlayerdev/next-contentlayer-example'
           },
-          codeSnippetsKey: codeSnippetKey('howItWorksStep1'),
+          codeSnippetsKey: codeSnippetKey('howItWorksStep1')
         },
         {
           heading: 'Your content is transformed into data',
@@ -306,6 +307,7 @@ const content = {
               </p>
             </>
           ),
+
           /* You can also use an image instead of a code snippet or data transformation graphic:
 
           image: {
@@ -315,7 +317,7 @@ const content = {
             height: 275,
           },
           */
-          dataTransformation: localStep2DataTransformation,
+          dataTransformation: localStep2DataTransformation
         },
         {
           heading: 'Import data into your application',
@@ -331,9 +333,9 @@ const content = {
               </p>
             </>
           ),
-          codeSnippetsKey: codeSnippetKey('howItWorksStep3'),
-        },
-      ],
+          codeSnippetsKey: codeSnippetKey('howItWorksStep3')
+        }
+      ]
     },
     {
       title: 'Notion',
@@ -351,9 +353,9 @@ const content = {
             label: 'Follow Tutorial',
             theme: 'primary',
             icon: 'notion' as IconName,
-            url: '/docs/sources/notion/getting-started-a47597e1',
+            url: '/docs/sources/notion/getting-started-a47597e1'
           },
-          codeSnippetsKey: codeSnippetKey('howNotionWorksStep1'),
+          codeSnippetsKey: codeSnippetKey('howNotionWorksStep1')
         },
         {
           heading: 'Your content is transformed into data',
@@ -369,7 +371,7 @@ const content = {
               </p>
             </>
           ),
-          dataTransformation: notionStep2DataTransformation,
+          dataTransformation: notionStep2DataTransformation
         },
         {
           heading: 'Import data into your application',
@@ -385,25 +387,25 @@ const content = {
               </p>
             </>
           ),
-          codeSnippetsKey: codeSnippetKey('howItWorksStep3'),
-        },
-      ],
-    },
-  ],
+          codeSnippetsKey: codeSnippetKey('howItWorksStep3')
+        }
+      ]
+    }
+  ]
 }
 
-export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets }) => {
-  return (
-    <div className="w-full max-w-screen-xl px-4 mx-auto mt-16 md:mt-24 md:px-8 lg:mt-32">
-      <Tabs.Root defaultValue={content.tabs[0].title.toLowerCase().replace(/ /g, '-')}>
-        <div className="space-y-8 sm:text-center">
-          <Heading level={2}>{content.heading}</Heading>
-          <Tabs.List
-            aria-label="Select content source"
-            className="flex flex-nowrap overflow-x-auto py-0.5 sm:justify-center"
-          >
-            {content.tabs.map(({ title, active }, index) =>
-              active ? (
+export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets }) => (
+  <div className="w-full max-w-screen-xl px-4 mx-auto mt-16 md:mt-24 md:px-8 lg:mt-32">
+    <Tabs.Root defaultValue={content.tabs[0].title.toLowerCase().replace(/ /g, '-')}>
+      <div className="space-y-8 sm:text-center">
+        <Heading level={2}>{content.heading}</Heading>
+        <Tabs.List
+          aria-label="Select content source"
+          className="flex flex-nowrap overflow-x-auto py-0.5 sm:justify-center"
+        >
+          {content.tabs.map(({ title, active }, index) =>
+            active
+              ? (
                 <Tabs.Trigger
                   key={index}
                   value={title.toLowerCase().replace(/ /g, '-')}
@@ -416,7 +418,8 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
                 >
                   {title}
                 </Tabs.Trigger>
-              ) : (
+                )
+              : (
                 <Tooltip.Root key={index} delayDuration={100}>
                   <Tooltip.Trigger
                     className={`cursor-default border font-semibold ${
@@ -433,53 +436,52 @@ export const HowItWorks: FC<{ codeSnippets: CodeSnippets }> = ({ codeSnippets })
                     <Tooltip.Arrow className="mx-1 text-gray-800 fill-current dark:text-violet-200" />
                   </Tooltip.Content>
                 </Tooltip.Root>
-              ),
-            )}
-          </Tabs.List>
-        </div>
-        {content.tabs
-          .filter((t) => t.active)
-          .map(({ title, steps }, index) => (
-            <Tabs.Content
-              key={index}
-              value={title.toLowerCase().replace(/ /g, '-')}
-              className="relative focus:outline-none"
-            >
-              <div className="absolute inset-y-0 hidden w-0 border-l border-dashed left-6 border-slate-300 dark:border-slate-600 sm:block" />
-              <div className="absolute bottom-0 hidden w-2 left-5 h-96 bg-gradient-to-b from-white/0 via-white/100 to-white/100 dark:from-gray-950/0 dark:via-gray-950/100 dark:to-gray-950/100 sm:block" />
-              {steps.map(({ heading, text, cta, codeSnippetsKey, dataTransformation }, index) => (
-                <div key={index} className="relative grid grid-cols-1 gap-12 mt-16 md:grid-cols-2 md:gap-16">
-                  <div className="space-y-4">
-                    <div className="flex items-center space-x-4 sm:space-x-8">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-violet-200 bg-violet-100 text-xl font-black text-violet-600 ring-4 ring-white dark:border-violet-900 dark:bg-[#2C1657] dark:text-violet-500 dark:ring-gray-950">
-                        {index + 1}
-                      </div>
-                      <Heading level={3}>{heading}</Heading>
+                ),
+          )}
+        </Tabs.List>
+      </div>
+      {content.tabs
+        .filter((t) => t.active)
+        .map(({ title, steps }, index) => (
+          <Tabs.Content
+            key={index}
+            value={title.toLowerCase().replace(/ /g, '-')}
+            className="relative focus:outline-none"
+          >
+            <div className="absolute inset-y-0 hidden w-0 border-l border-dashed left-6 border-slate-300 dark:border-slate-600 sm:block" />
+            <div className="absolute bottom-0 hidden w-2 left-5 h-96 bg-gradient-to-b from-white/0 via-white/100 to-white/100 dark:from-gray-950/0 dark:via-gray-950/100 dark:to-gray-950/100 sm:block" />
+            {steps.map(({ heading, text, cta, codeSnippetsKey, dataTransformation }, index) => (
+              <div key={index} className="relative grid grid-cols-1 gap-12 mt-16 md:grid-cols-2 md:gap-16">
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-4 sm:space-x-8">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-violet-200 bg-violet-100 text-xl font-black text-violet-600 ring-4 ring-white dark:border-violet-900 dark:bg-[#2C1657] dark:text-violet-500 dark:ring-gray-950">
+                      {index + 1}
                     </div>
-                    <div className="space-y-8 sm:pl-20">
-                      <div className="max-w-md leading-relaxed">{text}</div>
-                      {cta && (
-                        <div className="flex">
-                          <Button label={cta.label} href={cta.url} theme="secondary" icon={cta?.icon ?? ''} />
-                        </div>
-                      )}
-                    </div>
+                    <Heading level={3}>{heading}</Heading>
                   </div>
-                  {dataTransformation && (
-                    <div>
-                      <DataTransformation from={dataTransformation.from} to={dataTransformation.to} />
-                    </div>
-                  )}
-                  {codeSnippetsKey && (
-                    <div>
-                      <CodeWindow snippets={codeSnippets[codeSnippetsKey]} />
-                    </div>
-                  )}
+                  <div className="space-y-8 sm:pl-20">
+                    <div className="max-w-md leading-relaxed">{text}</div>
+                    {(cta != null) && (
+                      <div className="flex">
+                        <Button label={cta.label} href={cta.url} theme="secondary" icon={cta?.icon ?? ''} />
+                      </div>
+                    )}
+                  </div>
                 </div>
-              ))}
-            </Tabs.Content>
-          ))}
-      </Tabs.Root>
-    </div>
-  );
-}
+                {(dataTransformation != null) && (
+                  <div>
+                    <DataTransformation from={dataTransformation.from} to={dataTransformation.to} />
+                  </div>
+                )}
+                {codeSnippetsKey && (
+                  <div>
+                    <CodeWindow snippets={codeSnippets[codeSnippetsKey]} />
+                  </div>
+                )}
+              </div>
+            ))}
+          </Tabs.Content>
+        ))}
+    </Tabs.Root>
+  </div>
+)

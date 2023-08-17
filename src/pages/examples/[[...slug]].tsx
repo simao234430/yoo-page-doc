@@ -2,7 +2,7 @@ import type { InferGetStaticPropsType } from 'next'
 // TODO remove eslint-disable when fixed https://github.com/import-js/eslint-plugin-import/issues/1810
 // eslint-disable-next-line import/no-unresolved
 import { useLiveReload, useMDXComponent } from 'next-contentlayer/hooks'
-import { FC, useEffect, useRef, useState } from 'react'
+import { type FC, useEffect, useRef, useState } from 'react'
 import stackblitz, { type VM } from '@stackblitz/sdk'
 import { allExamples } from 'contentlayer/generated'
 import { Container } from '../../components/common/Container'
@@ -28,7 +28,7 @@ export const getStaticPaths = async () => {
       _.pathSegments
         .map((_: PathSegment) => _.pathName)
         .slice(1)
-        .join('/'),
+        .join('/')
     )
     .map(toParams)
   return { paths, fallback: false }
@@ -44,7 +44,7 @@ export const getStaticProps = defineStaticProps(async (context) => {
   for (const slug of slugs) {
     path += slug ? '/' + slug : ''
     const navTitle = allExamples.find(
-      (_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/') === path,
+      (_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/') === path
     )?.nav_title
     const title = allExamples.find((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/') === path)?.title
     breadcrumbs.push({ path: '/' + path, slug, title: navTitle || title })
@@ -53,7 +53,7 @@ export const getStaticProps = defineStaticProps(async (context) => {
   return { props: { example, tree, breadcrumbs } }
 })
 
- 
+
 const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ example, tree, breadcrumbs }) => {
   useLiveReload()
   // const MDXContent = useMDXComponent(example.body.code || '')
@@ -110,7 +110,7 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ example, tre
                     theme="primary"
                     label={fullScreen ? 'Collapse Playground' : 'Expand Playground'}
                     icon={fullScreen ? 'collapse' : 'expand'}
-                    action={() => setFullScreen(!fullScreen)}
+                    action={() => {setFullScreen(!fullScreen) }}
                   />
                 </div>
                 <div

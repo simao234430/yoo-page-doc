@@ -1,16 +1,16 @@
 import React, { useState, useContext } from 'react'
 import Card from './card'
-import { join } from 'path';
+import { join } from 'path'
 import { includeMarkdown } from '@hashicorp/remark-plugins'
-import fs from 'fs';
+import fs from 'fs'
 // import { MDXRemote } from 'next-mdx-remote'
 import { Layout, Grid, Radio } from '@arco-design/web-react'
 import ReactMarkdown from 'react-markdown'
 import { generate, getPresetColors } from '@arco-design/color'
 import MarkdownContent from '@/src/components/MarkdownContent'
 import { serialize } from 'next-mdx-remote/serialize'
-import { MDXRemote} from 'next-mdx-remote'
- 
+import { MDXRemote } from 'next-mdx-remote'
+
 // export async function getStaticProps() {
 //   // Imagine "included-file.mdx" has <CustomComponent /> in it...
 //   // it will render as expected, since the @include extension
@@ -23,22 +23,22 @@ import { MDXRemote} from 'next-mdx-remote'
 //   })
 //   return { props: { source: mdxSource } }
 // }
- 
-export async function getStaticProps() {
+
+export async function getStaticProps () {
   // Imagine "included-file.mdx" has <CustomComponent /> in it...
   // it will render as expected, since the @include extension
   // is .mdx and resolveMdx is true.
 
-  const postFilePath = join('/Users/simao/my_code/yoo-page-doc/src/pages/docs', `my-file.mdx`);
-  const content = fs.readFileSync(postFilePath);
+  const postFilePath = join('/Users/simao/my_code/yoo-page-doc/src/pages/docs', 'my-file.mdx')
+  const content = fs.readFileSync(postFilePath)
 
   // const {  content } = matter(fileContents);
 
- 
+
   const mdxSource = await serialize(content, {
     mdxOptions: {
-      
-    },
+
+    }
   })
   return { props: { source: mdxSource } }
 }
@@ -63,7 +63,7 @@ const locale = {
     purple: 'Purple / 暗夜紫',
     'pink-purple': 'Pink Purple / 青春紫',
     magenta: 'Magenta / 品红',
-    gray: 'Gray / 中性灰',
+    gray: 'Gray / 中性灰'
   },
   'en-US': {
     light: 'Light',
@@ -81,11 +81,11 @@ const locale = {
     purple: 'Purple',
     'pink-purple': 'Pink Purple',
     magenta: 'Magenta',
-    gray: 'Gray',
-  },
+    gray: 'Gray'
+  }
 }
-export default function TestPage({ source }) {
- 
+export default function TestPage ({ source }) {
+
   const realTheme = 'light'
   const { Content } = Layout
   const { Row, Col } = Grid
@@ -96,63 +96,63 @@ export default function TestPage({ source }) {
   const COLORS = {
     red: {
       value: '#f53f3f',
-      title: t.red,
+      title: t.red
     },
     orangered: {
       value: '#F77234',
-      title: t['orange-red'],
+      title: t['orange-red']
     },
     orange: {
       value: '#ff7d00',
-      title: t.orange,
+      title: t.orange
     },
     gold: {
       value: '#F7BA1E',
-      title: t.gold,
+      title: t.gold
     },
     yellow: {
       value: '#FADC19',
-      title: t.yellow,
+      title: t.yellow
     },
     lime: {
       value: '#9FDB1D',
-      title: t.lime,
+      title: t.lime
     },
     green: {
       value: '#00b42a',
-      title: t.green,
+      title: t.green
     },
     cyan: {
       value: '#14C9C9',
-      title: t.cyan,
+      title: t.cyan
     },
     blue: {
       value: '#3491FA',
-      title: t.blue,
+      title: t.blue
     },
     arcoblue: {
       value: '#165dff',
-      title: t['arco-blue'],
+      title: t['arco-blue']
     },
     purple: {
       value: '#722ed1',
-      title: t.purple,
+      title: t.purple
     },
     pinkpurple: {
       value: '#D91AD9',
-      title: t['pink-purple'],
+      title: t['pink-purple']
     },
     magenta: {
       value: '#F5319D',
-      title: t.magenta,
-    },
+      title: t.magenta
+    }
   }
 
   const COLORS_PURE = (() => {
     const obj = {}
-    // @ts-ignore
+    // @ts-expect-error
     Object.keys(COLORS).forEach((name: sring) => {
-      // @ts-ignore
+      // @ts-expect-error
       obj[name] = COLORS[name].value
     })
     return obj
@@ -162,21 +162,21 @@ export default function TestPage({ source }) {
 
   return (
     <div>
-    <div className="wrapper">
-      <MDXRemote {...source}   />
-    </div>
-  
+      <div className="wrapper">
+        <MDXRemote {...source} />
+      </div>
+
       <div className={`${prefixCls}-btn-wrapper`}>
         <Radio.Group
           type="button"
           options={[
             { label: 'light', value: 'light' },
-            { label: 'dark', value: 'dark' },
+            { label: 'dark', value: 'dark' }
           ]}
           style={{ marginRight: 20 }}
         />
         <Radio.Group
-          onChange={(value) => setFormat(value.toLowerCase())}
+          onChange={(value) => {setFormat(value.toLowerCase()) }}
           type="button"
           value={format.toUpperCase()}
           options={['HEX', 'RGB', 'HSL']}
@@ -186,16 +186,16 @@ export default function TestPage({ source }) {
         style={{
           marginTop: 20,
           padding: '0 10px',
-          borderRadius: 6,
+          borderRadius: 6
         }}
       >
         <Row gutter={20}>
-          {Object.keys(COLORS).map((colorName) => {
-            // function generate(arg0: any, arg1: { list: boolean; dark: boolean; }): any {
-            //   throw new Error('Function not implemented.');
-            // }
+          {Object.keys(COLORS).map((colorName) =>
+          // function generate(arg0: any, arg1: { list: boolean; dark: boolean; }): any {
+          //   throw new Error('Function not implemented.');
+          // }
 
-            return (
+            (
               <Col
                 key={colorName}
                 sm={{ span: 24 }}
@@ -206,18 +206,18 @@ export default function TestPage({ source }) {
               >
                 <Card
                   format={format}
-                  // @ts-ignore
+                  // @ts-expect-error
                   colors={generate(colorList[colorName], {
                     list: true,
-                    dark: false,
+                    dark: false
                   })}
                   name={colorName}
-                  // @ts-ignore
+                  // @ts-expect-error
                   title={COLORS[colorName].title}
                 />
               </Col>
             )
-          })}
+          )}
           <Col
             sm={{ span: 24 }}
             md={{ span: 12 }}

@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { FC } from 'react'
+import { type FC } from 'react'
 import { Button } from '../common/Button'
 import { Checklist } from './Checklist'
 import { Dashed } from './Dashed'
@@ -38,8 +38,8 @@ const content = {
   secondaryAction: { label: 'Why Contentlayer?', url: '/blog/working-with-content-is-hard-for-developers' },
   video: {
     thumbnail: { url: 'https://i.imgur.com/5IKJALH.png', alt: 'Intro to Contentlayer Video Thumbnail' },
-    youtubeId: '58Pj4a4Us7A',
-  },
+    youtubeId: '58Pj4a4Us7A'
+  }
 }
 
 export const Hero: FC = () => {

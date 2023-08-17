@@ -3,15 +3,15 @@ import { LiveEditor } from 'react-live'
 import CodeContainer from './code-container'
 import Highlight from './highlight'
 // import {   useClipboard } from 'components'
-import { Notification , Icon  } from '@arco-design/web-react';
- 
+import { Notification, Icon } from '@arco-design/web-react'
+
 // const IconFont = Icon.addFromIconFontCn({
 //   src: '//at.alicdn.com/t/font_180975_26f1p759rvn.js',
 // });
-import { IconCopy,IconSuccess  } from '@arco-design/web-react/icon';
- 
+import { IconCopy, IconSuccess } from '@arco-design/web-react/icon'
+
 import RightIcon from '@geist-ui/icons/chevronRight'
-import { useClipboard } from '@chakra-ui/react';
+import { useClipboard } from '@chakra-ui/react'
 
 interface Props {
   code: string
@@ -36,7 +36,7 @@ const Editor: React.FC<Props> = ({ code }) => {
       // eslint-disable-next-line react/jsx-no-undef
       icon: IconSuccess,
       title: 'copy Success',
-      content: '',
+      content: ''
     })
     // setToast({ text:   'code copied.' })
   }
@@ -58,16 +58,16 @@ const Editor: React.FC<Props> = ({ code }) => {
             </div>
             <div className="action">
               {visible && (
-                <span  
-                color='rgb(29, 33, 41)'
+                <span
+                  color='rgb(29, 33, 41)'
                   className="copy"
                   onClick={copyHandler}
                   title={'Copy Code'}
                 >
-                  <IconCopy  style={{ fontSize: 18,fill:'none'}}  />
-                
+                  <IconCopy style={{ fontSize: 18, fill: 'none' }} />
+
                 </span>
- 
+
               )}
             </div>
           </div>
@@ -78,8 +78,8 @@ const Editor: React.FC<Props> = ({ code }) => {
           codeString={code}
           language={"tsx"}
           theme={github}
-    
- 
+
+
         />
       </CodeContainer> */}
           <LiveEditor />

@@ -9,11 +9,11 @@ import { defineStaticProps } from '../../utils/next'
 import { Heading } from '../../components/landing-page/Heading'
 import { Paragraph } from '../../components/landing-page/Paragraph'
 import { BlogPreview } from '../../components/blog/BlogPreview'
- 
+
 
 const content = {
   title: 'Contentlayer Blog',
-  description: `Working with content for the web shouldn't be difficult. That's why we built Contentlayer.`,
+  description: 'Working with content for the web shouldn\'t be difficult. That\'s why we built Contentlayer.'
 }
 
 export const getStaticProps = defineStaticProps(async (context) => {

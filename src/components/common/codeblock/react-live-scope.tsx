@@ -15,12 +15,12 @@ import {
   MdGroupWork,
   MdPhone,
   MdReceipt,
-  MdSettings,
+  MdSettings
 } from 'react-icons/md'
 import Lorem from 'react-lorem-component'
 import * as Loaders from 'react-spinners'
 import * as ReactTable from 'react-table'
- 
+
 import { BiLike, BiChat, BiShare } from 'react-icons/bi'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 
@@ -40,7 +40,7 @@ const reactIcons = {
   BsThreeDotsVertical,
   BiLike,
   BiShare,
-  BiChat,
+  BiChat
 }
 
 const StarIcon = (props) => (
@@ -60,8 +60,8 @@ const ReactLiveScope = {
   ...reactIcons,
   StarIcon,
   FocusLock,
-  Lorem,
- 
+  Lorem
+
 }
 
 export default ReactLiveScope

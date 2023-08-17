@@ -1,6 +1,6 @@
-import {IconSvgProps} from "@/types";
+import { type IconSvgProps } from '@/types'
 
-export const RotateLeftLinearIcon = ({size = 24, width, height, ...props}: IconSvgProps) => (
+export const RotateLeftLinearIcon = ({ size = 24, width, height, ...props }: IconSvgProps) => (
   <svg
     aria-hidden="true"
     fill="none"
@@ -33,4 +33,4 @@ export const RotateLeftLinearIcon = ({size = 24, width, height, ...props}: IconS
       strokeWidth="1.5"
     />
   </svg>
-);
+)
