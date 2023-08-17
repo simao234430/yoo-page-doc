@@ -12,7 +12,7 @@ import {
 import { type ColorScheme } from '../utils/syntax-highlighting'
 
 const ColorSchemeContext = createContext<'light' | 'dark' | 'system'>('light')
-const UpdateColorSchemeContext = createContext<(colorScheme: 'light' | 'dark' | 'system') => void>() => {}
+const UpdateColorSchemeContext = createContext<(colorScheme: 'light' | 'dark' | 'system') => void>( 'light' as ColorScheme );
 
 export const useColorScheme = () => useContext(ColorSchemeContext)
 export const useUpdateColorScheme = () => useContext(UpdateColorSchemeContext)

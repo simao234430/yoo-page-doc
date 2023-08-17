@@ -45,11 +45,7 @@ export function getAppSlug (params: { slug: string[] }) {
 
   return { slug: `/docs/${slug.join('/')}` }
 }
-
-<<<<<<< HEAD
-export function getHeadings (markdownText: string | undefined): Heading[] {
-  let headings: Heading[] = []
-=======
+ 
 export function getHeadings(markdownText: string | undefined): Heading[] {
   let headings: Heading[] = [];
 
