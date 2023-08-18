@@ -1,6 +1,6 @@
 import React from 'react'
 import Color from 'color'
-function getColorString (color: string, format: string) {
+function getColorString(color: string, format: string) {
   const colorObj = color[format]()
   let colorString
   if (format === 'hex') {
@@ -13,12 +13,11 @@ function getColorString (color: string, format: string) {
 }
 
 // @ts-expect-error
-function ColorCard ({ colors, name, format, theme, title }) {
+function ColorCard({ colors, name, format, theme, title }) {
   return (
     <div>
       <h3 style={{ textAlign: 'center', color: theme === 'light' ? '#333' : '#fff' }}>{title}</h3>
       <div className="color-palette-wrapper">
-
         {colors.map((c, index) => {
           const color = Color(c)
           const whiteContrast = color.contrast(Color('#fff'))
@@ -35,7 +34,7 @@ function ColorCard ({ colors, name, format, theme, title }) {
               style={{
                 backgroundColor: color.hex(),
                 color: fontColor,
-                fontWeight: index === 5 ? 'bold' : 400
+                fontWeight: index === 5 ? 'bold' : 400,
               }}
               aria-label={colorString}
             >

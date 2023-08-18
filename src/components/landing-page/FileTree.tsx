@@ -2,12 +2,12 @@ import { type FC, useMemo, useState } from 'react'
 import * as Tooltip from '@radix-ui/react-tooltip'
 import { Card } from '../common/Card'
 
-const Folder: FC<{ name: string, level: number, lastItem?: boolean, parentLastItem?: boolean, childNodes: any[] }> = ({
+const Folder: FC<{ name: string; level: number; lastItem?: boolean; parentLastItem?: boolean; childNodes: any[] }> = ({
   name,
   level,
   lastItem = false,
   parentLastItem = false,
-  childNodes
+  childNodes,
 }) => (
   <div className="font-mono text-xs text-slate-500 dark:text-slate-400">
     <div className="whitespace-pre">
@@ -56,16 +56,22 @@ const File: FC<{
   const disabled = useMemo(() => tooltip === '' || tooltip.includes('TODO'), [tooltip])
 
   return (
-    <Tooltip.Root delayDuration={100} open={showTooltip} onOpenChange={(open) => {setShowTooltip(open) }}>
+    <Tooltip.Root
+      delayDuration={100}
+      open={showTooltip}
+      onOpenChange={(open) => {
+        setShowTooltip(open)
+      }}
+    >
       <div className="whitespace-pre">
         {level >= 2 &&
-          [...new Array(level - 2)].map((v, i) => (
-            <span key={i}>{parentLastItem && i == level - 3 ? '    ' : '│   '}</span>
-          ))}
+          [...new Array(level - 2)].map((v, i) => <span key={i}>{parentLastItem && i == level - 3 ? '    ' : '│   '}</span>)}
         {lastItem ? <span>└── </span> : <span>├── </span>}
         <Tooltip.Trigger className="cursor-text" disabled={disabled}>
           <span
-            onClick={() => {setShowTooltip(true) }}
+            onClick={() => {
+              setShowTooltip(true)
+            }}
             className="rounded hover:bg-gray-200 hover:ring-4 hover:ring-gray-200 dark:hover:bg-gray-800 dark:hover:ring-gray-800"
           >
             {name}
@@ -88,9 +94,7 @@ const File: FC<{
 export const FileTree: FC<{ contents: any }> = ({ contents }) => (
   <div className="grow">
     <Card shadow className="p-4">
-      {contents.type == 'folder' && (
-        <Folder name={contents.name} level={1} lastItem childNodes={contents.children} />
-      )}
+      {contents.type == 'folder' && <Folder name={contents.name} level={1} lastItem childNodes={contents.children} />}
     </Card>
   </div>
 )

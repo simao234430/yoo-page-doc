@@ -18,13 +18,13 @@ export const Container: FC<any> = ({ children, ...customMeta }) => {
     name: 'Contentlayer',
     image: customMeta.imagePath ? `${baseUrl}${customMeta.imagePath}` : `${baseUrl}/images/beta-launch-post-meta.png`,
     type: 'website',
-    ...customMeta
+    ...customMeta,
   }
   const jsonLd = {
     '@context': 'http://www.schema.org',
     '@type': 'WebSite',
     name: meta.name,
-    url: meta.url
+    url: meta.url,
   }
 
   return (

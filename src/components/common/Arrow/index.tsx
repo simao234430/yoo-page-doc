@@ -24,10 +24,10 @@ const arrows = {
   'curved-long': ArrowCurvedLong,
   'curved-short': ArrowCurvedShort,
   'looped-long': ArrowLoopedLong,
-  'looped-short': ArrowLoopedShort
+  'looped-short': ArrowLoopedShort,
 }
 
-export const Arrow: FC<{ type: ArrowType, className: string }> = ({ type, className }) => {
+export const Arrow: FC<{ type: ArrowType; className: string }> = ({ type, className }) => {
   const Arrow = arrows[type]
   return (
     <div className={`transform ${className}`}>

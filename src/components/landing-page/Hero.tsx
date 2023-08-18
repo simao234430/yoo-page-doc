@@ -26,10 +26,7 @@ const content = {
         tooltip="A content SDK simplifies working with structured content as data in your site/application"
       />{' '}
       that validates and transforms your content into{' '}
-      <Dashed
-        label="type-safe"
-        tooltip="Contentlayer generates TypeScript types based on your content document definitions"
-      />{' '}
+      <Dashed label="type-safe" tooltip="Contentlayer generates TypeScript types based on your content document definitions" />{' '}
       JSON data you can easily import into your application.
     </>
   ),
@@ -38,8 +35,8 @@ const content = {
   secondaryAction: { label: 'Why Contentlayer?', url: '/blog/working-with-content-is-hard-for-developers' },
   video: {
     thumbnail: { url: 'https://i.imgur.com/5IKJALH.png', alt: 'Intro to Contentlayer Video Thumbnail' },
-    youtubeId: '58Pj4a4Us7A'
-  }
+    youtubeId: '58Pj4a4Us7A',
+  },
 }
 
 export const Hero: FC = () => {

@@ -48,45 +48,53 @@ export interface Carry {
   params: { slug: any }
 }
 
-export async function getCurrentTag (tag?: string) {
-  if (tag) { return tag}
-  if (FORCE_TAG) { return TAG}
+export async function getCurrentTag(tag?: string) {
+  if (tag) {
+    return tag
+  }
+  if (FORCE_TAG) {
+    return TAG
+  }
 
   return getLatestTag()
 }
 
-export function addTagToSlug (slug: string, tag?: string) {
+export function addTagToSlug(slug: string, tag?: string) {
   return tag ? slug.replace('/docs', `/docs/tag/${tag}`) : slug
 }
 
-export async function fetchRawDoc (doc: string, tag: string) {
+export async function fetchRawDoc(doc: string, tag: string) {
   return await getRawFileFromRepo(`${CONTENT_PATH}${doc}`, tag)
 }
 
-export async function fetchDocsManifest (tag: string) {
-  if (!__PROD__ || __PREVIEW__) { return localRoutes}
+export async function fetchDocsManifest(tag: string) {
+  if (!__PROD__ || __PREVIEW__) {
+    return localRoutes
+  }
 
   const res = await getRawFileFromRepo(`${CONTENT_PATH}/docs/manifest.json`, tag)
 
   return JSON.parse(res)
 }
 
-export function getRawAsset (doc: string, tag: string) {
+export function getRawAsset(doc: string, tag: string) {
   return getRawAssetFromRepo(`${ASSETS_PATH}${doc}`, tag)
 }
 
-export function findRouteByPath (path: string, routes: Route[]): Route | null | undefined {
+export function findRouteByPath(path: string, routes: Route[]): Route | null | undefined {
   for (const route of routes) {
     if (route.path && removeFromLast(route.path, '.') === path) {
       return route
     }
-    const childPath = (route.routes != null) ? findRouteByPath(path, route.routes) : null
+    const childPath = route.routes != null ? findRouteByPath(path, route.routes) : null
 
-    if (childPath != null) { return childPath}
+    if (childPath != null) {
+      return childPath
+    }
   }
 }
 
-export function getPaths (nextRoutes: Route[], carry: Carry[] = [{ params: { slug: [] } }]) {
+export function getPaths(nextRoutes: Route[], carry: Carry[] = [{ params: { slug: [] } }]) {
   nextRoutes.forEach((route: Route) => {
     if (route.comingSoon) {
       return

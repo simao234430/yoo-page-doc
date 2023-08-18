@@ -5,7 +5,6 @@ import * as Components from '@arco-design/web-react'
 import { BgGridContainer } from './bg-grid-container'
 import { GradientBox, type GradientBoxProps } from './gradient-box'
 
-
 export interface ReactLiveDemoProps {
   code: string
   noInline?: boolean
@@ -18,7 +17,7 @@ export interface ReactLiveDemoProps {
 }
 
 export const scope = {
-  ...Components
+  ...Components,
 } as Record<string, unknown>
 
 export const ReactLiveDemo: React.FC<ReactLiveDemoProps> = ({
@@ -28,13 +27,13 @@ export const ReactLiveDemo: React.FC<ReactLiveDemoProps> = ({
   isCentered = false,
   height,
   className,
-  noInline
+  noInline,
 }) => {
   const content = (
     <>
       <LivePreview
         className={clsx('live-preview flex h-full w-full not-prose', {
-          'justify-center items-center': isCentered
+          'justify-center items-center': isCentered,
         })}
         style={{ height }}
       />
@@ -44,25 +43,21 @@ export const ReactLiveDemo: React.FC<ReactLiveDemoProps> = ({
 
   return (
     <LiveProvider code={code} noInline={noInline} scope={scope}>
-      {isGradientBox
-        ? (
-          <GradientBox
-            isCentered
-            className={clsx(
-              className,
-              'relative overflow-y-hidden flex items-center border border-default-200 dark:border-default-100 px-2 py-4 rounded-lg overflow-hidden'
-            )}
-            color={gradientColor}
-            to="top-right"
-          >
-            <div className="max-w-full py-4 px-2 w-full h-full scrollbar-hide overflow-x-scroll">
-              {content}
-            </div>
-          </GradientBox>
-        )
-        : (
-          <BgGridContainer className={className}>{content}</BgGridContainer>
-        )}
+      {isGradientBox ? (
+        <GradientBox
+          isCentered
+          className={clsx(
+            className,
+            'relative overflow-y-hidden flex items-center border border-default-200 dark:border-default-100 px-2 py-4 rounded-lg overflow-hidden',
+          )}
+          color={gradientColor}
+          to="top-right"
+        >
+          <div className="max-w-full py-4 px-2 w-full h-full scrollbar-hide overflow-x-scroll">{content}</div>
+        </GradientBox>
+      ) : (
+        <BgGridContainer className={className}>{content}</BgGridContainer>
+      )}
     </LiveProvider>
   )
 }

@@ -1,4 +1,3 @@
-
 import { CopyToClipboard } from './CopyToClipboard'
 import { useCallback, useRef } from 'react'
 
@@ -7,18 +6,17 @@ interface PreProps {
   raw: string
 }
 
-export default function Pre ({ children, raw, ...props }: PreProps) {
+export default function Pre({ children, raw, ...props }: PreProps) {
   if (props?.example) {
     return (
-      <div className="relative" >
+      <div className="relative">
         <pre {...props}>{children}</pre>
         <CopyToClipboard text={raw} />
       </div>
     )
   } else {
     return (
-
-      <div className="relative" >
+      <div className="relative">
         <pre {...props}>{children}</pre>
         <CopyToClipboard text={raw} />
       </div>

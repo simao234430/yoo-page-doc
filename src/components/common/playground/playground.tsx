@@ -6,11 +6,7 @@ import Title from './title'
 
 const DynamicLive = dynamic(async () => await import('./dynamic-live'), {
   ssr: false,
-  loading: () => (
-    <div style={{ padding: '20pt 0' }}>
-      {/* <Loading /> */}
-    </div>
-  )
+  loading: () => <div style={{ padding: '20pt 0' }}>{/* <Loading /> */}</div>,
 })
 
 export interface PlaygroundProps {
@@ -23,16 +19,11 @@ export interface PlaygroundProps {
 const defaultProps = {
   desc: '',
   code: '',
-  bindings: {}
+  bindings: {},
 }
 
 const Playground: React.FC<PlaygroundProps> = React.memo(
-  ({
-    title: inputTitle,
-    code: inputCode,
-    desc,
-    scope
-  }: PlaygroundProps & typeof defaultProps) => {
+  ({ title: inputTitle, code: inputCode, desc, scope }: PlaygroundProps & typeof defaultProps) => {
     // const theme = useTheme()
     // const { isChinese } = useConfigs()
     const isChinese = false
@@ -52,7 +43,7 @@ const Playground: React.FC<PlaygroundProps> = React.memo(
         </div>
       </>
     )
-  }
+  },
 )
 
 Playground.defaultProps = defaultProps

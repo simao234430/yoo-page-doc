@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import * as React from 'react'
 
-export function useScrollSpy (selectors: string[], options?: IntersectionObserverInit) {
+export function useScrollSpy(selectors: string[], options?: IntersectionObserverInit) {
   const [activeId, setActiveId] = React.useState<string | null>()
   const observer = React.useRef<IntersectionObserver>()
 
@@ -18,7 +18,7 @@ export function useScrollSpy (selectors: string[], options?: IntersectionObserve
         }
       })
     }, options)
-    elements.forEach((el) => (el != null) && observer.current?.observe(el))
+    elements.forEach((el) => el != null && observer.current?.observe(el))
 
     return () => observer.current?.disconnect()
   }, [selectors])

@@ -18,8 +18,8 @@ export const snippetToHtml = async (snippet: string, colorScheme: ColorScheme) =
     includeJSDocInHover: true,
     defaultCompilerOptions: {
       strict: false,
-      noImplicitAny: false
-    }
+      noImplicitAny: false,
+    },
   }
 
   const twoslash = runTwoSlash(snippet, 'tsx', settings)
@@ -29,7 +29,7 @@ export const snippetToHtml = async (snippet: string, colorScheme: ColorScheme) =
     { twoslash: true },
     { ...settings, themeName },
     highlighterMap.get(colorScheme),
-    twoslash
+    twoslash,
   )
 
   return html.replace('./assets/contentlayer-generated', 'contentlayer/generated')

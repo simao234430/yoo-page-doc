@@ -12,12 +12,12 @@ const styles = tv({
       'top-right': 'bg-gradient-to-tr',
       'top-left': 'bg-gradient-to-tl',
       'bottom-right': 'bg-gradient-to-br',
-      'bottom-left': 'bg-gradient-to-bl'
+      'bottom-left': 'bg-gradient-to-bl',
     },
     color: {
       orange: 'from-[#FFB457] to-[#FF705B]',
       green: 'from-[#4ADE80] to-[#06B6D4]',
-      pink: 'from-[#FF72E1] to-[#F54C7A]'
+      pink: 'from-[#FF72E1] to-[#F54C7A]',
     },
     radius: {
       none: 'rounded-none',
@@ -25,7 +25,7 @@ const styles = tv({
       lg: 'rounded-lg',
       xl: 'rounded-xl',
       '2xl': 'rounded-2xl',
-      '3xl': 'rounded-3xl'
+      '3xl': 'rounded-3xl',
     },
     shadow: {
       none: 'shadow-none',
@@ -33,17 +33,17 @@ const styles = tv({
       lg: 'shadow-lg',
       xl: 'shadow-xl',
       '2xl': 'shadow-2xl',
-      '3xl': 'shadow-3xl'
+      '3xl': 'shadow-3xl',
     },
     isCentered: {
-      true: 'items-center justify-center'
-    }
+      true: 'items-center justify-center',
+    },
   },
   defaultVariants: {
     radius: '2xl',
     direction: 'top-right',
-    isCentered: false
-  }
+    isCentered: false,
+  },
 })
 
 export interface GradientBoxProps extends VariantProps<typeof styles> {
@@ -55,11 +55,7 @@ export const GradientBox = forwardRef<HTMLDivElement, GradientBoxProps>((props, 
   const { children, className, to, color, radius, shadow, isCentered, ...rest } = props
 
   return (
-    <div
-      ref={ref}
-      className={styles({ to, color, radius, shadow, isCentered, class: className })}
-      {...rest}
-    >
+    <div ref={ref} className={styles({ to, color, radius, shadow, isCentered, class: className })} {...rest}>
       {children}
     </div>
   )

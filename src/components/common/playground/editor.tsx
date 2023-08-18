@@ -36,7 +36,7 @@ const Editor: React.FC<Props> = ({ code }) => {
       // eslint-disable-next-line react/jsx-no-undef
       icon: IconSuccess,
       title: 'copy Success',
-      content: ''
+      content: '',
     })
     // setToast({ text:   'code copied.' })
   }
@@ -48,7 +48,7 @@ const Editor: React.FC<Props> = ({ code }) => {
     // </div>
     <div className="editor">
       <details open={visible}>
-        <summary onClick={clickHandler} >
+        <summary onClick={clickHandler}>
           <div className="summary-safari">
             <div className="action">
               <span className="arrow">
@@ -58,16 +58,9 @@ const Editor: React.FC<Props> = ({ code }) => {
             </div>
             <div className="action">
               {visible && (
-                <span
-                  color='rgb(29, 33, 41)'
-                  className="copy"
-                  onClick={copyHandler}
-                  title={'Copy Code'}
-                >
+                <span color="rgb(29, 33, 41)" className="copy" onClick={copyHandler} title={'Copy Code'}>
                   <IconCopy style={{ fontSize: 18, fill: 'none' }} />
-
                 </span>
-
               )}
             </div>
           </div>
@@ -143,8 +136,15 @@ const Editor: React.FC<Props> = ({ code }) => {
           position: relative;
           box-sizing: border-box;
           white-space: pre;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+          font-family:
+            Menlo,
+            Monaco,
+            Lucida Console,
+            Liberation Mono,
+            DejaVu Sans Mono,
+            Bitstream Vera Sans Mono,
+            Courier New,
+            monospace;
           color: #000;
           background-color: #fff;
           font-size: 1em;

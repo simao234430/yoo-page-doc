@@ -16,22 +16,22 @@ const content = {
           Simply <code>import</code> your content as data
         </>,
         'No new query language to learn',
-        'Works great with your site framework'
-      ]
+        'Works great with your site framework',
+      ],
     },
     {
       icon: 'check-circle' as IconName,
       heading: 'Built-in code confidence',
       text: 'Automatically-generated type definitions and configurable data validations ensure that your data is properly structured across your application.',
-      features: ['Validates your content & frontmatter', 'Generates TypeScript types', 'Great error messages']
+      features: ['Validates your content & frontmatter', 'Generates TypeScript types', 'Great error messages'],
     },
     {
       icon: 'lightning' as IconName,
       heading: 'Build. Faster.',
       text: 'Contentlayer + Next.js brings faster build times than Next.js alone or up against other frameworks, like Gatsby.',
-      features: ['Incremental & parallel builds', 'Instant content live-reload', 'Scales to 100k of documents']
-    }
-  ]
+      features: ['Incremental & parallel builds', 'Instant content live-reload', 'Scales to 100k of documents'],
+    },
+  ],
 }
 
 export const Features: FC = () => (

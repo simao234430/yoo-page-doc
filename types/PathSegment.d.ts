@@ -1,1 +1,4 @@
-interface PathSegment { order: number, pathName: string }
+interface PathSegment {
+  order: number
+  pathName: string
+}

@@ -9,7 +9,6 @@ import { type Language } from 'prism-react-renderer'
 
 import { type HighlightedLines, type Decorators } from './types'
 
-
 export interface CodeViewerProps {
   showTabs?: boolean
   showLineNumbers?: boolean
@@ -63,7 +62,7 @@ export const SandpackCodeViewer = React.forwardRef<any, CodeViewerProps>(
     // const isAppFile = activeFile.includes("App");
 
     React.useEffect(() => {
-      if ((containerRef != null) && containerRef?.current !== null && isExpandable) {
+      if (containerRef != null && containerRef?.current !== null && isExpandable) {
         containerRef.current.style.height = INITIAL_HEIGHT
       }
     }, [containerRef])
@@ -73,7 +72,7 @@ export const SandpackCodeViewer = React.forwardRef<any, CodeViewerProps>(
     // }, [propCode, code]);
 
     React.useEffect(() => {
-      if (defaultExpanded && (containerRef != null) && containerRef?.current !== null) {
+      if (defaultExpanded && containerRef != null && containerRef?.current !== null) {
         const container = containerRef?.current
 
         container.style.height = 'auto'
@@ -84,7 +83,7 @@ export const SandpackCodeViewer = React.forwardRef<any, CodeViewerProps>(
       const nextIsExpanded = !isExpanded
 
       setIsExpanded(nextIsExpanded)
-      if ((containerRef != null) && containerRef?.current !== null) {
+      if (containerRef != null && containerRef?.current !== null) {
         const container = containerRef?.current
 
         if (nextIsExpanded) {
@@ -94,7 +93,7 @@ export const SandpackCodeViewer = React.forwardRef<any, CodeViewerProps>(
           scrollIntoView(container, {
             behavior: 'smooth',
             scrollMode: 'if-needed',
-            block: 'center'
+            block: 'center',
           })
         }
       }
@@ -107,20 +106,18 @@ export const SandpackCodeViewer = React.forwardRef<any, CodeViewerProps>(
             {shouldShowTabs ? <FileTabs /> : null}
             <div
               className={clsx('sp-code-viewer max-h-[600px] overflow-y-scroll', {
-                'is-expanded': isExpanded
+                'is-expanded': isExpanded,
               })}
             >
-
-
               <CodeEditor
-
                 code="    <Space size='large'>
                 <Button style={{backgroundColor: 'red'}} type='primary'>Primary</Button>
                 <Button type='secondary'>Secondary</Button>
                 <Button type='dashed'>Dashed</Button>
                 <Button type='outline'>Outline</Button>
                 <Button type='text'>Text</Button>
-              </Space>" initMode={'immediate'}
+              </Space>"
+                initMode={'immediate'}
               />
             </div>
           </SandpackStack>
@@ -130,7 +127,7 @@ export const SandpackCodeViewer = React.forwardRef<any, CodeViewerProps>(
             className={clsx(
               'w-full absolute z-10 py-1 px-4 flex items-center justify-center bg-gradient-to-t from-code-background to-code-background/10 dark:to-code-background/50',
               { 'h-10 bottom-0 pb-2': isExpanded },
-              { 'h-full inset-0': !isExpanded }
+              { 'h-full inset-0': !isExpanded },
             )}
           >
             <Button
@@ -146,7 +143,7 @@ export const SandpackCodeViewer = React.forwardRef<any, CodeViewerProps>(
         )}
       </>
     )
-  }
+  },
 )
 
 SandpackCodeViewer.displayName = 'SandpackCodeViewer'

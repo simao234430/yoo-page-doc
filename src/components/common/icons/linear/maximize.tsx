@@ -18,12 +18,6 @@ export const MaximizeLinearIcon = ({ size = 24, width, height, ...props }: IconS
       strokeLinejoin="round"
       strokeWidth={1.5}
     />
-    <path
-      d="M18 10V6h-4M6 14v4h4"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={1.5}
-    />
+    <path d="M18 10V6h-4M6 14v4h4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} />
   </svg>
 )

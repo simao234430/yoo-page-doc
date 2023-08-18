@@ -15,9 +15,9 @@ const NotFound = () => (
           </span>
         </Heading>
         <Paragraph className="pb-16 text-center">
-              The URL you are looking for does not exist.
+          The URL you are looking for does not exist.
           <br />
-              Hit <Label text="⌘K" /> to explore Contentlayer.
+          Hit <Label text="⌘K" /> to explore Contentlayer.
         </Paragraph>
       </div>
     </div>

@@ -1,10 +1,9 @@
 // @ts-check
 const { withContentlayer } = require('next-contentlayer')
 
-// /** @type {import('next').NextConfig} */  
-// const withAntdLess = require('next-plugin-antd-less');  
+// /** @type {import('next').NextConfig} */
+// const withAntdLess = require('next-plugin-antd-less');
 module.exports = withContentlayer({
- 
   experimental: {
     appDir: true,
   },
@@ -12,7 +11,7 @@ module.exports = withContentlayer({
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['pbs.twimg.com','octodex.github.com', 'avatars.githubusercontent.com', 'i.imgur.com'],
+    domains: ['pbs.twimg.com', 'octodex.github.com', 'avatars.githubusercontent.com', 'i.imgur.com'],
   },
   headers: async () => [
     {
@@ -23,7 +22,6 @@ module.exports = withContentlayer({
       ],
     },
   ],
- 
 
   // webpack: (
   //   config,
@@ -38,6 +36,4 @@ module.exports = withContentlayer({
   //   // Important: return the modified config
   //   return config
   // },
-
 })
-

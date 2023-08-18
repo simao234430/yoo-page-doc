@@ -21,7 +21,9 @@ export const useMediaQuery = (width: number): boolean => {
       setTargetReached(true)
     }
 
-    return () => {media.removeListener(updateTarget) };
+    return () => {
+      media.removeListener(updateTarget)
+    }
   }, [])
 
   return targetReached

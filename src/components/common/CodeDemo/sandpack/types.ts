@@ -3,8 +3,8 @@ import { type SandpackPredefinedTemplate } from '@codesandbox/sandpack-react'
 export type HighlightedLines =
   | string
   | {
-    [key in SandpackPredefinedTemplate]?: string;
-  }
+      [key in SandpackPredefinedTemplate]?: string
+    }
 
 export type Language = 'typescript' | 'javascript'
 

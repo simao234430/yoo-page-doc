@@ -15,12 +15,7 @@ export const RefreshButton = ({ clientId }: RefreshButtonProps): JSX.Element => 
   const { refresh } = useSandpackNavigation(clientId)
 
   return (
-    <button
-      className={clsx('sp-button', 'sp-icon-standalone')}
-      title="Refresh Sandpack"
-      type="button"
-      onClick={refresh}
-    >
+    <button className={clsx('sp-button', 'sp-icon-standalone')} title="Refresh Sandpack" type="button" onClick={refresh}>
       <RotateRightLinearIcon />
     </button>
   )

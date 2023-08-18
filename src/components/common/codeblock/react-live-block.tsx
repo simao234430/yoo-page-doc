@@ -6,7 +6,6 @@ import CopyButton from './copy-button'
 import scope from './react-live-scope'
 import { liveEditorStyle, liveErrorStyle } from './styles'
 
-
 const LiveCodePreview = chakra(LivePreview, {
   baseStyle: {
     fontFamily: 'body',
@@ -14,47 +13,49 @@ const LiveCodePreview = chakra(LivePreview, {
     p: 3,
     borderWidth: 1,
     borderRadius: '12px',
-    overflowX: 'auto'
-  }
+    overflowX: 'auto',
+  },
 })
 
 const EditableNotice = (props: BoxProps) => (
   <Box
-    position='absolute'
-    width='full'
-    top='-1.25em'
-    roundedTop='8px'
-    bg='#011627'
-    py='2'
-    zIndex='0'
-    letterSpacing='wide'
-    color='gray.400'
-    fontSize='xs'
-    fontWeight='semibold'
-    textAlign='center'
-    textTransform='uppercase'
-    pointerEvents='none'
+    position="absolute"
+    width="full"
+    top="-1.25em"
+    roundedTop="8px"
+    bg="#011627"
+    py="2"
+    zIndex="0"
+    letterSpacing="wide"
+    color="gray.400"
+    fontSize="xs"
+    fontWeight="semibold"
+    textAlign="center"
+    textTransform="uppercase"
+    pointerEvents="none"
     {...props}
   >
     {'editable-example'}
   </Box>
 )
 
-function ReactLiveBlock ({ editable, rawCode, ...rest }) {
+function ReactLiveBlock({ editable, rawCode, ...rest }) {
   const code = rawCode.trim().replace('// prettier-ignore', '')
   const [editorCode, setEditorCode] = useState(code.trim())
-  const onChange = (newCode) => {setEditorCode(newCode.trim()) }
+  const onChange = (newCode) => {
+    setEditorCode(newCode.trim())
+  }
   const liveProviderProps = {
     code: editorCode,
     scope,
-    ...rest
+    ...rest,
   }
   return (
     <LiveProvider {...liveProviderProps}>
-      <LiveCodePreview zIndex='1' />
-      <Box position='relative' zIndex='0'>
+      <LiveCodePreview zIndex="1" />
+      <Box position="relative" zIndex="0">
         {editable && (
-          <CodeContainer padding='5'>
+          <CodeContainer padding="5">
             <LiveEditor onChange={onChange} style={liveEditorStyle} />
           </CodeContainer>
         )}

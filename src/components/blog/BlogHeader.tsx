@@ -10,7 +10,9 @@ export const BlogHeader: FC<{ post: Post }> = ({ post }) => {
   const [top, setTop] = useState<boolean>(true)
 
   useEffect(() => {
-    const handleScroll = () => {setTop(window.scrollY <= 50) }
+    const handleScroll = () => {
+      setTop(window.scrollY <= 50)
+    }
     handleScroll()
     window.addEventListener('scroll', handleScroll)
     return () => {
@@ -22,9 +24,7 @@ export const BlogHeader: FC<{ post: Post }> = ({ post }) => {
     <>
       <div className="mx-auto mb-16 space-y-8 lg:max-w-[994px] lg:space-y-12 lg:px-16">
         <div className="space-y-4">
-          <h1 className="text-2xl font-semibold text-slate-800 dark:text-slate-200 md:text-3xl lg:text-4xl">
-            {post.title}
-          </h1>
+          <h1 className="text-2xl font-semibold text-slate-800 dark:text-slate-200 md:text-3xl lg:text-4xl">{post.title}</h1>
           <p className="mb-2 flex">
             <span className="mt-1 mr-2 block w-3 shrink-0 text-violet-600 dark:text-violet-400">
               <Icon name="calendar" />
@@ -40,8 +40,8 @@ export const BlogHeader: FC<{ post: Post }> = ({ post }) => {
       >
         <div className="mx-auto h-full lg:max-w-[994px] lg:px-16">
           <div className="flex h-full items-center space-x-2 text-sm">
-            <Link href="/blog"
-              className="inline whitespace-nowrap hover:text-slate-600 dark:hover:text-slate-300">Blog
+            <Link href="/blog" className="inline whitespace-nowrap hover:text-slate-600 dark:hover:text-slate-300">
+              Blog
             </Link>
             <span className="inline-block w-1.5 text-slate-400 dark:text-slate-500">
               <Icon name="chevron-right" />

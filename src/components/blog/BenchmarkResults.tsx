@@ -1,8 +1,8 @@
 const TableHeadCell: React.FC<
-React.PropsWithChildren<{
-  style?: React.CSSProperties
-  className?: string
-}>
+  React.PropsWithChildren<{
+    style?: React.CSSProperties
+    className?: string
+  }>
 > = ({ children, className, style }) => (
   <th className={`py-4 px-3 ${className}`} style={style}>
     {children}
@@ -10,10 +10,10 @@ React.PropsWithChildren<{
 )
 
 const TableCell: React.FC<
-React.PropsWithChildren<{
-  style?: React.CSSProperties
-  className?: string
-}>
+  React.PropsWithChildren<{
+    style?: React.CSSProperties
+    className?: string
+  }>
 > = ({ children, className, style }) => (
   <td className={`py-3 px-3 ${className}`} style={style}>
     {children}
@@ -22,7 +22,9 @@ React.PropsWithChildren<{
 
 const ResultCell: React.FC<React.PropsWithChildren<{ success?: boolean }>> = ({ children, success }) => {
   let classes = 'font-mono'
-  if (success) { classes += ' font-bold text-green-500'}
+  if (success) {
+    classes += ' font-bold text-green-500'
+  }
 
   return <TableCell className={classes}>{children}</TableCell>
 }
@@ -58,15 +60,15 @@ export const BenchmarkResults: React.FC = () => (
       </table>
     </div>
     <div className="w-full text-center text-sm text-slate-300 dark:text-slate-500">
-        Smaller is better/faster. Used machine:{' '}
+      Smaller is better/faster. Used machine:{' '}
       <a
         href="https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources"
         target="_blank"
         rel="noreferrer"
       >
-          GitHub Actions
+        GitHub Actions
       </a>
-        .
+      .
     </div>
   </div>
 )

@@ -5,16 +5,16 @@ export const Link = defineNestedType(() => ({
   fields: {
     label: {
       type: 'string',
-      required: true
+      required: true,
     },
     url: {
       type: 'string',
-      required: true
+      required: true,
     },
     isExternal: {
       type: 'boolean',
-      default: false
-    }
+      default: false,
+    },
   },
-  extensions: {}
+  extensions: {},
 }))

@@ -3,7 +3,7 @@ import type React from 'react'
 export const liveEditorStyle: React.CSSProperties = {
   fontSize: 14,
   overflowX: 'auto',
-  fontFamily: 'SF Mono, Menlo, monospace'
+  fontFamily: 'SF Mono, Menlo, monospace',
 }
 
 export const liveErrorStyle: React.CSSProperties = {
@@ -12,5 +12,5 @@ export const liveErrorStyle: React.CSSProperties = {
   padding: '1em',
   overflowX: 'auto',
   color: 'white',
-  backgroundColor: 'red'
+  backgroundColor: 'red',
 }

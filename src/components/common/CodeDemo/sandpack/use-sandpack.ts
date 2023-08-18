@@ -17,19 +17,10 @@ export interface UseSandpackProps {
 const importReact = 'import React from "react";'
 const importAllReact = 'import * as React from "react";'
 
-export const useSandpack = ({
-  files = {},
-  template = 'vite-react',
-  highlightedLines
-}: UseSandpackProps) => {
+export const useSandpack = ({ files = {}, template = 'vite-react', highlightedLines }: UseSandpackProps) => {
   // once the user select a template we store it in local storage
-  const [currentTemplate, setCurrentTemplate] = useLocalStorage<SandpackPredefinedTemplate>(
-    'currentTemplate',
-    template
-  )
-  const hasTypescript = Object.keys(files).some(
-    (file) => file.includes('.ts') || file.includes('.tsx')
-  )
+  const [currentTemplate, setCurrentTemplate] = useLocalStorage<SandpackPredefinedTemplate>('currentTemplate', template)
+  const hasTypescript = Object.keys(files).some((file) => file.includes('.ts') || file.includes('.tsx'))
 
   const { theme } = useTheme()
 
@@ -37,20 +28,14 @@ export const useSandpack = ({
 
   const sandpackTemplate = useMemo<SandpackPredefinedTemplate>(
     () => (currentTemplate === 'vite-react-ts' && hasTypescript ? currentTemplate : 'vite-react'),
-    [currentTemplate, hasTypescript]
+    [currentTemplate, hasTypescript],
   )
 
   // map current template to its mime type
-  const mimeType = useMemo(
-    () => (sandpackTemplate === 'vite-react-ts' ? '.tsx' : '.jsx'),
-    [sandpackTemplate]
-  )
+  const mimeType = useMemo(() => (sandpackTemplate === 'vite-react-ts' ? '.tsx' : '.jsx'), [sandpackTemplate])
 
   // get entry file by current template
-  const entryFile = useMemo(
-    () => (sandpackTemplate === 'vite-react-ts' ? 'index.tsx' : 'index.jsx'),
-    [sandpackTemplate]
-  )
+  const entryFile = useMemo(() => (sandpackTemplate === 'vite-react-ts' ? 'index.tsx' : 'index.jsx'), [sandpackTemplate])
 
   // filter files by current template
   const filteredFiles = Object.keys(files).reduce((acc, key) => {
@@ -64,9 +49,9 @@ export const useSandpack = ({
   }, {})
 
   let dependencies = {
-    "framer-motion": "10.12.16",
-    "@nextui-org/react": "latest",
-  };
+    'framer-motion': '10.12.16',
+    '@nextui-org/react': 'latest',
+  }
 
   // sort files by dependency
   const sortedFiles = Object.keys(filteredFiles)
@@ -109,7 +94,7 @@ export const useSandpack = ({
 
       return {
         ...acc,
-        [key]: fileContent
+        [key]: fileContent,
       }
     }, {})
 
@@ -164,8 +149,8 @@ export const useSandpack = ({
     devDependencies: {
       autoprefixer: '^10.4.14',
       postcss: '^8.4.21',
-      tailwindcss: '^3.2.7'
-    }
+      tailwindcss: '^3.2.7',
+    },
   }
 
   return {
@@ -174,26 +159,26 @@ export const useSandpack = ({
       ...sortedFiles,
       [entryFile]: {
         code: getFileEntry(theme ?? 'light'),
-        hidden: true
+        hidden: true,
       },
       'tailwind.config.js': {
         code: tailwindConfig,
-        hidden: true
+        hidden: true,
       },
       'postcss.config.js': {
         code: postcssConfig,
-        hidden: true
+        hidden: true,
       },
       'styles.css': {
         code: stylesConfig,
-        hidden: true
-      }
+        hidden: true,
+      },
     },
     hasTypescript,
     entryFile,
     sortedFiles,
     decorators,
     sandpackTemplate,
-    setCurrentTemplate
+    setCurrentTemplate,
   }
 }

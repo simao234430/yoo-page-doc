@@ -12,27 +12,27 @@ const content = {
         logo: { file: 'nextjs.svg', width: 118, height: 24 },
         label: 'Next.js',
         url: '/docs/environments/nextjs',
-        supported: true
+        supported: true,
       },
       {
         logo: { file: 'remix.svg', width: 28, height: 32 },
         label: 'Remix',
         url: '/docs/environments/remix',
-        supported: false
+        supported: false,
       },
       {
         logo: { file: 'vite.svg', width: 36, height: 36 },
         label: 'Vite',
         url: '/docs/environments/vite',
-        supported: false
+        supported: false,
       },
       {
         logo: { file: 'astro.svg', width: 26, height: 40 },
         label: 'Astro',
         url: '/docs/environments/astro',
-        supported: false
-      }
-    ]
+        supported: false,
+      },
+    ],
   },
   contentSources: {
     label: 'Supported Content Sources',
@@ -42,28 +42,28 @@ const content = {
         logo: { file: 'mdx.svg', width: 77, height: 32 },
         label: 'MDX',
         url: '/docs/sources/files',
-        supported: true
+        supported: true,
       },
       {
         logo: { file: 'contentful.svg', width: 33, height: 38 },
         label: 'Contentful',
         url: '/docs/sources/contentful',
-        supported: 'Planned'
+        supported: 'Planned',
       },
       {
         logo: { file: 'notion.svg', width: 39, height: 38 },
         label: 'Notion',
         url: '/docs/sources/notion',
-        supported: false
+        supported: false,
       },
       {
         logo: { file: 'sanity.svg', width: 135, height: 28 },
         label: 'Sanity',
         url: '/docs/sources/sanity',
-        supported: false
-      }
-    ]
-  }
+        supported: false,
+      },
+    ],
+  },
 }
 
 export const Support: FC = () => (
@@ -73,11 +73,7 @@ export const Support: FC = () => (
         <h2 className="mt-0 mb-2 text-sm font-normal text-slate-500 md:text-center">{content.frameworks.label}</h2>
         <div className="-mx-3 flex flex-wrap items-center">
           {content.frameworks.items.map(({ logo, label, url, supported }, index) => (
-            <Link
-              key={index}
-              href={url}
-              className="flex h-16 items-center p-3 dark:brightness-200 dark:filter"
-            >
+            <Link key={index} href={url} className="flex h-16 items-center p-3 dark:brightness-200 dark:filter">
               <Tooltip.Root delayDuration={100}>
                 <Tooltip.Trigger className="flex h-full items-center">
                   <Image
@@ -96,22 +92,15 @@ export const Support: FC = () => (
                   <Tooltip.Arrow className="mx-1 fill-current text-gray-800 dark:text-violet-200" />
                 </Tooltip.Content>
               </Tooltip.Root>
-
             </Link>
           ))}
         </div>
       </div>
       <div>
-        <h2 className="mt-0 mb-2 text-sm font-normal text-slate-500 md:text-center">
-          {content.contentSources.label}
-        </h2>
+        <h2 className="mt-0 mb-2 text-sm font-normal text-slate-500 md:text-center">{content.contentSources.label}</h2>
         <div className="-mx-3 flex flex-wrap items-center">
           {content.contentSources.items.map(({ logo, label, supported, url }, index) => (
-            <Link
-              key={index}
-              href={url}
-              className="flex h-16 items-center p-3 dark:brightness-200 dark:filter"
-            >
+            <Link key={index} href={url} className="flex h-16 items-center p-3 dark:brightness-200 dark:filter">
               <Tooltip.Root delayDuration={100}>
                 <Tooltip.TooltipTrigger>
                   <Image
@@ -127,16 +116,11 @@ export const Support: FC = () => (
                   className="rounded bg-gray-800 px-3 py-1.5 text-sm text-slate-100 shadow-xl shadow-white dark:bg-violet-200 dark:text-violet-900 dark:shadow-black"
                 >
                   {`${label}${
-                    supported === true
-                      ? ''
-                      : supported === 'Planned'
-                        ? ' – Planned'
-                        : ' – Considering to add support.'
+                    supported === true ? '' : supported === 'Planned' ? ' – Planned' : ' – Considering to add support.'
                   }`}
                   <Tooltip.Arrow className="mx-1 fill-current text-gray-800 dark:text-violet-200" />
                 </Tooltip.Content>
               </Tooltip.Root>
-
             </Link>
           ))}
         </div>

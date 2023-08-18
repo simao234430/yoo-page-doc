@@ -9,7 +9,7 @@ export interface BgGridContainerProps {
 export const BgGridContainer: FC<BgGridContainerProps> = ({
   // showGradient = true,
   children,
-  className
+  className,
 }) => (
   <div
     className={clsx(
@@ -26,12 +26,10 @@ export const BgGridContainer: FC<BgGridContainerProps> = ({
       // "before:inset-0",
       // "before:backdrop-blur-md",
       // "before:backdrop-saturate-200",
-      className
+      className,
     )}
   >
-    <div className="max-w-full py-4 px-2 w-full h-full scrollbar-hide overflow-x-scroll">
-      {children}
-    </div>
+    <div className="max-w-full py-4 px-2 w-full h-full scrollbar-hide overflow-x-scroll">{children}</div>
     {/* <div
         className={clsx(
           "hidden md:block absolute z-[-1] inset-0 bg-grid-zinc-300/25 [mask-image:linear-gradient(0deg,rgba(255,255,255,0.1),rgba(255,255,255,0.6))]",

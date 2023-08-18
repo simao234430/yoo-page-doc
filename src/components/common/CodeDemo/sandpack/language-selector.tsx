@@ -31,7 +31,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ template, on
         base: 'absolute z-10 right-3 bottom-4',
         cursor: 'bg-zinc-400 dark:bg-zinc-700',
         tabList:
-          "bg-transparent relative before:bg-white/5 before:w-full before:rounded-lg before:h-full before:content-[''] before:block before:z-1 before:absolute before:inset-0 before:backdrop-blur-md before:backdrop-saturate-100"
+          "bg-transparent relative before:bg-white/5 before:w-full before:rounded-lg before:h-full before:content-[''] before:block before:z-1 before:absolute before:inset-0 before:backdrop-blur-md before:backdrop-saturate-100",
       }}
       radius="md"
       selectedKey={selectedTemplate}
@@ -40,15 +40,11 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ template, on
     >
       <Tab
         key="vite-react-ts"
-        title={
-          <TypescriptIcon className="text-lg text-white dark:text-[#6b6b6b] group-data-[selected=true]:text-[#fafafa]" />
-        }
+        title={<TypescriptIcon className="text-lg text-white dark:text-[#6b6b6b] group-data-[selected=true]:text-[#fafafa]" />}
       />
       <Tab
         key="vite-react"
-        title={
-          <JavascriptIcon className="text-lg text-white dark:text-[#6b6b6b] group-data-[selected=true]:text-[#fafafa]" />
-        }
+        title={<JavascriptIcon className="text-lg text-white dark:text-[#6b6b6b] group-data-[selected=true]:text-[#fafafa]" />}
       />
     </Tabs>
   )

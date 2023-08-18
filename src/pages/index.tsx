@@ -51,8 +51,8 @@ const Page: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ usedBy
 
   return (
     <Container>
-      <Hero/>
-      <Support/>
+      <Hero />
+      <Support />
       <Testimonials usedByCount={999} />
       <Features />
       {/* <HowItWorks codeSnippets={preprocessedCodeSnippets[colorScheme]} /> */}
@@ -63,7 +63,6 @@ const Page: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ usedBy
   )
 }
 export default Page
-
 
 // export type PreprocessedCodeSnippets = Record<ColorScheme, CodeSnippets>
 

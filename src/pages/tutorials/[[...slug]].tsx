@@ -1,6 +1,5 @@
 // import type { InferGetStaticPropsType } from 'next'
 
-
 import { useLiveReload, useMDXComponent } from 'next-contentlayer/hooks'
 import { type FC, useEffect, useRef, useState } from 'react'
 
@@ -12,7 +11,6 @@ import { DocsNavigation } from '../../components/docs/DocsNavigation'
 import { DocsHeader } from '../../components/docs/DocsHeader'
 
 import { buildTutorialTree } from '../../utils/build-examples-tree'
-
 
 import { Button } from '../../components/common/Button'
 import MarkdownContent from '@/src/components/MarkdownContent'
@@ -57,7 +55,6 @@ export const getStaticProps = defineStaticProps(async ({ params }: DocPageProps)
   return { props: { breadcrumbs, tree, tutorial } }
 })
 
-
 const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ breadcrumbs, tutorial, tree }) => {
   useLiveReload()
   // const MDXContent = useMDXComponent(example.body.code || '')
@@ -65,13 +62,11 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ breadcrumbs,
   const [vm, setVm] = useState<VM | undefined>(undefined)
   const [fullScreen, setFullScreen] = useState<boolean>(false)
 
-
   const {
     asPath, // the value: "/question/how-do-you-get-the-current-url-in-nextjs/"
-    pathname // the value: "/question/[slug]"
+    pathname, // the value: "/question/[slug]"
   } = useRouter()
   // console.log(context.params)
-
 
   // useEffect(() => {
   //   if (example.github_repo && ref.current) {
@@ -110,8 +105,6 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ breadcrumbs,
             {/* {MDXContent && <MDXContent components={mdxComponents as any} />} */}
 
             <MarkdownContent code={tutorial.body.code} />
-
-
           </div>
         </div>
         <div
@@ -123,7 +116,6 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ breadcrumbs,
           <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
         </div>
       </div>
-
     </Container>
   )
 }

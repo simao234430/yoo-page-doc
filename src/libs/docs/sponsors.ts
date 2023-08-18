@@ -7,7 +7,7 @@ export const SPONSOR_TIERS = {
   SILVER: 'Silver Sponsor 🥈',
   GOLD: 'Gold Sponsor 🥇',
   PLATINUM: 'Platinum Sponsor ⭐️',
-  HERO: 'Hero Sponsor 🎖'
+  HERO: 'Hero Sponsor 🎖',
 }
 
 export const SPONSOR_TIER_BY_AMOUNT = {
@@ -16,7 +16,7 @@ export const SPONSOR_TIER_BY_AMOUNT = {
   [SPONSOR_TIERS.GOLD]: 100,
   [SPONSOR_TIERS.SILVER]: 30,
   [SPONSOR_TIERS.BRONZE]: 10,
-  [SPONSOR_TIERS.BACKER]: 1
+  [SPONSOR_TIERS.BACKER]: 1,
 }
 
 export const SPONSOR_COLORS = {
@@ -25,7 +25,7 @@ export const SPONSOR_COLORS = {
   [SPONSOR_TIERS.SILVER]: 'primary',
   [SPONSOR_TIERS.GOLD]: 'warning',
   [SPONSOR_TIERS.PLATINUM]: 'secondary',
-  [SPONSOR_TIERS.HERO]: 'gradient'
+  [SPONSOR_TIERS.HERO]: 'gradient',
 }
 
 export type SponsorTiers =
@@ -78,7 +78,7 @@ export const mockData: Sponsor[] = [
     twitter: 'johndoe',
     github: 'johndoe',
     website: 'https://johndoe.com',
-    createdAt: '2021-03-15'
+    createdAt: '2021-03-15',
   },
   {
     MemberId: 102,
@@ -99,7 +99,7 @@ export const mockData: Sponsor[] = [
     twitter: 'examplecorp',
     github: 'examplecorp',
     website: 'https://examplecorp.com',
-    createdAt: '2020-06-01'
+    createdAt: '2020-06-01',
   },
   {
     MemberId: 103,
@@ -120,7 +120,7 @@ export const mockData: Sponsor[] = [
     twitter: 'alicesmith',
     github: 'alicesmith',
     website: 'https://alicesmith.com',
-    createdAt: '2019-09-20'
+    createdAt: '2019-09-20',
   },
   {
     MemberId: 104,
@@ -141,7 +141,7 @@ export const mockData: Sponsor[] = [
     twitter: 'techsolutions',
     github: 'techsolutions',
     website: 'https://techsolutions.com',
-    createdAt: '2018-05-10'
+    createdAt: '2018-05-10',
   },
   {
     MemberId: 105,
@@ -162,7 +162,7 @@ export const mockData: Sponsor[] = [
     twitter: 'bobmartin',
     github: 'bobmartin',
     website: 'https://bobmartin.com',
-    createdAt: '2021-02-05'
+    createdAt: '2021-02-05',
   },
   {
     MemberId: 106,
@@ -183,7 +183,7 @@ export const mockData: Sponsor[] = [
     twitter: 'opensourcecommunity',
     github: 'opensourcecommunity',
     website: 'https://opensourcecommunity.org',
-    createdAt: '2019-11-15'
+    createdAt: '2019-11-15',
   },
   {
     MemberId: 107,
@@ -204,7 +204,7 @@ export const mockData: Sponsor[] = [
     twitter: 'innovativesolutions',
     github: 'innovativesolutions',
     website: 'https://innovativesolutions.com',
-    createdAt: '2017-08-25'
+    createdAt: '2017-08-25',
   },
   {
     MemberId: 108,
@@ -225,7 +225,7 @@ export const mockData: Sponsor[] = [
     twitter: 'caroljohnson',
     github: 'caroljohnson',
     website: 'https://caroljohnson.com',
-    createdAt: '2020-01-01'
+    createdAt: '2020-01-01',
   },
   {
     MemberId: 109,
@@ -246,7 +246,7 @@ export const mockData: Sponsor[] = [
     twitter: 'codeinitiative',
     github: 'codeinitiative',
     website: 'https://codeinitiative.org',
-    createdAt: '2021-07-15'
+    createdAt: '2021-07-15',
   },
   {
     MemberId: 110,
@@ -267,11 +267,9 @@ export const mockData: Sponsor[] = [
     twitter: 'creativeminds',
     github: 'creativeminds',
     website: 'https://creativeminds.com',
-    createdAt: '2016-03-12'
-  }
+    createdAt: '2016-03-12',
+  },
 ]
 
-export const getTier = (amount: number) => (
-  Object.keys(SPONSOR_TIER_BY_AMOUNT).find((tier) => amount >= SPONSOR_TIER_BY_AMOUNT[tier]) ??
-    SPONSOR_TIERS.BACKER
-)
+export const getTier = (amount: number) =>
+  Object.keys(SPONSOR_TIER_BY_AMOUNT).find((tier) => amount >= SPONSOR_TIER_BY_AMOUNT[tier]) ?? SPONSOR_TIERS.BACKER

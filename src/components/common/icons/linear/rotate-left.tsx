@@ -18,13 +18,7 @@ export const RotateLeftLinearIcon = ({ size = 24, width, height, ...props }: Ico
       strokeLinejoin="round"
       strokeWidth="1.5"
     />
-    <path
-      d="M7.87012 5.32L10.7601 2"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="1.5"
-    />
+    <path d="M7.87012 5.32L10.7601 2" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
     <path
       d="M7.87012 5.32007L11.2401 7.78007"
       stroke="currentColor"

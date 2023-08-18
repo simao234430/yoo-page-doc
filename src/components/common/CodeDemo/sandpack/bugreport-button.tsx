@@ -12,22 +12,8 @@ export const BugReportButton = () => {
   const componentTitle = capitalize(last(pathname?.split('/')))
 
   return (
-    <Tooltip
-      className="text-xs px-2"
-      closeDelay={0}
-      content="Report a bug"
-      placement="top"
-      radius="md"
-    >
-      <Button
-        isExternal
-        isIconOnly
-        as={Link}
-
-        size="sm"
-        title="Report a bug"
-        variant="light"
-      >
+    <Tooltip className="text-xs px-2" closeDelay={0} content="Report a bug" placement="top" radius="md">
+      <Button isExternal isIconOnly as={Link} size="sm" title="Report a bug" variant="light">
         {/* <BugIcon className="text-white dark:text-zinc-500" height={16} width={16} /> */}
       </Button>
     </Tooltip>

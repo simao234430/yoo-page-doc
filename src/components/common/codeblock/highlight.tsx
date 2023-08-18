@@ -1,9 +1,5 @@
 import { chakra } from '@chakra-ui/react'
-import BaseHighlight, {
-  type Language,
-  type PrismTheme,
-  themes
-} from 'prism-react-renderer'
+import BaseHighlight, { type Language, type PrismTheme, themes } from 'prism-react-renderer'
 import React from 'react'
 import { liveEditorStyle } from './styles'
 
@@ -19,9 +15,7 @@ const calculateLinesToHighlight = (meta: string) => {
 
   return (index: number) => {
     const lineNumber = index + 1
-    const inRange = lineNumbers.some(([start, end]) =>
-      end ? lineNumber >= start && lineNumber <= end : lineNumber === start
-    )
+    const inRange = lineNumbers.some(([start, end]) => (end ? lineNumber >= start && lineNumber <= end : lineNumber === start))
     return inRange
   }
 }
@@ -34,36 +28,20 @@ interface HighlightProps {
   showLines?: boolean
 }
 
-function Highlight ({
-  codeString,
-  language,
-  metastring,
-  showLines,
-  ...props
-}: HighlightProps) {
+function Highlight({ codeString, language, metastring, showLines, ...props }: HighlightProps) {
   const shouldHighlightLine = calculateLinesToHighlight(metastring)
 
   return (
-    <BaseHighlight
-
-      code={codeString}
-      language={language}
-      {...props}
-    >
+    <BaseHighlight code={codeString} language={language} {...props}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <div style={liveEditorStyle} data-language={language}>
           <pre className={className} style={style}>
             {tokens.map((line, i) => {
               const lineProps = getLineProps({ line, key: i })
               return (
-                <chakra.div
-                  key={i}
-                  px='5'
-                  bg={shouldHighlightLine(i) ? 'whiteAlpha.200' : undefined}
-                  {...lineProps}
-                >
+                <chakra.div key={i} px="5" bg={shouldHighlightLine(i) ? 'whiteAlpha.200' : undefined} {...lineProps}>
                   {showLines && (
-                    <chakra.span opacity={0.3} mr='6' fontSize='xs'>
+                    <chakra.span opacity={0.3} mr="6" fontSize="xs">
                       {i + 1}
                     </chakra.span>
                   )}

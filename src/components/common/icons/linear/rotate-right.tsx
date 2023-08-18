@@ -18,13 +18,7 @@ export const RotateRightLinearIcon = ({ size = 24, width, height, ...props }: Ic
       strokeLinejoin="round"
       strokeWidth="1.5"
     />
-    <path
-      d="M16.13 5.32L13.24 2"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="1.5"
-    />
+    <path d="M16.13 5.32L13.24 2" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
     <path
       d="M16.13 5.32007L12.76 7.78007"
       stroke="currentColor"

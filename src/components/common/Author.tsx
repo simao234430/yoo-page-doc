@@ -2,7 +2,7 @@ import { type FC } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export const Author: FC<{ name: string, handle: string, avatar: string }> = ({ name, handle, avatar }) => (
+export const Author: FC<{ name: string; handle: string; avatar: string }> = ({ name, handle, avatar }) => (
   <div className="flex space-x-4">
     <div className="flex-shrink-0">
       <div className="relative h-12 w-12 overflow-hidden rounded-full">
@@ -18,7 +18,6 @@ export const Author: FC<{ name: string, handle: string, avatar: string }> = ({ n
         className="text-sm text-slate-500 dark:text-slate-400"
       >
         {'@' + handle}
-
       </Link>
     </div>
   </div>

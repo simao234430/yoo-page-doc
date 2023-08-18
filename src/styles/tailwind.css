@@ -2,5 +2,5 @@
 @tailwind components;
 @tailwind utilities;
 .copy > svg path {
-    fill: none;
+  fill: none;
 }

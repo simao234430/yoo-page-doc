@@ -2,7 +2,7 @@ import { type FC, type ReactNode } from 'react'
 import classnames from 'classnames'
 import { Icon } from '../common/Icon'
 
-export const Checklist: FC<{ items: ReactNode[], className?: string }> = ({ items, className }) => (
+export const Checklist: FC<{ items: ReactNode[]; className?: string }> = ({ items, className }) => (
   <ul className={classnames('space-y-2 text-slate-700 dark:text-slate-300', className)}>
     {items.map((item, index) => (
       <li key={index} className="flex space-x-3">

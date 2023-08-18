@@ -11,7 +11,6 @@ export type { Markdown, MDX }
 /** Document types */
 
 export interface Post {
-
   /** File path relative to `contentDirPath` */
   _id: string
   _raw: Local.RawDocumentData

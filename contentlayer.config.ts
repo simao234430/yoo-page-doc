@@ -23,10 +23,9 @@ import remarkMdxCodeMeta from 'remark-mdx-code-meta'
 export const rehypePrettyCodeOptions: Partial<Options> = {
   theme: 'monokai',
 
-  onVisitHighlightedLine (node: any) {
+  onVisitHighlightedLine(node: any) {
     node.properties.className?.push('highlighted')
-  }
-
+  },
 }
 // export const parseMeta =
 //   ({ defaultShowCopyCode }) =>
@@ -44,7 +43,6 @@ export const rehypePrettyCodeOptions: Partial<Options> = {
 //         : defaultShowCopyCode
 //     })
 //   }
-
 
 // const DEFAULT_REHYPE_PRETTY_CODE_OPTIONS: Options = {
 
@@ -70,7 +68,6 @@ export default makeSource({
   contentDirPath,
   documentTypes,
   mdx: {
-
     remarkPlugins: [remarkSlug, [includeMarkdown, { resolveMdx: true }]],
     rehypePlugins: [
       () => (tree) => {
@@ -78,7 +75,9 @@ export default makeSource({
           if (node?.type === 'element' && node?.tagName === 'pre') {
             const [codeEl] = node.children
 
-            if (codeEl.tagName !== 'code') { return; }
+            if (codeEl.tagName !== 'code') {
+              return
+            }
 
             node.raw = codeEl.children?.[0].value
           }
@@ -99,7 +98,7 @@ export default makeSource({
             }
           }
         })
-      }
+      },
       // [
       //   rehypeExternalLinks,
       //   {
@@ -107,9 +106,6 @@ export default makeSource({
       //     rel: ['noopener', 'noreferrer', 'nofollow'],
       //   },
       // ],
-    ]
-
-  }
+    ],
+  },
 })
-
-

@@ -1,13 +1,6 @@
 import { type IconSvgProps } from '@/types'
 
-export const HeartLinearIcon = ({
-  size = 24,
-  width,
-  height,
-  strokeWidth = 1.5,
-  fill = 'none',
-  ...props
-}: IconSvgProps) => (
+export const HeartLinearIcon = ({ size = 24, width, height, strokeWidth = 1.5, fill = 'none', ...props }: IconSvgProps) => (
   <svg
     aria-hidden="true"
     fill={fill}

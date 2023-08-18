@@ -94,7 +94,6 @@ export type IconName =
   | 'copied'
   | 'copy'
 
-
 const iconMap = {
   'broken-link': BrokenLinkIcon,
   'check-circle-outline': CheckCircleOutlineIcon,
@@ -141,7 +140,7 @@ const iconMap = {
   users: UsersIcon,
   wordpress: WordPressIcon,
   copied: CopiedIcon,
-  copy: CopyIcon
+  copy: CopyIcon,
 }
 
 export const Icon: FC<{ name: IconName }> = ({ name }) => {

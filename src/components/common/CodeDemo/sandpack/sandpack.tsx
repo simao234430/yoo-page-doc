@@ -33,28 +33,22 @@ export const Sandpack: FC<SandpackProps> = ({
   showReportBug = true,
   showCopyCode = true,
   showTabs,
-  children
+  children,
 }) => {
   const editorContainerRef = useRef(null)
 
-  const { files, decorators, customSetup, sandpackTemplate, hasTypescript, setCurrentTemplate } =
-    useSandpack({
-      files: filesProp,
-      template,
-      highlightedLines
-    })
+  const { files, decorators, customSetup, sandpackTemplate, hasTypescript, setCurrentTemplate } = useSandpack({
+    files: filesProp,
+    template,
+    highlightedLines,
+  })
 
   return (
-    <SandpackProvider
-      customSetup={customSetup}
-      files={files}
-      template={sandpackTemplate}
-      theme={nextuiTheme}
-    >
+    <SandpackProvider customSetup={customSetup} files={files} template={sandpackTemplate} theme={nextuiTheme}>
       <SandpackLayout
         style={{
           // @ts-expect-error
-          '--sp-border-radius': '0.5rem'
+          '--sp-border-radius': '0.5rem',
         }}
       >
         <div className="flex w-full flex-col">

@@ -1,7 +1,7 @@
 import { type FC } from 'react'
 import Image from 'next/legacy/image'
 
-export const User: FC<{ name: string, bio: string, avatar: string }> = ({ name, bio, avatar }) => (
+export const User: FC<{ name: string; bio: string; avatar: string }> = ({ name, bio, avatar }) => (
   <div className="flex space-x-4">
     <div className="flex-shrink-0">
       <div className="relative h-12 w-12 overflow-hidden rounded-full">

@@ -8,7 +8,7 @@ import { Icon, type IconName } from './Icon'
 import { Label } from './Label'
 import { Logo } from './Logo'
 
-const navLinks: Array<{ label: string, url: string }> = [
+const navLinks: Array<{ label: string; url: string }> = [
   { label: 'tutorials', url: '/tutorials' },
   { label: 'components', url: '/components' },
   { label: 'Documentation', url: '/docs' },
@@ -17,19 +17,19 @@ const navLinks: Array<{ label: string, url: string }> = [
   { label: 'Blog', url: '/blog' },
   //
   // NOTE until we have a proper example overview page and multiple examples, link directly to Next.js example
-  { label: 'Examples', url: '/examples/nextjs' }
+  { label: 'Examples', url: '/examples/nextjs' },
 ]
 
-const iconLinks: Array<{ label: string, icon: IconName, url: string }> = [
+const iconLinks: Array<{ label: string; icon: IconName; url: string }> = [
   { label: 'Github', icon: 'github', url: 'https://github.com/contentlayerdev/contentlayer' },
-  { label: 'Discord', icon: 'discord', url: 'https://discord.gg/rytFErsARm' }
+  { label: 'Discord', icon: 'discord', url: 'https://discord.gg/rytFErsARm' },
 ]
 
-const NavLink: FC<{ label?: string, hideLabel?: boolean, icon?: IconName, url: string }> = ({
+const NavLink: FC<{ label?: string; hideLabel?: boolean; icon?: IconName; url: string }> = ({
   label,
   hideLabel = false,
   icon,
-  url
+  url,
 }) => {
   const router = useRouter()
   const active = router.pathname.split('/')[1] == url.replace('/', '')
@@ -51,7 +51,6 @@ const NavLink: FC<{ label?: string, hideLabel?: boolean, icon?: IconName, url: s
         </span>
       )}
       {label && <span className={hideLabel ? 'sr-only' : ''}>{label}</span>}
-
     </Link>
   )
 }
@@ -81,13 +80,9 @@ export const MainNavigation = () => {
     <header className="fixed z-50 w-full bg-white border-b border-gray-200 bg-opacity-90 backdrop-blur backdrop-filter dark:border-gray-800 dark:bg-gray-950">
       <div className="flex items-center justify-between w-full h-16 px-4 mx-auto max-w-screen-2xl md:px-8 lg:px-16">
         <div className="flex items-center space-x-2.5">
-          <Link
-            href="/"
-            className="flex items-center space-x-2.5 font-bold text-slate-800 no-underline dark:text-white"
-          >
+          <Link href="/" className="flex items-center space-x-2.5 font-bold text-slate-800 no-underline dark:text-white">
             <Logo />
             <span className="-mt-0.5">Contentlayer</span>
-
           </Link>
           <Label text="Beta" />
         </div>
@@ -95,7 +90,9 @@ export const MainNavigation = () => {
           <button
             type="button"
             aria-label="Toggle menu"
-            onClick={() => {setOpen(!open) }}
+            onClick={() => {
+              setOpen(!open)
+            }}
             className="flex items-center justify-end w-8 h-8 text-slate-600 dark:text-slate-300"
           >
             <span className="inline-block w-4">
@@ -110,12 +107,7 @@ export const MainNavigation = () => {
                     <SearchButton showShortcut={false} />
                   </div>
                   {navLinks.map(({ label, url }, index) => (
-                    <NavLink
-                      key={index}
-                      label={label}
-                      url={url}
-                      icon={isExternalUrl(url) ? 'external-link' : undefined}
-                    />
+                    <NavLink key={index} label={label} url={url} icon={isExternalUrl(url) ? 'external-link' : undefined} />
                   ))}
                 </div>
                 <div className="flex items-center justify-end pt-8 space-x-4">

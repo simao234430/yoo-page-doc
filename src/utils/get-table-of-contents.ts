@@ -1,6 +1,6 @@
 import slugger from 'github-slugger'
 
-export function getTableOfContents (mdxContent: string) {
+export function getTableOfContents(mdxContent: string) {
   const regexp = new RegExp(/^(### |## )(.*)\n/, 'gm')
   const headings = [...mdxContent.matchAll(regexp)]
   let tableOfContents = []
@@ -14,7 +14,7 @@ export function getTableOfContents (mdxContent: string) {
       return {
         text: headingText,
         id: headingLink,
-        level: headingType
+        level: headingType,
       }
     })
   }

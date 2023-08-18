@@ -4,7 +4,7 @@ import { Icon } from './Icon'
 
 const isExternalUrl = (link: string): boolean => !link.startsWith('/')
 
-export const ChevronLink: FC<{ label: string, url: string }> = ({ label, url }) => {
+export const ChevronLink: FC<{ label: string; url: string }> = ({ label, url }) => {
   if (isExternalUrl(url)) {
     return (
       <a
@@ -29,7 +29,6 @@ export const ChevronLink: FC<{ label: string, url: string }> = ({ label, url }) 
         <span className="block w-2">
           <Icon name="chevron-right" />
         </span>
-
       </Link>
     )
   }

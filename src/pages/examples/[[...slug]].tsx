@@ -28,7 +28,7 @@ export const getStaticPaths = async () => {
       _.pathSegments
         .map((_: PathSegment) => _.pathName)
         .slice(1)
-        .join('/')
+        .join('/'),
     )
     .map(toParams)
   return { paths, fallback: false }
@@ -43,16 +43,13 @@ export const getStaticProps = defineStaticProps(async (context) => {
   const breadcrumbs: any = []
   for (const slug of slugs) {
     path += slug ? '/' + slug : ''
-    const navTitle = allExamples.find(
-      (_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/') === path
-    )?.nav_title
+    const navTitle = allExamples.find((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/') === path)?.nav_title
     const title = allExamples.find((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join('/') === path)?.title
     breadcrumbs.push({ path: '/' + path, slug, title: navTitle || title })
   }
   const tree = buildExamplesTree(allExamples)
   return { props: { example, tree, breadcrumbs } }
 })
-
 
 const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ example, tree, breadcrumbs }) => {
   useLiveReload()
@@ -110,7 +107,9 @@ const Page: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ example, tre
                     theme="primary"
                     label={fullScreen ? 'Collapse Playground' : 'Expand Playground'}
                     icon={fullScreen ? 'collapse' : 'expand'}
-                    action={() => {setFullScreen(!fullScreen) }}
+                    action={() => {
+                      setFullScreen(!fullScreen)
+                    }}
                   />
                 </div>
                 <div

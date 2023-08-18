@@ -1,12 +1,6 @@
 import { type IconSvgProps } from '@/types'
 
-export const SearchLinearIcon = ({
-  size = 24,
-  strokeWidth = 1.5,
-  width,
-  height,
-  ...props
-}: IconSvgProps) => (
+export const SearchLinearIcon = ({ size = 24, strokeWidth = 1.5, width, height, ...props }: IconSvgProps) => (
   <svg
     aria-hidden="true"
     fill="none"
@@ -24,12 +18,6 @@ export const SearchLinearIcon = ({
       strokeLinejoin="round"
       strokeWidth={strokeWidth}
     />
-    <path
-      d="M22 22L20 20"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={strokeWidth}
-    />
+    <path d="M22 22L20 20" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={strokeWidth} />
   </svg>
 )

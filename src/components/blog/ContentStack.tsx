@@ -75,8 +75,12 @@ export const ContentStack: React.FC<Props> = ({ decoupled = false, ...props }) =
     .reduce((prev, curr) => prev + curr)
 
   let maxWidthClass = 'max-w-xl'
-  if (numIcons > 3) { maxWidthClass = 'max-w-2xl'}
-  if (numIcons > 5) { maxWidthClass = ''}
+  if (numIcons > 3) {
+    maxWidthClass = 'max-w-2xl'
+  }
+  if (numIcons > 5) {
+    maxWidthClass = ''
+  }
 
   return (
     <div className={`mx-auto my-12 ${maxWidthClass} text-sm`}>

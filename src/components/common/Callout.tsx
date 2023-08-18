@@ -1,7 +1,7 @@
 import { FC, type ReactNode } from 'react'
 import { Icon } from './Icon'
 
-export const Callout: React.FC<{ children: ReactNode, className?: string | '' }> = ({ children, className }) => (
+export const Callout: React.FC<{ children: ReactNode; className?: string | '' }> = ({ children, className }) => (
   <div
     className={`rounded-lg border border-violet-100 bg-violet-50 dark:border-violet-900/50 dark:bg-violet-900/20 ${className}`}
   >

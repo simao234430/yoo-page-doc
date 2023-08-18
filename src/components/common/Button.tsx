@@ -8,7 +8,7 @@ const themeClasses = {
   primary:
     'bg-violet-600 text-violet-50 border-violet-800 hover:bg-violet-500 dark:bg-violet-600 dark:border-violet-700 dark:hover:bg-violet-500 dark:hover:border-violet-600',
   secondary:
-    'bg-violet-100 text-violet-800 border-violet-200 hover:bg-violet-50 dark:text-violet-300 dark:border-violet-500/30 dark:hover:bg-violet-500/30 dark:bg-violet-500/20'
+    'bg-violet-100 text-violet-800 border-violet-200 hover:bg-violet-50 dark:text-violet-300 dark:border-violet-500/30 dark:hover:bg-violet-500/30 dark:bg-violet-500/20',
 }
 
 export const Button: FC<{
@@ -37,7 +37,6 @@ export const Button: FC<{
             <Icon name={icon} />
           </span>
         )}
-
       </Link>
     )
   } else {

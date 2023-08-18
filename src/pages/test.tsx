@@ -1,10 +1,9 @@
 // import    Button   from '../../yoo-components/packages/Button'
 import { Button } from '@simao234430/yoo-components'
 
-export default function Test () {
+export default function Test() {
   return (
-    <div >
-
+    <div>
       <Button style={{ color: 'red' }}>Button</Button>
       {/* <IconCopy className='test'   ></IconCopy>
         <IconDownCircle  fill='white'  stroke='black' />
@@ -18,7 +17,5 @@ export default function Test () {
 
               `}</style> */}
     </div>
-
-
   )
 }

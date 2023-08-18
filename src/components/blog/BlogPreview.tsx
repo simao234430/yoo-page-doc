@@ -13,8 +13,7 @@ import { format } from 'date-fns'
 export const BlogPreview: FC<{ post: Post }> = ({ post }) => (
   <Card className="grid grid-cols-1 gap-8 p-4 sm:p-8 md:grid-cols-2 lg:gap-16">
     <div>
-      <Link href={`/blog/${post.slug}`} >
-
+      <Link href={`/blog/${post.slug}`}>
         <Image
           src={post.seo.imagePath}
           alt={post.cover_image.alt}
@@ -23,12 +22,11 @@ export const BlogPreview: FC<{ post: Post }> = ({ post }) => (
           placeholder="blur"
           blurDataURL={post.cover_image.url}
         />
-
       </Link>
     </div>
     <div className="space-y-4">
       <Heading level={3}>
-        <Link href={`/blog/${post.slug}`} >{post.title}</Link>
+        <Link href={`/blog/${post.slug}`}>{post.title}</Link>
       </Heading>
       <div className="flex space-x-6 text-sm">
         <p className="mb-2 flex">

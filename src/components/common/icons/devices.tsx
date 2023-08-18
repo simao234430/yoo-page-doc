@@ -25,12 +25,6 @@ export const DevicesIcon = ({ size = 24, width, height, ...props }: IconSvgProps
       strokeLinejoin="round"
       strokeWidth={1.5}
     />
-    <path
-      d="M17.244 18.25h.01"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-    />
+    <path d="M17.244 18.25h.01" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} />
   </svg>
 )

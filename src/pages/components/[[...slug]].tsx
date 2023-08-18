@@ -1,12 +1,7 @@
-
 import MarkdownContent from '@/src/components/MarkdownContent'
 import { type GetStaticPaths, type GetStaticProps, type InferGetStaticPropsType } from 'next'
 import { useMDXComponent } from 'next-contentlayer/hooks'
-import {
-
-  getDocByType,
-  getDocDoc
-} from '../../utils/contentlayer-utils'
+import { getDocByType, getDocDoc } from '../../utils/contentlayer-utils'
 import { uniq } from '../../utils/js-utils'
 import { defineStaticProps, toParams } from '../../utils/next'
 import { allCompos } from 'contentlayer/generated'
@@ -16,22 +11,10 @@ import { DocsNavigation } from '@/src/components/docs/DocsNavigation'
 import { PageNavigation } from '@/src/components/common/PageNavigation'
 import { DocsHeader } from '@/src/components/docs/DocsHeader'
 
-export default function Page ({
-  doc,
-  tree,
-  params,
-  slugs,
-  breadcrumbs
-
-}: InferGetStaticPropsType<typeof getStaticProps>) {
-
+export default function Page({ doc, tree, params, slugs, breadcrumbs }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-
     <Container title={doc.title + ' – Contentlayer'} description={doc?.excerpt}>
-
       <div className="relative mx-auto w-full max-w-screen-2xl lg:flex lg:items-start">
-
-
         <div
           style={{ height: 'calc(100vh - 64px)' }}
           className="sticky top-16 hidden shrink-0 border-r border-gray-200 dark:border-gray-800 lg:block"
@@ -48,7 +31,6 @@ export default function Page ({
             {/* {MDXContent && <MDXContent components={mdxComponents as any} />} */}
 
             <MarkdownContent code={doc?.body?.code} />
-
           </div>
         </div>
         <div
@@ -64,7 +46,6 @@ export default function Page ({
   )
 }
 
-
 // export const getStaticPaths: GetStaticPaths = async () => {
 //   const paths = allCompos
 //     .map((_) =>
@@ -78,32 +59,23 @@ export default function Page ({
 // }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = uniq(
-    getDocByType().flatMap((doc) => [
-      doc.slug,
-      `/${doc._raw.sourceFileDir}`
-    ])
-  )
+  const paths = uniq(getDocByType().flatMap((doc) => [doc.slug, `/${doc._raw.sourceFileDir}`]))
   return { paths: paths, fallback: false }
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-
-
   const doc = getDocDoc(['components', context.params?.slug])
 
   const params = context.params as any
- 
+
   let breadcrumbs: any = []
-  let slugs = params.slug ? [  ...params.slug] : []
+  let slugs = params.slug ? [...params.slug] : []
   breadcrumbs.push({ path: '/components', title: 'Components' })
   let path = '/components'
   for (const slug of slugs) {
-
     path += `/${slug}`
     const breadcrumbDoc = allCompos.find((post) => post._raw.flattenedPath === params?.slug)
     breadcrumbs.push({ path: breadcrumbDoc?.slug, title: breadcrumbDoc?.title })
-
   }
   const tree = buildComposTree(allCompos)
   return {
@@ -113,7 +85,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
       params,
       slugs,
-      breadcrumbs: breadcrumbs
-    }
+      breadcrumbs: breadcrumbs,
+    },
   }
 }

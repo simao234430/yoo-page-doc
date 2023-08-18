@@ -17,12 +17,7 @@ export const CopyButton = () => {
   }
 
   return (
-    <Tooltip
-      className="text-xs px-2"
-      closeDelay={0}
-      content={copied ? 'Copied!' : 'Copy'}
-      radius="md"
-    >
+    <Tooltip className="text-xs px-2" closeDelay={0} content={copied ? 'Copied!' : 'Copy'} radius="md">
       <Button isIconOnly size="sm" title="Copy Code" variant="light" onClick={copyHandler}>
         <CopyLinearIcon className="text-white dark:text-zinc-500" height={16} width={16} />
       </Button>

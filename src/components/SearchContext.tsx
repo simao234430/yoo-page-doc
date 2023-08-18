@@ -1,15 +1,6 @@
 import { type FC, type ReactNode, useMemo } from 'react'
 import { useRouter } from 'next/router'
-import {
-  KBarProvider,
-  KBarPortal,
-  KBarPositioner,
-  KBarSearch,
-  KBarAnimator,
-  KBarResults,
-  useMatches,
-  type Action
-} from 'kbar'
+import { KBarProvider, KBarPortal, KBarPositioner, KBarSearch, KBarAnimator, KBarResults, useMatches, type Action } from 'kbar'
 import { type TreeNode } from 'types/TreeNode'
 import { Card } from './common/Card'
 import { Icon } from './common/Icon'
@@ -30,29 +21,29 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
         name: 'Homepage',
         keywords: 'Contentlayer Home Start Index Overview Features Intro',
         section: 'Home',
-        perform: async () => await router.push('/')
+        perform: async () => await router.push('/'),
       },
       {
         id: '3-github',
         name: 'GitHub Repository',
         keywords: 'Contentlayer Github Git Repository Repo Code Examples',
         section: 'External',
-        perform: () => window.open('https://github.com/contentlayerdev/contentlayer', '_ blank')
+        perform: () => window.open('https://github.com/contentlayerdev/contentlayer', '_ blank'),
       },
       {
         id: '3-discord',
         name: 'Discord Community',
         keywords: 'Discord Community Channel Contact',
         section: 'External',
-        perform: () => window.open('https://discord.com/invite/rytFErsARm', '_ blank')
+        perform: () => window.open('https://discord.com/invite/rytFErsARm', '_ blank'),
       },
       {
         id: '3-twitter',
         name: 'Twitter',
         keywords: 'Twitter Account Tweets Tweet News',
         section: 'External',
-        perform: () => window.open('https://twitter.com/contentlayerdev', '_ blank')
-      }
+        perform: () => window.open('https://twitter.com/contentlayerdev', '_ blank'),
+      },
     ]
     let id = 1
     const mapExamples = (tree: TreeNode[], parent: string) => {
@@ -62,15 +53,17 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
           name: element.label
             ? `${element.title == 'Examples' ? 'Overview' : element.title} (${element.label})`
             : element.title == 'Examples'
-              ? 'Overview'
-              : element.title,
+            ? 'Overview'
+            : element.title,
           keywords: element?.excerpt || '',
           section: 'Examples',
           subtitle: parent,
-          perform: async () => await router.push(element.urlPath)
+          perform: async () => await router.push(element.urlPath),
         })
         id++
-        if (element.children.length) { mapExamples(element.children, parent + parent ? ' / ' : '' + element.title) }
+        if (element.children.length) {
+          mapExamples(element.children, parent + parent ? ' / ' : '' + element.title)
+        }
       }
     }
     const mapPosts = (posts: Post[]) => {
@@ -79,7 +72,7 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
         name: 'Overview',
         keywords: 'Contentlayer Blog Post List Overview',
         section: 'Blog',
-        perform: async () => await router.push('/blog')
+        perform: async () => await router.push('/blog'),
       })
       id++
       for (const post of posts) {
@@ -89,7 +82,7 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
           keywords: post?.excerpt || '',
           section: 'Blog',
           subtitle: format(new Date(post.date), 'MMMM dd, yyyy'),
-          perform: async () => await router.push('/' + post.url_path)
+          perform: async () => await router.push('/' + post.url_path),
         })
         id++
       }
@@ -102,10 +95,12 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
           keywords: element?.excerpt || '',
           section: 'Documentation',
           subtitle: parent,
-          perform: async () => await router.push(element.urlPath)
+          perform: async () => await router.push(element.urlPath),
         })
         id++
-        if (element.children.length) { mapDocs(element.children, parent + ' / ' + element.title) }
+        if (element.children.length) {
+          mapDocs(element.children, parent + ' / ' + element.title)
+        }
       }
     }
     mapExamples(examplesTree, '')
@@ -146,24 +141,22 @@ const RenderResults = () => {
         items={results}
         onRender={({ item, active }) => (
           <div>
-            {typeof item === 'string'
-              ? (
-                <div className="pt-3">
-                  <div className="block border-t border-gray-100 px-4 pt-6 pb-2 text-xs font-semibold uppercase text-slate-400 dark:border-gray-800 dark:text-slate-500">
-                    {item}
-                  </div>
+            {typeof item === 'string' ? (
+              <div className="pt-3">
+                <div className="block border-t border-gray-100 px-4 pt-6 pb-2 text-xs font-semibold uppercase text-slate-400 dark:border-gray-800 dark:text-slate-500">
+                  {item}
                 </div>
-              )
-              : (
-                <div
-                  className={`block cursor-pointer px-4 py-2 text-slate-600 dark:text-slate-300 ${
-                    active ? 'bg-gray-100 dark:bg-gray-800' : 'bg-transparent'
-                  }`}
-                >
-                  {item.subtitle && <div className="text-xs text-slate-400 dark:text-slate-500">{item.subtitle}</div>}
-                  <div>{item.name}</div>
-                </div>
-              )}
+              </div>
+            ) : (
+              <div
+                className={`block cursor-pointer px-4 py-2 text-slate-600 dark:text-slate-300 ${
+                  active ? 'bg-gray-100 dark:bg-gray-800' : 'bg-transparent'
+                }`}
+              >
+                {item.subtitle && <div className="text-xs text-slate-400 dark:text-slate-500">{item.subtitle}</div>}
+                <div>{item.name}</div>
+              </div>
+            )}
           </div>
         )}
       />

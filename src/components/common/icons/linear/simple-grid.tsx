@@ -18,12 +18,6 @@ export const SimpleGridIcon = ({ size = 24, width, height, ...props }: IconSvgPr
       strokeLinejoin="round"
       strokeWidth="1.5"
     />
-    <path
-      d="M9 2V22"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="1.5"
-    />
+    <path d="M9 2V22" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
   </svg>
 )

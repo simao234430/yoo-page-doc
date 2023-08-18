@@ -3,9 +3,9 @@ import { type FC } from 'react'
 import { Arrow } from '../common/Arrow'
 import { FileTree } from './FileTree'
 
-export const DataTransformation: FC<{ from: { type: string, data: any }, to: { type: string, data: any } }> = ({
+export const DataTransformation: FC<{ from: { type: string; data: any }; to: { type: string; data: any } }> = ({
   from,
-  to
+  to,
 }) => (
   <div>
     <Arrow
@@ -27,10 +27,7 @@ export const DataTransformation: FC<{ from: { type: string, data: any }, to: { t
       )}
       {from.type == 'fileTree' && <FileTree contents={from.data} />}
       <div className="w-full sm:hidden md:block lg:hidden">
-        <Arrow
-          type="straight-short"
-          className="mx-auto w-24 rotate-90 scale-y-[-1] py-6 text-slate-300 dark:text-slate-700"
-        />
+        <Arrow type="straight-short" className="mx-auto w-24 rotate-90 scale-y-[-1] py-6 text-slate-300 dark:text-slate-700" />
       </div>
       {to.type == 'image' && (
         <div>

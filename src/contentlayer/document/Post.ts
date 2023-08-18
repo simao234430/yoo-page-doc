@@ -6,13 +6,16 @@ import { bundleMDX } from 'mdx-bundler'
 import { urlFromFilePath } from '../utils'
 import { SEO } from '../nested/SEO'
 
-interface PostHeading { level: 1 | 2 | 3, title: string }
+interface PostHeading {
+  level: 1 | 2 | 3
+  title: string
+}
 
 const RelatedPost = defineNestedType(() => ({
   name: 'RelatedPost',
   fields: {
-    slug: { type: 'string', required: true }
-  }
+    slug: { type: 'string', required: true },
+  },
 }))
 
 const CoverImage = defineNestedType(() => ({
@@ -21,8 +24,8 @@ const CoverImage = defineNestedType(() => ({
     url: { type: 'string', required: true },
     alt: { type: 'string', required: true },
     width: { type: 'number', required: true },
-    height: { type: 'number', required: true }
-  }
+    height: { type: 'number', required: true },
+  },
 }))
 
 const Author = defineNestedType(() => ({
@@ -30,8 +33,8 @@ const Author = defineNestedType(() => ({
   fields: {
     name: { type: 'string', required: true },
     handle: { type: 'string', required: true },
-    avatar: { type: 'string', required: true }
-  }
+    avatar: { type: 'string', required: true },
+  },
 }))
 
 export const Post = defineDocumentType(() => ({
@@ -42,47 +45,47 @@ export const Post = defineDocumentType(() => ({
     title: {
       type: 'string',
       description: 'The title of the post',
-      required: true
+      required: true,
     },
     cover_image: {
       type: 'nested',
       of: CoverImage,
-      required: true
+      required: true,
     },
     excerpt: {
       type: 'string',
-      required: true
+      required: true,
     },
     date: {
       type: 'date',
-      required: true
+      required: true,
     },
     authors: {
       type: 'list',
       of: Author,
-      required: true
+      required: true,
     },
     related_posts: {
       type: 'list',
       of: RelatedPost,
-      required: false
+      required: false,
     },
     seo: {
       type: 'nested',
       of: SEO,
-      required: true
-    }
+      required: true,
+    },
   },
   computedFields: {
     url_path: {
       type: 'string',
       description:
         'The URL path of this page relative to site root. For example, the site root page would be "/", and doc page would be "docs/getting-started/"',
-      resolve: urlFromFilePath
+      resolve: urlFromFilePath,
     },
     slug: {
       type: 'string',
-      resolve: (post) => urlFromFilePath(post).replace(/^\/blog\//, '')
+      resolve: (post) => urlFromFilePath(post).replace(/^\/blog\//, ''),
     },
     headings: {
       type: 'json',
@@ -94,30 +97,31 @@ export const Post = defineDocumentType(() => ({
           mdxOptions: (opts) => {
             opts.remarkPlugins = [...(opts.remarkPlugins ?? []), tocPlugin(headings)]
             return opts
-          }
+          },
         })
 
         return [{ level: 1, title: doc.title }, ...headings]
-      }
-    }
+      },
+    },
   },
-  extensions: {}
+  extensions: {},
 }))
 
 const tocPlugin =
   (headings: PostHeading[]): unified.Plugin =>
-    () => (node: any) => {
-      node.children
-        .filter((_: any) => _.type === 'heading')
-        .forEach((heading: any) => {
-          const title = toMarkdown({ type: 'paragraph', children: heading.children }, { extensions: [mdxToMarkdown()] })
-            .trim()
-            // removes MDX in headlines
-            .replace(/<.*$/g, '')
-            // remove backslashes (e.g. from list items)
-            .replace(/\\/g, '')
-            .trim()
+  () =>
+  (node: any) => {
+    node.children
+      .filter((_: any) => _.type === 'heading')
+      .forEach((heading: any) => {
+        const title = toMarkdown({ type: 'paragraph', children: heading.children }, { extensions: [mdxToMarkdown()] })
+          .trim()
+          // removes MDX in headlines
+          .replace(/<.*$/g, '')
+          // remove backslashes (e.g. from list items)
+          .replace(/\\/g, '')
+          .trim()
 
-          return headings.push({ level: heading.depth, title })
-        })
-    }
+        return headings.push({ level: heading.depth, title })
+      })
+  }

@@ -1,7 +1,9 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 const AnalyticsScripts = () => {
-  if (process.env.NODE_ENV !== 'production') { return null }
+  if (process.env.NODE_ENV !== 'production') {
+    return null
+  }
   return (
     <>
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3CT19D49H" />
@@ -12,7 +14,7 @@ const AnalyticsScripts = () => {
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
                 gtag('config', 'G-Q3CT19D49H');
-              `
+              `,
         }}
       />
     </>
@@ -20,7 +22,7 @@ const AnalyticsScripts = () => {
 }
 
 class MyDocument extends Document {
-  render () {
+  render() {
     return (
       <Html lang="en" className="scroll-padding">
         <Head>
@@ -55,7 +57,7 @@ class MyDocument extends Document {
                 } else {
                   document.documentElement.classList.remove('dark')
                 }
-          `
+          `,
             }}
           />
 

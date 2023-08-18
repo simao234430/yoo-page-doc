@@ -21,17 +21,19 @@ export const promiseAllProperties = async <T extends PlainObj>(promisesMap: Prom
   const keys = Object.keys(promisesMap)
   const promises = keys.map((key) => (promisesMap as any)[key])
 
-  return await Promise.all(promises).then((results) => results.reduce((resolved, result, index) => {
-    resolved[keys[index]] = result
-    return resolved
-  }, {}))
+  return await Promise.all(promises).then((results) =>
+    results.reduce((resolved, result, index) => {
+      resolved[keys[index]] = result
+      return resolved
+    }, {}),
+  )
 }
 
 type ValueOfRecord<R extends Record<any, any>> = R extends Record<any, infer V> ? V : never
 
 export const mapObjectValues = <O_In extends Record<any, any>, V_Out>(
   obj: O_In,
-  mapValue: (key: keyof O_In, val: ValueOfRecord<O_In>) => V_Out
+  mapValue: (key: keyof O_In, val: ValueOfRecord<O_In>) => V_Out,
 ): { [K in keyof O_In]: V_Out } => {
   const mappedEntries = Object.entries(obj).map(([key, val]) => [key, mapValue(key as keyof O_In, val)] as const)
   return Object.fromEntries(mappedEntries) as any

@@ -1,4 +1,3 @@
-
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import { Callout } from './common/Callout'
 import { ChevronLink } from './common/ChevronLink'
@@ -28,17 +27,16 @@ import { Button, Space, Tabs, Typography } from '@arco-design/web-react'
 import { JSX } from 'react'
 import { InlineCode } from './common/inline-code'
 import { Code } from './common/code'
-const Image: FC<{ src: string, alt?: string, width?: number, height?: number, className?: string }> = ({
+const Image: FC<{ src: string; alt?: string; width?: number; height?: number; className?: string }> = ({
   src,
   alt,
   width,
   height,
-  className
+  className,
 }) => (
   <div className={`overflow-hidden rounded-lg ${className}`}>
     <div className="-mb-3">
-      <NextImage src={src} alt={'test'} width={width ?? '1600'} height={height ?? '900'} placeholder="blur"
-        blurDataURL={src} />
+      <NextImage src={src} alt={'test'} width={width ?? '1600'} height={height ?? '900'} placeholder="blur" blurDataURL={src} />
     </div>
   </div>
 )
@@ -50,7 +48,6 @@ const P: React.FC<React.PropsWithChildren<{}>> = ({ children }) => <div classNam
 //     <DataTransformation from={dataTransformation.from} to={dataTransformation.to} />
 //   </div>
 // )
-
 
 // import { Link } from '@/src/app/components/common/Link'
 export const MDXComponents = {
@@ -83,6 +80,5 @@ export const MDXComponents = {
   Playground: Playground,
   TabPane: Tabs.TabPane,
   code: Code,
-  pre: Pre
-
+  pre: Pre,
 }

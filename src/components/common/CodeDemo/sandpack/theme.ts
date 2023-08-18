@@ -11,14 +11,14 @@ export const nextuiTheme: SandpackTheme = {
     hover: '#A258DF',
     accent: '#A258DF',
     error: '#811e18',
-    errorSurface: '#ffcdca'
+    errorSurface: '#ffcdca',
   },
   syntax: {
     plain: 'rgb(var(--code-foreground))',
     comment: {
       color: 'rgb(var(--code-comment))',
       fontStyle: 'italic',
-      fontWeight: '300'
+      fontWeight: '300',
     },
     keyword: 'rgb(var(--code-keyword))',
     definition: 'rgb(var(--code-number))',
@@ -26,13 +26,12 @@ export const nextuiTheme: SandpackTheme = {
     property: 'rgb(var(--code-attr-name))',
     tag: 'rgb(var(--code-tag))',
     static: 'rgb(var(--code-number))',
-    string: 'rgb(var(--code-string))'
+    string: 'rgb(var(--code-string))',
   },
   font: {
     body: 'Inter var',
-    mono:
-      'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+    mono: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
     size: '14px',
-    lineHeight: '1.5rem'
-  }
+    lineHeight: '1.5rem',
+  },
 }

@@ -2,13 +2,7 @@ import { cva } from 'class-variance-authority'
 import { type ReactNode } from 'react'
 import * as React from 'react'
 
-export const View = ({
-  prop = null,
-  value = '',
-  direction = 'row',
-  justify = 'evenly',
-  children
-}: any) => {
+export const View = ({ prop = null, value = '', direction = 'row', justify = 'evenly', children }: any) => {
   const flexDirection = direction === 'column' ? 'column' : 'row'
   const justifyContent = justify === 'start' ? 'flex-start' : 'space-evenly'
   return (
@@ -52,9 +46,7 @@ export const EnhancedView = ({ prop, value = '', ...props }: any) => {
               )}
             </div>
           ))}
-          {(Object.keys(rest).length === 0) && (
-            <span className="text-gray-700 p-1.5">No properties selected</span>
-          )}
+          {Object.keys(rest).length === 0 && <span className="text-gray-700 p-1.5">No properties selected</span>}
         </div>
         <div className="bg-grid bg-gray-50/50 flex-1 p-2.5">{props.children}</div>
       </div>
@@ -65,27 +57,19 @@ export const EnhancedView = ({ prop, value = '', ...props }: any) => {
 export const Badge = ({ children }: any) => (
   <div className="flex items-center space-x-0">
     <span>=&quot;</span>
-    <div className="rounded px-1 text-sm bg-yellow-100 text-yellow-700 border border-dashed border-red-200">
-      {children}
-    </div>
+    <div className="rounded px-1 text-sm bg-yellow-100 text-yellow-700 border border-dashed border-red-200">{children}</div>
     <span>&quot;</span>
   </div>
 )
 
-export const ViewGroup = ({
-  children,
-  direction = 'column'
-}: {
-  children: ReactNode
-  direction?: 'column' | 'row'
-}) => {
+export const ViewGroup = ({ children, direction = 'column' }: { children: ReactNode; direction?: 'column' | 'row' }) => {
   const viewClasses = cva(['flex', 'justify-evenly'], {
     variants: {
       direction: {
         row: ['flex-row', 'space-x-5'],
-        column: ['flex-col', 'space-y-5']
-      }
-    }
+        column: ['flex-col', 'space-y-5'],
+      },
+    },
   })
 
   return <div className={viewClasses({ direction })}>{children}</div>

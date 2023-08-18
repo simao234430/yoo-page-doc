@@ -44,7 +44,10 @@ const devcache_betaSnippets: BetaSnippets | null = null
 
 export type PreprocessedCodeSnippetsRemark = Record<ColorScheme, CodeSnippets>
 
-interface BetaSnippets { remark: PreprocessedCodeSnippetsRemark, contentlayer: PreprocessedCodeSnippets }
+interface BetaSnippets {
+  remark: PreprocessedCodeSnippetsRemark
+  contentlayer: PreprocessedCodeSnippets
+}
 
 export const getStaticProps = defineStaticProps(async (context) => {
   console.time(`getStaticProps /blog/${context.params!.slug}`)
@@ -73,17 +76,16 @@ export const getStaticProps = defineStaticProps(async (context) => {
   return { props: { post } }
 })
 
-const Image: FC<{ src: string, alt?: string, width?: number, height?: number, className?: string }> = ({
+const Image: FC<{ src: string; alt?: string; width?: number; height?: number; className?: string }> = ({
   src,
   alt,
   width,
   height,
-  className
+  className,
 }) => (
   <div className={`overflow-hidden rounded-lg ${className}`}>
     <div className="-mb-3">
-      <NextImage src={src} alt={'test'} width={width ?? '1600'} height={height ?? '900'} placeholder="blur"
-        blurDataURL={src} />
+      <NextImage src={src} alt={'test'} width={width ?? '1600'} height={height ?? '900'} placeholder="blur" blurDataURL={src} />
     </div>
   </div>
 )
@@ -163,7 +165,7 @@ const Post: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ post }) => {
           {post.authors.map((author, index) => (
             <Author key={index} {...author} />
           ))}
-          {(post.related_posts != null) && <RelatedPosts posts={post.related_posts} />}
+          {post.related_posts != null && <RelatedPosts posts={post.related_posts} />}
         </div>
       </div>
     </Container>

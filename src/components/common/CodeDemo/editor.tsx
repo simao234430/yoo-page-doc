@@ -37,20 +37,15 @@ const Editor: React.FC<Props> = ({ code }) => {
             </div>
             <div className="action">
               {visible && (
-                <span
-
-                  className="copy"
-                  onClick={copyHandler}
-                  title={'Copy Code'}>
-                  <Twitter fill='white' stroke='black' />
+                <span className="copy" onClick={copyHandler} title={'Copy Code'}>
+                  <Twitter fill="white" stroke="black" />
                 </span>
-
               )}
             </div>
           </div>
         </summary>
         <div className="area">
-          <LiveEditor tabMode='indentation' />
+          <LiveEditor tabMode="indentation" />
         </div>
       </details>
 

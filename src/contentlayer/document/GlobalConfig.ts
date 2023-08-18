@@ -8,8 +8,8 @@ export const GlobalConfig = defineDocumentType(() => ({
     title: {
       type: 'string',
       description: 'The title of the site',
-      required: true
-    }
+      required: true,
+    },
   },
-  extensions: {}
+  extensions: {},
 }))

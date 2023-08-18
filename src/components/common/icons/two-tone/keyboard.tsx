@@ -18,14 +18,7 @@ export const KeyboardTwoToneIcon = ({ size = 24, width, height, ...props }: Icon
       strokeLinejoin="round"
       strokeWidth="1.5"
     />
-    <path
-      d="M13.5 10H17"
-      opacity="0.4"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="1.5"
-    />
+    <path d="M13.5 10H17" opacity="0.4" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
     <path
       d="M7 15.5H7.02H17"
       opacity="0.4"

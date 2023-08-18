@@ -30,13 +30,15 @@ function getSupportingProps(doc: Doc, params: any) {
   for (const slug of slugs) {
     path += `/${slug}`
     const breadcrumbDoc = allDocs.find((_) => _.url_path === path || _.url_path_without_id === path)
-    if (breadcrumbDoc == null) { continue }
+    if (breadcrumbDoc == null) {
+      continue
+    }
     breadcrumbs.push({ path: breadcrumbDoc.url_path, title: breadcrumbDoc?.nav_title || breadcrumbDoc?.title })
   }
   const tree = buildDocsTree(allDocs)
   const childrenTree = buildDocsTree(
     allDocs,
-    doc.pathSegments.map((_: PathSegment) => _.pathName)
+    doc.pathSegments.map((_: PathSegment) => _.pathName),
   )
   return { tree, breadcrumbs, childrenTree }
 }
@@ -48,15 +50,14 @@ export const getServerSideProps = defineServerSideProps(async (context) => {
   // If on the index page, we don't worry about the global_id
   if (pagePath === '') {
     doc = allDocs.find((_) => _.url_path === '/docs')
-    if (doc == null) { return { notFound: true } }
+    if (doc == null) {
+      return { notFound: true }
+    }
     return { props: { doc, ...getSupportingProps(doc, params) } }
   }
   // Identify the global content ID as the last part of the page path following
   // the last slash. It should be an 8-digit number.
-  const globalContentId: string = pagePath.split('/').filter(Boolean)
-    .pop()
-    .split('-')
-    .pop()
+  const globalContentId: string = pagePath.split('/').filter(Boolean).pop().split('-').pop()
   // If there is a global content ID, find the corresponding document.
   if (globalContentId && globalContentId.length === 8) {
     doc = allDocs.find((_) => _.global_id === globalContentId)
@@ -64,12 +65,12 @@ export const getServerSideProps = defineServerSideProps(async (context) => {
   // If we found the doc by the global content ID, but the URL path isn't the
   // correct one, redirect to the proper URL path.
   const urlPath = doc?.pathSegments.map((_: PathSegment) => _.pathName).join('/')
-  if ((doc != null) && urlPath !== pagePath) {
+  if (doc != null && urlPath !== pagePath) {
     return { redirect: { destination: doc.url_path, permanent: true } }
   }
   // If there is no global content ID, or if we couldn't find the doc by the
   // global content ID, try finding the doc by the page path.
-  if (!globalContentId || (doc == null)) {
+  if (!globalContentId || doc == null) {
     doc = allDocs.find((_) => {
       const segments = _.pathSegments
         .map((_: PathSegment) => _.pathName)

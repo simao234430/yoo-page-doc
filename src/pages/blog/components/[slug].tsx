@@ -1,12 +1,8 @@
 import MarkdownContent from '@/src/components/MarkdownContent'
 
-export default function Page ({
-  doc
-
-}: InferGetStaticPropsType<typeof getStaticProps>) {
-
+export default function Page({ doc }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    < >
+    <>
       <MarkdownContent code={doc.body.code} />
     </>
   )
@@ -14,7 +10,6 @@ export default function Page ({
 
 export const getStaticProps: GetStaticProps = async (ctx) => ({
   props: {
-    doc: getDocDoc(['components', ctx.params.slug])
-
-  }
+    doc: getDocDoc(['components', ctx.params.slug]),
+  },
 })

@@ -1,4 +1,3 @@
-
 import remarkMdxCodeMeta from 'remark-mdx-code-meta'
 
 import remarkMdx from 'remark-mdx'
@@ -9,7 +8,6 @@ import remarkMdx from 'remark-mdx'
 // import { gfmTableToMarkdown } from 'mdast-util-gfm-table'
 // import * as acorn from 'acorn'
 // import jsx from 'acorn-jsx'
-
 
 // const remarkLayout = () => {
 //   const parser = acorn.Parser.extend(jsx())
@@ -99,7 +97,7 @@ import remarkMdx from 'remark-mdx'
 
 export const remarkPlugins = [
   remarkMdx,
-  remarkMdxCodeMeta
+  remarkMdxCodeMeta,
 
   // remarkLayout,
 ]

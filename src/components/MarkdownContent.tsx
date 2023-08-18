@@ -1,4 +1,3 @@
-
 'use client'
 
 import { MDXComponents } from './MDXComponents'
@@ -7,8 +6,7 @@ interface MDXContentProps {
   code: string
 }
 
-
-export default function MarkdownContent ({ code }: MDXContentProps) {
+export default function MarkdownContent({ code }: MDXContentProps) {
   const MDXContent = useMDXComponent(code)
 
   // @ts-expect-error

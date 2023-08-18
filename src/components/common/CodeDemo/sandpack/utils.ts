@@ -10,14 +10,11 @@ const getLines = (lines?: string): HighlightedLine => {
   return {
     start,
     end,
-    count
+    count,
   }
 }
 
-export const getHighlightedLines = (
-  highlightedLines?: HighlightedLines,
-  template?: SandpackPredefinedTemplate
-) => {
+export const getHighlightedLines = (highlightedLines?: HighlightedLines, template?: SandpackPredefinedTemplate) => {
   if (!highlightedLines) {
     return []
   }
@@ -29,8 +26,8 @@ export const getHighlightedLines = (
     return [
       {
         className: 'sp-highlight',
-        line: Number(highlightedLines)
-      }
+        line: Number(highlightedLines),
+      },
     ]
   }
 
@@ -45,8 +42,8 @@ export const getHighlightedLines = (
       return [
         {
           className: 'sp-highlight',
-          line: Number(templateLines)
-        }
+          line: Number(templateLines),
+        },
       ]
     }
     lines = getLines(templateLines)
@@ -59,16 +56,15 @@ export const getHighlightedLines = (
   // map linesCount to { className: 'sp-highlight', line: 1 }
   return Array.from({ length: lines.count }, (_, i) => ({
     className: 'sp-highlight',
-    line: parseInt(`${lines.start}`, 10) + i
+    line: parseInt(`${lines.start}`, 10) + i,
   }))
 }
 
 export const getFileName = (filePath: string) => filePath?.split('.')?.[0]?.replace(/\W/g, '')
 
-export const getId = () => Math.random().toString(32)
-  .slice(2, 10)
+export const getId = () => Math.random().toString(32).slice(2, 10)
 
-export function getNextUIComponents (files: SandpackFiles): Record<string, string> {
+export function getNextUIComponents(files: SandpackFiles): Record<string, string> {
   const output: Record<string, string> = {}
 
   for (const filePath in files) {
@@ -88,32 +84,29 @@ export function getNextUIComponents (files: SandpackFiles): Record<string, strin
   return output
 }
 
-export function extractNextUIImport (code: string): string[] {
+export function extractNextUIImport(code: string): string[] {
   // Split the code into lines
   const lines = code.split('\n')
 
   // Filter the lines to only include import statements from "@nextui-org/react"
-  const importStatements = lines.filter(
-    (line) => line.startsWith('import') && line.includes('@nextui-org/react')
-  )
+  const importStatements = lines.filter((line) => line.startsWith('import') && line.includes('@nextui-org/react'))
 
   // Return the import statements
   return importStatements
 }
 
-export function convertImportStatement (importStatement: string): string[] {
+export function convertImportStatement(importStatement: string): string[] {
   // Use a regular expression to find the part of the string between the curly braces
   const matches = importStatement.match(/{(.*)}/)
 
   // If the regular expression found a match
-  if ((matches != null) && matches[1]) {
+  if (matches != null && matches[1]) {
     // Split the match into individual components, trim whitespace, convert to lowercase
     const components = matches[1].split(',').map((item) => item.trim().toLowerCase())
 
     // Filter the components to exclude those that start with the name of another component
     const filteredComponents = components.filter(
-      (component, index, self) =>
-        !self.some((other, otherIndex) => otherIndex !== index && component.startsWith(other))
+      (component, index, self) => !self.some((other, otherIndex) => otherIndex !== index && component.startsWith(other)),
     )
 
     // Wrap each in quotes to create a string representation of a string array
@@ -124,14 +117,12 @@ export function convertImportStatement (importStatement: string): string[] {
   return []
 }
 
-export function updateTailwindConfig (tailwindConfig: string, componentNames: string[]): string {
+export function updateTailwindConfig(tailwindConfig: string, componentNames: string[]): string {
   // Split the tailwindConfig into lines
   const lines = tailwindConfig.split('\n')
 
   // Find the index of the line to replace
-  const lineIndex = lines.findIndex((line) =>
-    line.includes('./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}')
-  )
+  const lineIndex = lines.findIndex((line) => line.includes('./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}'))
 
   // If the line was found
   if (lineIndex !== -1) {
@@ -144,11 +135,7 @@ export function updateTailwindConfig (tailwindConfig: string, componentNames: st
       const name = componentName.replace(/"/g, '')
 
       // Add the new line
-      lines.splice(
-        lineIndex,
-        0,
-        `  "./node_modules/@nextui-org/theme/dist/components/${name}.js",`
-      )
+      lines.splice(lineIndex, 0, `  "./node_modules/@nextui-org/theme/dist/components/${name}.js",`)
     })
   }
 

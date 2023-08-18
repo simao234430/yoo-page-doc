@@ -6,63 +6,62 @@ const codeTheme: PrismTheme = {
     color: '#F4F4F4',
     fontWeight: '400',
 
-    fontStyle: 'normal'
-
+    fontStyle: 'normal',
   },
   styles: [
     {
       types: ['comment', 'prolog', 'doctype', 'cdata'],
       style: {
-        color: 'rgb(var(--code-comment))'
-      }
+        color: 'rgb(var(--code-comment))',
+      },
     },
     {
       types: ['symbol', 'text'],
       style: {
-        color: 'rgb(var(--code-foreground))'
-      }
+        color: 'rgb(var(--code-foreground))',
+      },
     },
     {
       types: ['punctuation'],
       style: {
-        color: 'rgb(var(--code-punctuation))'
-      }
+        color: 'rgb(var(--code-punctuation))',
+      },
     },
     {
       types: ['function'],
       style: {
-        color: 'rgb(var(--code-function))'
-      }
+        color: 'rgb(var(--code-function))',
+      },
     },
     {
       types: ['namespace'],
       style: {
-        opacity: 1
-      }
+        opacity: 1,
+      },
     },
     {
       types: ['tag', 'operator', 'number'],
       style: {
-        color: 'rgb(var(--code-number))'
-      }
+        color: 'rgb(var(--code-number))',
+      },
     },
     {
       types: ['property', 'function'],
       style: {
-        color: 'rgb(var(--code-function))'
-      }
+        color: 'rgb(var(--code-function))',
+      },
     },
     {
       types: ['tag-id', 'selector', 'atrule-id'],
       style: {
-        color: 'rgb(var(--code-tag))'
-      }
+        color: 'rgb(var(--code-tag))',
+      },
     },
     {
       types: ['attr-name'],
       style: {
-        color: 'rgb(var(--code-attr-name))'
-      }
+        color: 'rgb(var(--code-attr-name))',
+      },
     },
     {
       types: [
@@ -78,49 +77,49 @@ const codeTheme: PrismTheme = {
         'regex',
         'at-rule',
         'placeholder',
-        'variable'
+        'variable',
       ],
       style: {
-        color: 'rgb(var(--code-string))'
-      }
+        color: 'rgb(var(--code-string))',
+      },
     },
     {
       types: ['deleted'],
       style: {
-        textDecorationLine: 'line-through'
-      }
+        textDecorationLine: 'line-through',
+      },
     },
     {
       types: ['language-javascript', 'script'],
       style: {
-        color: 'rgb(var(--code-function))'
-      }
+        color: 'rgb(var(--code-function))',
+      },
     },
     {
       types: ['inserted'],
       style: {
-        textDecorationLine: 'underline'
-      }
+        textDecorationLine: 'underline',
+      },
     },
     {
       types: ['italic'],
       style: {
-        fontStyle: 'italic'
-      }
+        fontStyle: 'italic',
+      },
     },
     {
       types: ['important', 'bold'],
       style: {
-        fontWeight: 'bold'
-      }
+        fontWeight: 'bold',
+      },
     },
     {
       types: ['important', 'primitive', 'keyword'],
       style: {
-        color: 'rgb(var(--code-keyword))'
-      }
-    }
-  ]
+        color: 'rgb(var(--code-keyword))',
+      },
+    },
+  ],
 }
 
 export const getCodeThemeColors = () => {
@@ -146,7 +145,7 @@ export const getCodeThemeColors = () => {
     classnameColor,
     attrColor,
     functionColor,
-    primitiveColor
+    primitiveColor,
   }
 }
 

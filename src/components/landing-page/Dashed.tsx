@@ -1,13 +1,25 @@
 import { type FC, useState } from 'react'
 import * as Tooltip from '@radix-ui/react-tooltip'
 
-export const Dashed: FC<{ label: string, tooltip: string }> = ({ label, tooltip }) => {
+export const Dashed: FC<{ label: string; tooltip: string }> = ({ label, tooltip }) => {
   const [showTooltip, setShowTooltip] = useState<boolean>(false)
 
   return (
-    <Tooltip.Root delayDuration={100} open={showTooltip} onOpenChange={(open) => {setShowTooltip(open) }}>
+    <Tooltip.Root
+      delayDuration={100}
+      open={showTooltip}
+      onOpenChange={(open) => {
+        setShowTooltip(open)
+      }}
+    >
       <Tooltip.Trigger className="inline-block cursor-text border-b border-dashed border-gray-300 dark:border-gray-500">
-        <span onClick={() => {setShowTooltip(true) }}>{label}</span>
+        <span
+          onClick={() => {
+            setShowTooltip(true)
+          }}
+        >
+          {label}
+        </span>
       </Tooltip.Trigger>
       <Tooltip.Content
         sideOffset={10}
