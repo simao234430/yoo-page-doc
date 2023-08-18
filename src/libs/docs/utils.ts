@@ -45,9 +45,9 @@ export function getAppSlug (params: { slug: string[] }) {
 
   return { slug: `/docs/${slug.join('/')}` }
 }
- 
-export function getHeadings(markdownText: string | undefined): Heading[] {
-  let headings: Heading[] = [];
+
+export function getHeadings (markdownText: string | undefined): Heading[] {
+  const headings: Heading[] = []
 
   if (!markdownText) {
     return headings
@@ -55,7 +55,7 @@ export function getHeadings(markdownText: string | undefined): Heading[] {
   slugger.reset()
   const tokens = marked.lexer(markdownText)
 
-  tokens.forEach((token) => {
+  tokens.forEach((token: { type: string, depth: any, text: string }) => {
     if (token.type === 'heading') {
       headings.push({ level: token.depth, text: token.text, id: slugger.slug(token.text) })
     }
